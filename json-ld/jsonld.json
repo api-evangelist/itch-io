@@ -1,0 +1,124 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "itch": "https://itch.io/docs/api/",
+    "id": "@id",
+    "type": "@type",
+
+    "Game": {
+      "@id": "schema:VideoGame",
+      "@context": {
+        "id": "schema:identifier",
+        "title": "schema:name",
+        "shortText": "schema:description",
+        "url": "schema:url",
+        "coverUrl": "schema:image",
+        "classification": "schema:applicationCategory",
+        "createdAt": "schema:dateCreated",
+        "publishedAt": "schema:datePublished",
+        "minPrice": {
+          "@id": "schema:price",
+          "@type": "schema:Number"
+        },
+        "canBeBought": "schema:isAccessibleForFree",
+        "user": "schema:author",
+        "platforms": "schema:operatingSystem",
+        "inPressSystem": "itch:inPressSystem",
+        "hasDemo": "itch:hasDemo"
+      }
+    },
+
+    "User": {
+      "@id": "schema:Person",
+      "@context": {
+        "id": "schema:identifier",
+        "username": "schema:alternateName",
+        "displayName": "schema:name",
+        "url": "schema:url",
+        "coverUrl": "schema:image",
+        "developer": "itch:isDeveloper",
+        "pressUser": "itch:isPressUser"
+      }
+    },
+
+    "Upload": {
+      "@id": "schema:DigitalDocument",
+      "@context": {
+        "id": "schema:identifier",
+        "filename": "schema:name",
+        "displayName": "schema:alternateName",
+        "size": "schema:fileSize",
+        "type": "schema:encodingFormat",
+        "createdAt": "schema:dateCreated",
+        "updatedAt": "schema:dateModified",
+        "demo": "itch:isDemo",
+        "preorder": "itch:isPreorder",
+        "channelName": "itch:channelName",
+        "storage": "itch:storageType"
+      }
+    },
+
+    "Build": {
+      "@id": "schema:SoftwareSourceCode",
+      "@context": {
+        "id": "schema:identifier",
+        "version": "schema:version",
+        "userVersion": "schema:softwareVersion",
+        "state": "itch:buildState",
+        "createdAt": "schema:dateCreated",
+        "updatedAt": "schema:dateModified",
+        "uploadId": "itch:uploadId",
+        "gameId": "itch:gameId",
+        "userId": "itch:userId"
+      }
+    },
+
+    "Collection": {
+      "@id": "schema:ItemList",
+      "@context": {
+        "id": "schema:identifier",
+        "title": "schema:name",
+        "createdAt": "schema:dateCreated",
+        "updatedAt": "schema:dateModified",
+        "gamesCount": "schema:numberOfItems",
+        "collectionGames": "schema:itemListElement"
+      }
+    },
+
+    "Bundle": {
+      "@id": "schema:Product",
+      "@context": {
+        "id": "schema:identifier",
+        "title": "schema:name",
+        "url": "schema:url",
+        "coverUrl": "schema:image",
+        "gamesCount": "itch:gamesCount",
+        "createdAt": "schema:dateCreated",
+        "updatedAt": "schema:dateModified"
+      }
+    },
+
+    "DownloadKey": {
+      "@id": "schema:DigitalDocument",
+      "@context": {
+        "id": "schema:identifier",
+        "gameId": "itch:gameId",
+        "ownerId": "itch:ownerId",
+        "createdAt": "schema:dateCreated",
+        "updatedAt": "schema:dateModified"
+      }
+    },
+
+    "APIKey": {
+      "@id": "schema:DigitalDocument",
+      "@context": {
+        "id": "schema:identifier",
+        "userId": "itch:userId",
+        "key": "itch:apiKeyValue",
+        "createdAt": "schema:dateCreated",
+        "updatedAt": "schema:dateModified"
+      }
+    }
+  }
+}

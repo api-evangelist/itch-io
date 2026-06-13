@@ -1,0 +1,12 @@
+{
+  "user": {
+    "id": 1234567,
+    "username": "indie_dev",
+    "displayName": "Indie Dev Studio",
+    "developer": true,
+    "pressUser": false,
+    "url": "https://indie-dev.itch.io",
+    "coverUrl": "https://img.itch.zone/aW1nLzEyMzQ1Njc4LnBuZw==/original/abc123.png",
+    "stillCoverUrl": null
+  }
+}

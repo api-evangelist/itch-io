@@ -1,0 +1,51 @@
+{
+  "games": [
+    {
+      "id": 9876543,
+      "url": "https://indie-dev.itch.io/super-platformer",
+      "title": "Super Platformer",
+      "shortText": "A challenging 2D platformer with pixel art aesthetics.",
+      "type": "default",
+      "classification": "game",
+      "coverUrl": "https://img.itch.zone/aW1nLzk4NzY1NDMucG5n/original/cover.png",
+      "stillCoverUrl": null,
+      "createdAt": "2024-03-15T10:30:00Z",
+      "publishedAt": "2024-04-01T12:00:00Z",
+      "minPrice": 499,
+      "canBeBought": true,
+      "hasDemo": true,
+      "inPressSystem": false,
+      "platforms": {
+        "windows": "amd64",
+        "linux": "amd64",
+        "osx": "amd64"
+      },
+      "userId": 1234567,
+      "viewsCount": 15234,
+      "downloadsCount": 3421,
+      "purchasesCount": 892,
+      "published": true
+    },
+    {
+      "id": 1122334,
+      "url": "https://indie-dev.itch.io/pixel-rpg-assets",
+      "title": "Pixel RPG Asset Pack",
+      "shortText": "Over 500 pixel art sprites for your RPG projects.",
+      "type": "default",
+      "classification": "assets",
+      "coverUrl": "https://img.itch.zone/aW1nLzExMjIzMzQucG5n/original/assets.png",
+      "createdAt": "2023-11-20T08:00:00Z",
+      "publishedAt": "2023-12-01T09:00:00Z",
+      "minPrice": 0,
+      "canBeBought": false,
+      "hasDemo": false,
+      "inPressSystem": false,
+      "platforms": {},
+      "userId": 1234567,
+      "viewsCount": 8901,
+      "downloadsCount": 6540,
+      "purchasesCount": 0,
+      "published": true
+    }
+  ]
+}

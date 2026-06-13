@@ -40,7 +40,7 @@ apis:
       - type: Documentation
         url: https://itch.io/docs/api/serverside
       - type: OpenAPI
-        url: https://itch.io/docs/api/overview
+        url: https://raw.githubusercontent.com/api-evangelist/itch-io/refs/heads/main/openapi/openapi.json
     contact:
       - FN: Itch.io Support
         url: https://itch.io/support
