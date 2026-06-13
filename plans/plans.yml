@@ -1,0 +1,35 @@
+name: Itch.io Plans
+description: >-
+  Itch.io does not offer tiered subscription plans for API access. The platform
+  is free to join and use. Developers set their own revenue share contribution
+  to itch.io (ranging from 0% to 100%) through the Open Revenue Sharing model.
+  All API features including OAuth application registration, API key generation,
+  download key validation, and purchase lookups are available to all registered
+  developers at no additional cost.
+plans:
+  - name: Free Creator Account
+    description: >-
+      All creators receive full access to the itch.io API at no charge. An
+      account is required to generate API keys or register OAuth applications.
+      Creators pay only the payment processor transaction fees (approximately
+      $0.30 + 2.9% per transaction via PayPal or Stripe) and optionally choose
+      a voluntary revenue share percentage for the platform.
+    url: https://itch.io/register
+    features:
+      - Full server-side API access
+      - API key generation
+      - OAuth application registration
+      - Download key management
+      - Purchase verification endpoints
+      - Wharf build version endpoint (unauthenticated)
+      - Game upload and distribution
+      - Open Revenue Sharing (0-100% developer choice)
+    pricing:
+      - type: Platform fee
+        description: Developer-chosen voluntary revenue share (default suggestion 10%)
+        amount: 0-100%
+        currency: percentage
+      - type: Payment processing
+        description: Per-transaction fee charged by Stripe or PayPal
+        amount: '$0.30 + 2.9%'
+        currency: USD

@@ -1,0 +1,72 @@
+aid: itch-io
+name: Itch.io
+description: >-
+  Itch.io is an indie game marketplace and community platform where developers
+  can publish, sell, and distribute games, assets, and creative tools. Its REST
+  API provides authenticated access to game metadata, developer profile
+  information, bundle and download key management, purchase verification,
+  community ratings, and game distribution data. The API supports OAuth 2.0
+  implicit flow and API key authentication to enable integrations with developer
+  tools, game launchers, and third-party services.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/itch-io/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Games
+  - Indie Games
+  - Game Distribution
+  - Game Marketplace
+  - Developers
+apis:
+  - aid: itch-io:itch-io-api
+    name: Itch.io API
+    description: >-
+      The itch.io server-side API provides authenticated access to user
+      profiles, uploaded games, download key validation, purchase lookup, and
+      build version retrieval. Authentication is via API key or short-lived JWT
+      tokens using the Authorization Bearer header. Responses are JSON with
+      snake_case naming and RFC 3339 dates.
+    humanURL: https://itch.io/docs/api/overview
+    baseURL: https://api.itch.io
+    tags:
+      - Games
+      - Indie Games
+      - Downloads
+      - Purchases
+      - Profiles
+    properties:
+      - type: Documentation
+        url: https://itch.io/docs/api/serverside
+      - type: OpenAPI
+        url: https://itch.io/docs/api/overview
+    contact:
+      - FN: Itch.io Support
+        url: https://itch.io/support
+common:
+  - type: Website
+    url: https://itch.io
+  - type: Documentation
+    url: https://itch.io/docs/api/overview
+  - type: GitHubOrg
+    url: https://github.com/itchio
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/itchio
+  - type: Blog
+    url: https://itch.io/blog
+  - type: Pricing
+    url: https://itch.io/docs/creators/pricing
+  - type: StatusPage
+    url: https://www.saashub.com/itch-io-status
+  - type: X
+    url: https://twitter.com/itchio
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/itch-io/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/itch-io/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/itch-io/refs/heads/main/finops/finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

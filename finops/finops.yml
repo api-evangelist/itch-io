@@ -1,0 +1,106 @@
+name: Itch.io FinOps
+description: >-
+  Itch.io uses an Open Revenue Sharing model where creators voluntarily decide
+  what percentage of their sales revenue to contribute to the platform.
+  There are no mandatory platform fees or subscription costs. Transaction costs
+  are determined by third-party payment processors (Stripe and PayPal).
+  Additional costs may arise from tax compliance, chargebacks, and payout
+  transfer fees.
+costs:
+  - name: Platform Revenue Share
+    type: voluntary
+    description: >-
+      Creators choose what percentage of gross sales to share with itch.io.
+      The platform suggests 10% as a default to cover operational costs
+      (servers, bandwidth, development) but the rate can be set to 0%-100%.
+    amount: 0-100%
+    currency: percentage of gross sales
+    notes: >-
+      Creator Day events periodically offer 0% platform share for a 24-hour
+      window. Revenue shared goes toward server costs and platform development.
+
+  - name: Stripe Payment Processing
+    type: per-transaction
+    description: Per-transaction fee charged by Stripe when processing card payments.
+    amount: '$0.30 + 2.9%'
+    currency: USD
+    notes: >-
+      Applies when using Stripe as the payment processor for direct payments
+      or itch.io-collected payments. Reduces creator net revenue per transaction.
+
+  - name: PayPal Payment Processing
+    type: per-transaction
+    description: Per-transaction fee charged by PayPal when processing payments.
+    amount: Variable (~$0.30 + 2.9%)
+    currency: USD
+    notes: >-
+      PayPal fee rates may vary by account type and region. Similar structure
+      to Stripe but check PayPal's current rate card for exact amounts.
+
+  - name: Tax Identity Verification
+    type: one-time
+    description: >-
+      Flat fee charged by itch.io for W-8/W-9 tax identity verification for
+      international and US sellers receiving payouts via the collected model.
+    amount: '$3.00'
+    currency: USD
+    notes: Required once per creator account for tax compliance.
+
+  - name: Foreign Withholding Tax
+    type: conditional
+    description: >-
+      Default 30% withholding applied to foreign (non-US) seller payouts
+      unless the seller provides a valid Tax ID and qualifies under a tax
+      treaty to reduce the rate.
+    amount: Up to 30%
+    currency: percentage of payout
+    notes: >-
+      Reducible by providing Tax ID and invoking applicable tax treaty
+      benefits. Only applies to the "Collected by itch.io" payout model.
+
+  - name: Unclaimed Earnings Maintenance Fee
+    type: periodic
+    description: >-
+      Maintenance fee applied to earnings that remain unclaimed for more
+      than one year.
+    amount: Undisclosed
+    currency: USD
+    notes: Creators should claim earnings regularly to avoid this fee.
+
+  - name: Payout Transfer Fee
+    type: per-payout
+    description: >-
+      Transfer fee charged by PayPal or Payoneer when receiving payouts from
+      itch.io's collected model.
+    amount: Variable by provider
+    currency: USD
+    notes: >-
+      Minimum $5 balance required before requesting a payout. itch.io
+      enforces a 7-day transaction waiting period and 7-14 day staff review
+      before disbursing funds.
+
+paymentMethods:
+  - Stripe (card payments)
+  - PayPal
+  - Payoneer (payouts only)
+
+payoutModes:
+  - name: Direct to You
+    description: >-
+      Each purchase routes directly to the creator's connected PayPal or
+      Stripe account. Creator is the merchant of record and responsible for
+      VAT and tax reporting. No co-op bundle support.
+  - name: Collected by itch.io
+    description: >-
+      itch.io collects payments and distributes earnings on payout request.
+      itch.io is the merchant of record, handles VAT automatically, and
+      provides a single tax interview. Minimum $5 balance and 7-day
+      waiting period apply.
+
+references:
+  - title: Accepting Payments and Getting Paid
+    url: https://itch.io/docs/creators/payments
+  - title: Pricing Documentation
+    url: https://itch.io/docs/creators/pricing
+  - title: Open Revenue Sharing Announcement
+    url: https://www.gamedeveloper.com/business/itch-io-launches-open-revenue-sharing

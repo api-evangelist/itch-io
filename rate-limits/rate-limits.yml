@@ -1,0 +1,29 @@
+name: Itch.io Rate Limits
+description: >-
+  Itch.io does not publish formal documented rate limits for its API. The
+  platform enforces undisclosed hard upper limits to prevent abuse by bots and
+  crawlers. Clients that exceed these limits receive HTTP 429 Too Many Requests
+  responses. The limits are applied dynamically and adjusted over time to
+  balance protection against abusive traffic while allowing legitimate
+  integrations to function normally.
+rateLimits:
+  - name: General API Rate Limit
+    description: >-
+      Itch.io applies undisclosed rate limits to prevent bot abuse. Clients
+      exceeding the limit receive HTTP 429 responses. No specific request-per-
+      minute or request-per-hour thresholds are documented publicly.
+    limit: Undisclosed
+    window: Undisclosed
+    scope: Per IP / Per API key
+    errorCode: 429
+    errorMessage: Too Many Requests
+    notes: >-
+      The platform continuously adjusts its rate limiting and anti-DDoS
+      thresholds. Developers experiencing 429 errors on legitimate workloads
+      should reduce request frequency and implement exponential backoff. Contact
+      itch.io support for integration-specific guidance.
+references:
+  - title: 429 Too Many Requests discussion
+    url: https://itch.io/t/4817043/429-too-many-requests
+  - title: Suddenly getting 429 Too Many Requests discussion
+    url: https://itch.io/t/4345697/suddenly-getting-429-too-many-requests
