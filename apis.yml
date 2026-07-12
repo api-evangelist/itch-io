@@ -45,6 +45,10 @@ apis:
       - FN: Itch.io Support
         url: https://itch.io/support
 common:
+  - type: DomainSecurity
+    url: security/itch-io-domain-security.yml
+  - type: Authentication
+    url: authentication/itch-io-authentication.yml
   - type: Website
     url: https://itch.io
   - type: Documentation
