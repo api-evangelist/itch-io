@@ -1,0 +1,395 @@
+openapi: 3.1.0
+info:
+  title: Itch.io Auth Bundles API
+  description: The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.
+  version: 1.0.0
+  contact:
+    name: Itch.io Support
+    url: https://itch.io/support
+  license:
+    name: Proprietary
+    url: https://itch.io/docs/legal/terms
+servers:
+- url: https://api.itch.io
+  description: Itch.io API Server
+security:
+- bearerAuth: []
+tags:
+- name: Bundles
+  description: Operations related to game bundles
+paths:
+  /bundles/{bundleId}/bundle-games:
+    get:
+      operationId: getBundleGames
+      summary: Get bundle games
+      description: Retrieves a page of a bundle's games. The current user must own the bundle.
+      tags:
+      - Bundles
+      parameters:
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBundleGamesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /bundles/{bundleId}/claim-game:
+    post:
+      operationId: claimBundleGame
+      summary: Claim bundle game
+      description: Returns a DownloadKey for a game owned via a bundle purchase, materializing one if the bundle defers download key creation. Atomic and idempotent.
+      tags:
+      - Bundles
+      parameters:
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - game_id
+              properties:
+                game_id:
+                  type: integer
+                  format: int64
+                  description: ID of the game to claim from the bundle
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaimBundleGameResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    GameEmbedData:
+      type: object
+      description: Presentation information for embed games
+      properties:
+        gameId:
+          type: integer
+          format: int64
+        width:
+          type: integer
+          format: int64
+          description: Width of the initial viewport in pixels
+        height:
+          type: integer
+          format: int64
+          description: Height of the initial viewport in pixels
+        fullscreen:
+          type: boolean
+          description: Whether a fullscreen button should be shown
+    BundleGame:
+      type: object
+      description: Represents a game's membership in a bundle
+      properties:
+        bundleId:
+          type: integer
+          format: int64
+        bundle:
+          $ref: '#/components/schemas/Bundle'
+        gameId:
+          type: integer
+          format: int64
+        game:
+          $ref: '#/components/schemas/Game'
+        position:
+          type: integer
+          format: int64
+        minPrice:
+          type: integer
+          format: int64
+          description: Minimum price for this game inside the bundle in cents of a dollar
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Game:
+      type: object
+      description: Represents a page on itch.io; could be a game, tool, comic, etc.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Site-wide unique identifier
+        url:
+          type: string
+          format: uri
+          description: Canonical address of the game's page on itch.io
+        title:
+          type: string
+          description: Human-friendly title (may contain any character)
+        shortText:
+          type: string
+          description: Human-friendly short description
+        type:
+          type: string
+          enum:
+          - default
+          - flash
+          - unity
+          - java
+          - html
+          description: Type of the game page
+        classification:
+          type: string
+          enum:
+          - game
+          - tool
+          - assets
+          - game_mod
+          - physical_game
+          - soundtrack
+          - other
+          - comic
+          - book
+          description: Creator-picked classification
+        embed:
+          $ref: '#/components/schemas/GameEmbedData'
+        coverUrl:
+          type: string
+          format: uri
+          description: Cover URL (might be a GIF)
+        stillCoverUrl:
+          type: string
+          format: uri
+          description: Non-gif cover URL; only set if the main cover is a GIF
+        createdAt:
+          type: string
+          format: date-time
+          description: Date the game was created
+        publishedAt:
+          type: string
+          format: date-time
+          description: Date the game was published; empty if not currently published
+        minPrice:
+          type: integer
+          format: int64
+          description: Price in cents of a dollar
+        canBeBought:
+          type: boolean
+          description: Are payments accepted?
+        hasDemo:
+          type: boolean
+          description: Does this game have a demo available?
+        inPressSystem:
+          type: boolean
+          description: Is this game part of the itch.io press system?
+        platforms:
+          $ref: '#/components/schemas/Platforms'
+        user:
+          $ref: '#/components/schemas/User'
+        userId:
+          type: integer
+          format: int64
+        sale:
+          $ref: '#/components/schemas/Sale'
+        viewsCount:
+          type: integer
+          format: int64
+          description: Owner-only field
+        downloadsCount:
+          type: integer
+          format: int64
+          description: Owner-only field
+        purchasesCount:
+          type: integer
+          format: int64
+          description: Owner-only field
+        published:
+          type: boolean
+          description: Owner-only field
+    Bundle:
+      type: object
+      description: A collection of games sold together as a single purchase
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+        coverUrl:
+          type: string
+          format: uri
+        gamesCount:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        bundleGames:
+          type: array
+          items:
+            $ref: '#/components/schemas/BundleGame'
+    DownloadKey:
+      type: object
+      description: Allows downloading uploads for a game; typically generated at purchase time
+      properties:
+        id:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        game:
+          $ref: '#/components/schemas/Game'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        ownerId:
+          type: integer
+          format: int64
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+    Sale:
+      type: object
+      description: Describes a discount for a game
+      properties:
+        id:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        rate:
+          type: number
+          description: Discount rate in percent; can be negative (reverse sales)
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+    ClaimBundleGameResponse:
+      type: object
+      properties:
+        downloadKey:
+          $ref: '#/components/schemas/DownloadKey'
+    Platforms:
+      type: object
+      description: Describes which OS/architectures a game or upload is compatible with
+      properties:
+        windows:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+        linux:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+        osx:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+    GetBundleGamesResponse:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        bundleGames:
+          type: array
+          items:
+            $ref: '#/components/schemas/BundleGame'
+    User:
+      type: object
+      description: Represents an itch.io account with basic profile info
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Site-wide unique identifier generated by itch.io
+        username:
+          type: string
+          description: The user's username (used for login)
+        displayName:
+          type: string
+          description: The user's display name; may contain spaces and unicode characters
+        developer:
+          type: boolean
+          description: Has the user opted into creating games?
+        pressUser:
+          type: boolean
+          description: Is the user part of itch.io's press program?
+        url:
+          type: string
+          format: uri
+          description: The address of the user's page on itch.io
+        coverUrl:
+          type: string
+          format: uri
+          description: User's avatar URL; may be a GIF
+        stillCoverUrl:
+          type: string
+          format: uri
+          description: Static version of user's avatar; only set if the main cover URL is a GIF
+  responses:
+    Unauthorized:
+      description: Authentication is required or credentials are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key or JWT token issued by itch.io

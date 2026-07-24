@@ -1,0 +1,748 @@
+openapi: 3.1.0
+info:
+  title: Itch.io Auth Profile API
+  description: The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.
+  version: 1.0.0
+  contact:
+    name: Itch.io Support
+    url: https://itch.io/support
+  license:
+    name: Proprietary
+    url: https://itch.io/docs/legal/terms
+servers:
+- url: https://api.itch.io
+  description: Itch.io API Server
+security:
+- bearerAuth: []
+tags:
+- name: Profile
+  description: Operations related to the authenticated user's profile
+paths:
+  /profile:
+    get:
+      operationId: getProfile
+      summary: Get current user profile
+      description: Returns information about the user the current credentials belong to.
+      tags:
+      - Profile
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProfileResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /profile/games:
+    get:
+      operationId: listProfileGames
+      summary: List profile games
+      description: Lists the games the authenticated user develops (i.e. can edit).
+      tags:
+      - Profile
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProfileGamesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /profile/owned-keys:
+    get:
+      operationId: listProfileOwnedKeys
+      summary: List owned download keys
+      description: Lists the download keys the authenticated account owns.
+      tags:
+      - Profile
+      parameters:
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProfileOwnedKeysResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /profile/collections:
+    get:
+      operationId: listProfileCollections
+      summary: List profile collections
+      description: Lists the collections associated to the authenticated profile.
+      tags:
+      - Profile
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProfileCollectionsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /profile/owned-bundles:
+    get:
+      operationId: listProfileOwnedBundles
+      summary: List owned bundles
+      description: Lists the bundles the current user owns. Each BundleKey has its Bundle field populated. Deduped across multiple purchases of the same bundle; sale bundles are currently excluded; capped at 100.
+      tags:
+      - Profile
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProfileOwnedBundlesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /profile/builds:
+    get:
+      operationId: listProfileBuilds
+      summary: List profile builds
+      description: 'Lists builds across all games the current user develops. The response is normalized: each build carries scalar GameID/UploadID/UserID, and the referenced games/uploads/users are returned once each.'
+      tags:
+      - Profile
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - name: state
+        in: query
+        description: 'Filter by build state. One of: live, processing, failed. Empty for all.'
+        schema:
+          type: string
+          enum:
+          - live
+          - processing
+          - failed
+      - name: include_totals
+        in: query
+        description: If set to 1, include aggregate totals in the response.
+        schema:
+          type: string
+      - name: started_build_ids
+        in: query
+        description: Comma-separated build IDs in the started state to surface in the listing.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProfileBuildsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    BuildFile:
+      type: object
+      description: Contains information about a build file (archive, signature, patch, etc.)
+      properties:
+        id:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        state:
+          type: string
+          enum:
+          - created
+          - uploading
+          - uploaded
+          - failed
+        type:
+          type: string
+          enum:
+          - patch
+          - archive
+          - signature
+          - manifest
+          - unpacked
+        subType:
+          type: string
+          enum:
+          - default
+          - gzip
+          - optimized
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    BundleGame:
+      type: object
+      description: Represents a game's membership in a bundle
+      properties:
+        bundleId:
+          type: integer
+          format: int64
+        bundle:
+          $ref: '#/components/schemas/Bundle'
+        gameId:
+          type: integer
+          format: int64
+        game:
+          $ref: '#/components/schemas/Game'
+        position:
+          type: integer
+          format: int64
+        minPrice:
+          type: integer
+          format: int64
+          description: Minimum price for this game inside the bundle in cents of a dollar
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    DownloadKey:
+      type: object
+      description: Allows downloading uploads for a game; typically generated at purchase time
+      properties:
+        id:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        game:
+          $ref: '#/components/schemas/Game'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        ownerId:
+          type: integer
+          format: int64
+    Build:
+      type: object
+      description: Contains information about a specific build
+      properties:
+        id:
+          type: integer
+          format: int64
+        parentBuildId:
+          type: integer
+          format: int64
+          description: Identifier of the build before this one on the same channel, or -1 if initial
+        state:
+          type: string
+          enum:
+          - started
+          - queued
+          - processing
+          - completed
+          - failed
+        uploadId:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+          description: Automatically-incremented version number, starting with 1
+        userVersion:
+          type: string
+          description: Developer-specified version string from --userversion
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/BuildFile'
+        user:
+          $ref: '#/components/schemas/User'
+        upload:
+          $ref: '#/components/schemas/Upload'
+        game:
+          $ref: '#/components/schemas/Game'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CollectionGame:
+      type: object
+      description: Represents a game's membership in a collection
+      properties:
+        collectionId:
+          type: integer
+          format: int64
+        collection:
+          $ref: '#/components/schemas/Collection'
+        gameId:
+          type: integer
+          format: int64
+        game:
+          $ref: '#/components/schemas/Game'
+        position:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        blurb:
+          type: string
+        userId:
+          type: integer
+          format: int64
+    ListProfileGamesResponse:
+      type: object
+      properties:
+        games:
+          type: array
+          items:
+            $ref: '#/components/schemas/Game'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+    Sale:
+      type: object
+      description: Describes a discount for a game
+      properties:
+        id:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        rate:
+          type: number
+          description: Discount rate in percent; can be negative (reverse sales)
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+    ListProfileOwnedKeysResponse:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        ownedKeys:
+          type: array
+          items:
+            $ref: '#/components/schemas/DownloadKey'
+    Upload:
+      type: object
+      description: A downloadable file; may be wharf-enabled for versioned channel-based distribution
+      properties:
+        id:
+          type: integer
+          format: int64
+        storage:
+          type: string
+          enum:
+          - hosted
+          - build
+          - external
+        host:
+          type: string
+          description: Host if external storage
+        filename:
+          type: string
+          description: Original file name (e.g. Overland_x64.zip)
+        displayName:
+          type: string
+          description: Human-friendly name set by developer
+        size:
+          type: integer
+          format: int64
+          description: Size of upload in bytes
+        channelName:
+          type: string
+          description: Name of the wharf channel for this upload, if wharf-enabled
+        build:
+          $ref: '#/components/schemas/Build'
+        buildId:
+          type: integer
+          format: int64
+        type:
+          type: string
+          enum:
+          - default
+          - flash
+          - unity
+          - java
+          - html
+          - soundtrack
+          - book
+          - video
+          - documentation
+          - mod
+          - audio_assets
+          - graphical_assets
+          - sourcecode
+          - other
+        preorder:
+          type: boolean
+          description: Is this upload a pre-order placeholder?
+        demo:
+          type: boolean
+          description: Is this upload a free demo?
+        platforms:
+          $ref: '#/components/schemas/Platforms'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Bundle:
+      type: object
+      description: A collection of games sold together as a single purchase
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+        coverUrl:
+          type: string
+          format: uri
+        gamesCount:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        bundleGames:
+          type: array
+          items:
+            $ref: '#/components/schemas/BundleGame'
+    GameEmbedData:
+      type: object
+      description: Presentation information for embed games
+      properties:
+        gameId:
+          type: integer
+          format: int64
+        width:
+          type: integer
+          format: int64
+          description: Width of the initial viewport in pixels
+        height:
+          type: integer
+          format: int64
+          description: Height of the initial viewport in pixels
+        fullscreen:
+          type: boolean
+          description: Whether a fullscreen button should be shown
+    Game:
+      type: object
+      description: Represents a page on itch.io; could be a game, tool, comic, etc.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Site-wide unique identifier
+        url:
+          type: string
+          format: uri
+          description: Canonical address of the game's page on itch.io
+        title:
+          type: string
+          description: Human-friendly title (may contain any character)
+        shortText:
+          type: string
+          description: Human-friendly short description
+        type:
+          type: string
+          enum:
+          - default
+          - flash
+          - unity
+          - java
+          - html
+          description: Type of the game page
+        classification:
+          type: string
+          enum:
+          - game
+          - tool
+          - assets
+          - game_mod
+          - physical_game
+          - soundtrack
+          - other
+          - comic
+          - book
+          description: Creator-picked classification
+        embed:
+          $ref: '#/components/schemas/GameEmbedData'
+        coverUrl:
+          type: string
+          format: uri
+          description: Cover URL (might be a GIF)
+        stillCoverUrl:
+          type: string
+          format: uri
+          description: Non-gif cover URL; only set if the main cover is a GIF
+        createdAt:
+          type: string
+          format: date-time
+          description: Date the game was created
+        publishedAt:
+          type: string
+          format: date-time
+          description: Date the game was published; empty if not currently published
+        minPrice:
+          type: integer
+          format: int64
+          description: Price in cents of a dollar
+        canBeBought:
+          type: boolean
+          description: Are payments accepted?
+        hasDemo:
+          type: boolean
+          description: Does this game have a demo available?
+        inPressSystem:
+          type: boolean
+          description: Is this game part of the itch.io press system?
+        platforms:
+          $ref: '#/components/schemas/Platforms'
+        user:
+          $ref: '#/components/schemas/User'
+        userId:
+          type: integer
+          format: int64
+        sale:
+          $ref: '#/components/schemas/Sale'
+        viewsCount:
+          type: integer
+          format: int64
+          description: Owner-only field
+        downloadsCount:
+          type: integer
+          format: int64
+          description: Owner-only field
+        purchasesCount:
+          type: integer
+          format: int64
+          description: Owner-only field
+        published:
+          type: boolean
+          description: Owner-only field
+    GetProfileResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    ListProfileCollectionsResponse:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collection'
+    BundleKey:
+      type: object
+      description: Records a profile's ownership of a Bundle via a purchase
+      properties:
+        id:
+          type: integer
+          format: int64
+        bundleId:
+          type: integer
+          format: int64
+        bundle:
+          $ref: '#/components/schemas/Bundle'
+        purchaseId:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        ownerId:
+          type: integer
+          format: int64
+    ListProfileBuildsResponse:
+      type: object
+      properties:
+        builds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Build'
+        games:
+          type: array
+          items:
+            $ref: '#/components/schemas/Game'
+        uploads:
+          type: array
+          items:
+            $ref: '#/components/schemas/Upload'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        totals:
+          type: object
+          properties:
+            all:
+              type: integer
+              format: int64
+            live:
+              type: integer
+              format: int64
+            processing:
+              type: integer
+              format: int64
+            failed:
+              type: integer
+              format: int64
+            projectCount:
+              type: integer
+              format: int64
+    Platforms:
+      type: object
+      description: Describes which OS/architectures a game or upload is compatible with
+      properties:
+        windows:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+        linux:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+        osx:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+    Collection:
+      type: object
+      description: A curated set of games
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+          description: Human-friendly title (e.g. Couch coop games)
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        gamesCount:
+          type: integer
+          format: int64
+        collectionGames:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionGame'
+        userId:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/User'
+    User:
+      type: object
+      description: Represents an itch.io account with basic profile info
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Site-wide unique identifier generated by itch.io
+        username:
+          type: string
+          description: The user's username (used for login)
+        displayName:
+          type: string
+          description: The user's display name; may contain spaces and unicode characters
+        developer:
+          type: boolean
+          description: Has the user opted into creating games?
+        pressUser:
+          type: boolean
+          description: Is the user part of itch.io's press program?
+        url:
+          type: string
+          format: uri
+          description: The address of the user's page on itch.io
+        coverUrl:
+          type: string
+          format: uri
+          description: User's avatar URL; may be a GIF
+        stillCoverUrl:
+          type: string
+          format: uri
+          description: Static version of user's avatar; only set if the main cover URL is a GIF
+    ListProfileOwnedBundlesResponse:
+      type: object
+      properties:
+        bundleKeys:
+          type: array
+          items:
+            $ref: '#/components/schemas/BundleKey'
+  responses:
+    Unauthorized:
+      description: Authentication is required or credentials are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key or JWT token issued by itch.io

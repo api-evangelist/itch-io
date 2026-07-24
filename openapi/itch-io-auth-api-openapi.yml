@@ -1,0 +1,166 @@
+openapi: 3.1.0
+info:
+  title: Itch.io Auth API
+  description: The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.
+  version: 1.0.0
+  contact:
+    name: Itch.io Support
+    url: https://itch.io/support
+  license:
+    name: Proprietary
+    url: https://itch.io/docs/legal/terms
+servers:
+- url: https://api.itch.io
+  description: Itch.io API Server
+security:
+- bearerAuth: []
+tags:
+- name: Auth
+  description: Authentication operations
+paths:
+  /login:
+    post:
+      operationId: loginWithPassword
+      summary: Login with password
+      description: Attempts to log a user into itch.io with their username (or email) and password. The response may indicate that TOTP or recaptcha is needed.
+      tags:
+      - Auth
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - username
+              - password
+              properties:
+                source:
+                  type: string
+                  description: Source surface (e.g. desktop)
+                  example: desktop
+                username:
+                  type: string
+                  description: Username or email address
+                password:
+                  type: string
+                  description: Account password
+                recaptcha_response:
+                  type: string
+                  description: Recaptcha response token if required
+                force_recaptcha:
+                  type: boolean
+                  description: Force recaptcha challenge
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginWithPasswordResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /login/with-totp-token:
+    post:
+      operationId: totpVerify
+      summary: Verify TOTP token
+      description: Verifies a TOTP (two-factor authentication) code after the initial login step.
+      tags:
+      - Auth
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - token
+              - code
+              properties:
+                token:
+                  type: string
+                  description: Token from the initial login response
+                code:
+                  type: string
+                  description: TOTP code from authenticator app
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TOTPVerifyResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    LoginWithPasswordResponse:
+      type: object
+      properties:
+        recaptchaNeeded:
+          type: boolean
+        recaptchaUrl:
+          type: string
+          format: uri
+        totpNeeded:
+          type: boolean
+        token:
+          type: string
+          description: Short-lived token for TOTP verification
+        key:
+          $ref: '#/components/schemas/APIKey'
+        cookie:
+          type: object
+          additionalProperties:
+            type: string
+          description: Session cookie key-value pairs for browser session
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+    APIKey:
+      type: object
+      description: Grants access to the itch.io API within a certain scope
+      properties:
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        key:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        sourceVersion:
+          type: string
+    TOTPVerifyResponse:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/APIKey'
+        cookie:
+          type: object
+          additionalProperties:
+            type: string
+  responses:
+    Unauthorized:
+      description: Authentication is required or credentials are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key or JWT token issued by itch.io

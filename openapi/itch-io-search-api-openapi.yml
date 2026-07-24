@@ -1,0 +1,289 @@
+openapi: 3.1.0
+info:
+  title: Itch.io Auth Search API
+  description: The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.
+  version: 1.0.0
+  contact:
+    name: Itch.io Support
+    url: https://itch.io/support
+  license:
+    name: Proprietary
+    url: https://itch.io/docs/legal/terms
+servers:
+- url: https://api.itch.io
+  description: Itch.io API Server
+security:
+- bearerAuth: []
+tags:
+- name: Search
+  description: Search operations
+paths:
+  /search/games:
+    get:
+      operationId: searchGames
+      summary: Search games
+      description: Performs a text search for games (or any project type). Games must be published and not deindexed.
+      tags:
+      - Search
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchGamesResponse'
+  /search/users:
+    get:
+      operationId: searchUsers
+      summary: Search users
+      description: Performs a text search for users.
+      tags:
+      - Search
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchUsersResponse'
+components:
+  schemas:
+    GameEmbedData:
+      type: object
+      description: Presentation information for embed games
+      properties:
+        gameId:
+          type: integer
+          format: int64
+        width:
+          type: integer
+          format: int64
+          description: Width of the initial viewport in pixels
+        height:
+          type: integer
+          format: int64
+          description: Height of the initial viewport in pixels
+        fullscreen:
+          type: boolean
+          description: Whether a fullscreen button should be shown
+    Game:
+      type: object
+      description: Represents a page on itch.io; could be a game, tool, comic, etc.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Site-wide unique identifier
+        url:
+          type: string
+          format: uri
+          description: Canonical address of the game's page on itch.io
+        title:
+          type: string
+          description: Human-friendly title (may contain any character)
+        shortText:
+          type: string
+          description: Human-friendly short description
+        type:
+          type: string
+          enum:
+          - default
+          - flash
+          - unity
+          - java
+          - html
+          description: Type of the game page
+        classification:
+          type: string
+          enum:
+          - game
+          - tool
+          - assets
+          - game_mod
+          - physical_game
+          - soundtrack
+          - other
+          - comic
+          - book
+          description: Creator-picked classification
+        embed:
+          $ref: '#/components/schemas/GameEmbedData'
+        coverUrl:
+          type: string
+          format: uri
+          description: Cover URL (might be a GIF)
+        stillCoverUrl:
+          type: string
+          format: uri
+          description: Non-gif cover URL; only set if the main cover is a GIF
+        createdAt:
+          type: string
+          format: date-time
+          description: Date the game was created
+        publishedAt:
+          type: string
+          format: date-time
+          description: Date the game was published; empty if not currently published
+        minPrice:
+          type: integer
+          format: int64
+          description: Price in cents of a dollar
+        canBeBought:
+          type: boolean
+          description: Are payments accepted?
+        hasDemo:
+          type: boolean
+          description: Does this game have a demo available?
+        inPressSystem:
+          type: boolean
+          description: Is this game part of the itch.io press system?
+        platforms:
+          $ref: '#/components/schemas/Platforms'
+        user:
+          $ref: '#/components/schemas/User'
+        userId:
+          type: integer
+          format: int64
+        sale:
+          $ref: '#/components/schemas/Sale'
+        viewsCount:
+          type: integer
+          format: int64
+          description: Owner-only field
+        downloadsCount:
+          type: integer
+          format: int64
+          description: Owner-only field
+        purchasesCount:
+          type: integer
+          format: int64
+          description: Owner-only field
+        published:
+          type: boolean
+          description: Owner-only field
+    SearchUsersResponse:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    Sale:
+      type: object
+      description: Describes a discount for a game
+      properties:
+        id:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        rate:
+          type: number
+          description: Discount rate in percent; can be negative (reverse sales)
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+    Platforms:
+      type: object
+      description: Describes which OS/architectures a game or upload is compatible with
+      properties:
+        windows:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+        linux:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+        osx:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+    SearchGamesResponse:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        games:
+          type: array
+          items:
+            $ref: '#/components/schemas/Game'
+    User:
+      type: object
+      description: Represents an itch.io account with basic profile info
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Site-wide unique identifier generated by itch.io
+        username:
+          type: string
+          description: The user's username (used for login)
+        displayName:
+          type: string
+          description: The user's display name; may contain spaces and unicode characters
+        developer:
+          type: boolean
+          description: Has the user opted into creating games?
+        pressUser:
+          type: boolean
+          description: Is the user part of itch.io's press program?
+        url:
+          type: string
+          format: uri
+          description: The address of the user's page on itch.io
+        coverUrl:
+          type: string
+          format: uri
+          description: User's avatar URL; may be a GIF
+        stillCoverUrl:
+          type: string
+          format: uri
+          description: Static version of user's avatar; only set if the main cover URL is a GIF
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key or JWT token issued by itch.io
