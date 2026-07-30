@@ -8,7 +8,20 @@ description: >-
   community ratings, and game distribution data. The API supports OAuth 2.0
   implicit flow and API key authentication to enable integrations with developer
   tools, game launchers, and third-party services.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/itch-io.png
 url: https://raw.githubusercontent.com/api-evangelist/itch-io/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -20,30 +33,138 @@ tags:
   - Game Marketplace
   - Developers
 apis:
-  - aid: itch-io:itch-io-api
-    name: Itch.io API
-    description: >-
-      The itch.io server-side API provides authenticated access to user
-      profiles, uploaded games, download key validation, purchase lookup, and
-      build version retrieval. Authentication is via API key or short-lived JWT
-      tokens using the Authorization Bearer header. Responses are JSON with
-      snake_case naming and RFC 3339 dates.
-    humanURL: https://itch.io/docs/api/overview
-    baseURL: https://api.itch.io
-    tags:
-      - Games
-      - Indie Games
-      - Downloads
-      - Purchases
-      - Profiles
-    properties:
-      - type: Documentation
-        url: https://itch.io/docs/api/serverside
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/itch-io/refs/heads/main/openapi/openapi.json
-    contact:
-      - FN: Itch.io Support
-        url: https://itch.io/support
+- aid: itch-io:itch-io-auth-api
+  name: Itch.io Auth API
+  description: Authentication operations
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-auth-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
+- aid: itch-io:itch-io-builds-api
+  name: Itch.io Builds API
+  description: Operations related to wharf builds
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Builds
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-builds-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
+- aid: itch-io:itch-io-bundles-api
+  name: Itch.io Bundles API
+  description: Operations related to game bundles
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Bundles
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-bundles-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
+- aid: itch-io:itch-io-collections-api
+  name: Itch.io Collections API
+  description: Operations related to user game collections
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-collections-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
+- aid: itch-io:itch-io-downloads-api
+  name: Itch.io Downloads API
+  description: The Downloads API from Itch.io — 1 operation(s) for downloads.
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Downloads
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-downloads-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
+- aid: itch-io:itch-io-games-api
+  name: Itch.io Games API
+  description: Operations related to itch.io game pages
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Games
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-games-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
+- aid: itch-io:itch-io-profile-api
+  name: Itch.io Profile API
+  description: Operations related to the authenticated user's profile
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-profile-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
+- aid: itch-io:itch-io-search-api
+  name: Itch.io Search API
+  description: Search operations
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-search-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
+- aid: itch-io:itch-io-uploads-api
+  name: Itch.io Uploads API
+  description: Operations related to game uploads and downloads
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Uploads
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-uploads-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
+- aid: itch-io:itch-io-users-api
+  name: Itch.io Users API
+  description: User lookup operations
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-users-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
+- aid: itch-io:itch-io-wharf-api
+  name: Itch.io Wharf API
+  description: Wharf build infrastructure operations (butler/CI integration)
+  humanURL: https://itch.io/docs/api/overview
+  baseURL: https://api.itch.io
+  tags:
+  - Wharf
+  properties:
+  - type: OpenAPI
+    url: openapi/itch-io-wharf-api-openapi.yml
+  - type: Documentation
+    url: https://itch.io/docs/api/serverside
 common:
   - type: AgenticAccess
     url: agentic-access/itch-io-agentic-access.yml
