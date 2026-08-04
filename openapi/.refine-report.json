@@ -1,0 +1,34 @@
+{
+  "provider": "itch-io",
+  "sources": [
+    "itch-io-auth-api-openapi.yml",
+    "itch-io-builds-api-openapi.yml",
+    "itch-io-bundles-api-openapi.yml",
+    "itch-io-collections-api-openapi.yml",
+    "itch-io-downloads-api-openapi.yml",
+    "itch-io-games-api-openapi.yml",
+    "itch-io-profile-api-openapi.yml",
+    "itch-io-search-api-openapi.yml",
+    "itch-io-uploads-api-openapi.yml",
+    "itch-io-users-api-openapi.yml",
+    "itch-io-wharf-api-openapi.yml"
+  ],
+  "outputs": [
+    "itch-io-auth-api-openapi.yml",
+    "itch-io-builds-api-openapi.yml",
+    "itch-io-bundles-api-openapi.yml",
+    "itch-io-collections-api-openapi.yml",
+    "itch-io-downloads-api-openapi.yml",
+    "itch-io-games-api-openapi.yml",
+    "itch-io-profile-api-openapi.yml",
+    "itch-io-search-api-openapi.yml",
+    "itch-io-uploads-api-openapi.yml",
+    "itch-io-users-api-openapi.yml",
+    "itch-io-wharf-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,2810 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Itch.io API",
+    "description": "The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Itch.io Support",
+      "url": "https://itch.io/support"
+    },
+    "license": {
+      "name": "Proprietary",
+      "url": "https://itch.io/docs/legal/terms"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.itch.io",
+      "description": "Itch.io API Server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Profile",
+      "description": "Operations related to the authenticated user's profile"
+    },
+    {
+      "name": "Games",
+      "description": "Operations related to itch.io game pages"
+    },
+    {
+      "name": "Uploads",
+      "description": "Operations related to game uploads and downloads"
+    },
+    {
+      "name": "Builds",
+      "description": "Operations related to wharf builds"
+    },
+    {
+      "name": "Collections",
+      "description": "Operations related to user game collections"
+    },
+    {
+      "name": "Bundles",
+      "description": "Operations related to game bundles"
+    },
+    {
+      "name": "Search",
+      "description": "Search operations"
+    },
+    {
+      "name": "Users",
+      "description": "User lookup operations"
+    },
+    {
+      "name": "Wharf",
+      "description": "Wharf build infrastructure operations (butler/CI integration)"
+    },
+    {
+      "name": "Auth",
+      "description": "Authentication operations"
+    }
+  ],
+  "paths": {
+    "/profile": {
+      "get": {
+        "operationId": "getProfile",
+        "summary": "Get current user profile",
+        "description": "Returns information about the user the current credentials belong to.",
+        "tags": ["Profile"],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetProfileResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/profile/games": {
+      "get": {
+        "operationId": "listProfileGames",
+        "summary": "List profile games",
+        "description": "Lists the games the authenticated user develops (i.e. can edit).",
+        "tags": ["Profile"],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListProfileGamesResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/profile/owned-keys": {
+      "get": {
+        "operationId": "listProfileOwnedKeys",
+        "summary": "List owned download keys",
+        "description": "Lists the download keys the authenticated account owns.",
+        "tags": ["Profile"],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListProfileOwnedKeysResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/profile/collections": {
+      "get": {
+        "operationId": "listProfileCollections",
+        "summary": "List profile collections",
+        "description": "Lists the collections associated to the authenticated profile.",
+        "tags": ["Profile"],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListProfileCollectionsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/profile/owned-bundles": {
+      "get": {
+        "operationId": "listProfileOwnedBundles",
+        "summary": "List owned bundles",
+        "description": "Lists the bundles the current user owns. Each BundleKey has its Bundle field populated. Deduped across multiple purchases of the same bundle; sale bundles are currently excluded; capped at 100.",
+        "tags": ["Profile"],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListProfileOwnedBundlesResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/profile/builds": {
+      "get": {
+        "operationId": "listProfileBuilds",
+        "summary": "List profile builds",
+        "description": "Lists builds across all games the current user develops. The response is normalized: each build carries scalar GameID/UploadID/UserID, and the referenced games/uploads/users are returned once each.",
+        "tags": ["Profile"],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "Filter by build state. One of: live, processing, failed. Empty for all.",
+            "schema": {
+              "type": "string",
+              "enum": ["live", "processing", "failed"]
+            }
+          },
+          {
+            "name": "include_totals",
+            "in": "query",
+            "description": "If set to 1, include aggregate totals in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "started_build_ids",
+            "in": "query",
+            "description": "Comma-separated build IDs in the started state to surface in the listing.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListProfileBuildsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/games/{gameId}": {
+      "get": {
+        "operationId": "getGame",
+        "summary": "Get game",
+        "description": "Retrieves a single game by ID.",
+        "tags": ["Games"],
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/downloadKeyId"
+          },
+          {
+            "$ref": "#/components/parameters/password"
+          },
+          {
+            "$ref": "#/components/parameters/secret"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGameResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/games/{gameId}/uploads": {
+      "get": {
+        "operationId": "listGameUploads",
+        "summary": "List game uploads",
+        "description": "Lists the uploads for a game that are accessible with the current API key and game credentials.",
+        "tags": ["Uploads"],
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/downloadKeyId"
+          },
+          {
+            "$ref": "#/components/parameters/password"
+          },
+          {
+            "$ref": "#/components/parameters/secret"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListGameUploadsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/games/{gameId}/download-sessions": {
+      "post": {
+        "operationId": "newDownloadSession",
+        "summary": "Create download session",
+        "description": "Creates a new download session for more accurate download analytics. Multiple file downloads (patch, signature, etc.) for a single game upgrade should share one session.",
+        "tags": ["Downloads"],
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/downloadKeyId"
+          },
+          {
+            "$ref": "#/components/parameters/password"
+          },
+          {
+            "$ref": "#/components/parameters/secret"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewDownloadSessionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/uploads/{uploadId}": {
+      "get": {
+        "operationId": "getUpload",
+        "summary": "Get upload",
+        "description": "Retrieves information about a single upload by ID.",
+        "tags": ["Uploads"],
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/downloadKeyId"
+          },
+          {
+            "$ref": "#/components/parameters/password"
+          },
+          {
+            "$ref": "#/components/parameters/secret"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUploadResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/uploads/{uploadId}/builds": {
+      "get": {
+        "operationId": "listUploadBuilds",
+        "summary": "List upload builds",
+        "description": "Lists recent builds for a given upload.",
+        "tags": ["Builds", "Uploads"],
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/downloadKeyId"
+          },
+          {
+            "$ref": "#/components/parameters/password"
+          },
+          {
+            "$ref": "#/components/parameters/secret"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListUploadBuildsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/uploads/{uploadId}/scanned-archive": {
+      "get": {
+        "operationId": "getUploadScannedArchive",
+        "summary": "Get upload scanned archive",
+        "description": "Retrieves scanned archive metadata for an upload.",
+        "tags": ["Uploads"],
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/downloadKeyId"
+          },
+          {
+            "$ref": "#/components/parameters/password"
+          },
+          {
+            "$ref": "#/components/parameters/secret"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScannedArchiveResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/builds/{buildId}": {
+      "get": {
+        "operationId": "getBuild",
+        "summary": "Get build",
+        "description": "Retrieves info about a single build by ID (consumer-side endpoint).",
+        "tags": ["Builds"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/downloadKeyId"
+          },
+          {
+            "$ref": "#/components/parameters/password"
+          },
+          {
+            "$ref": "#/components/parameters/secret"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBuildResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/builds/{buildId}/upgrade-paths/{targetBuildId}": {
+      "get": {
+        "operationId": "getBuildUpgradePath",
+        "summary": "Get build upgrade path",
+        "description": "Returns the complete list of builds to go through to upgrade from one version to another.",
+        "tags": ["Builds"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "description": "Current build ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "targetBuildId",
+            "in": "path",
+            "description": "Target build ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/downloadKeyId"
+          },
+          {
+            "$ref": "#/components/parameters/password"
+          },
+          {
+            "$ref": "#/components/parameters/secret"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBuildUpgradePathResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/builds/{buildId}/scanned-archive": {
+      "get": {
+        "operationId": "getBuildScannedArchive",
+        "summary": "Get build scanned archive",
+        "description": "Retrieves scanned archive metadata for a build.",
+        "tags": ["Builds"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/downloadKeyId"
+          },
+          {
+            "$ref": "#/components/parameters/password"
+          },
+          {
+            "$ref": "#/components/parameters/secret"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScannedArchiveResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "operationId": "getUser",
+        "summary": "Get user",
+        "description": "Retrieves info about a single user by ID.",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}": {
+      "get": {
+        "operationId": "getCollection",
+        "summary": "Get collection",
+        "description": "Retrieves a single collection by ID.",
+        "tags": ["Collections"],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCollectionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/collection-games": {
+      "get": {
+        "operationId": "getCollectionGames",
+        "summary": "Get collection games",
+        "description": "Retrieves a page of a collection's games.",
+        "tags": ["Collections"],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCollectionGamesResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/bundles/{bundleId}/bundle-games": {
+      "get": {
+        "operationId": "getBundleGames",
+        "summary": "Get bundle games",
+        "description": "Retrieves a page of a bundle's games. The current user must own the bundle.",
+        "tags": ["Bundles"],
+        "parameters": [
+          {
+            "name": "bundleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBundleGamesResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/bundles/{bundleId}/claim-game": {
+      "post": {
+        "operationId": "claimBundleGame",
+        "summary": "Claim bundle game",
+        "description": "Returns a DownloadKey for a game owned via a bundle purchase, materializing one if the bundle defers download key creation. Atomic and idempotent.",
+        "tags": ["Bundles"],
+        "parameters": [
+          {
+            "name": "bundleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["game_id"],
+                "properties": {
+                  "game_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "ID of the game to claim from the bundle"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimBundleGameResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/search/games": {
+      "get": {
+        "operationId": "searchGames",
+        "summary": "Search games",
+        "description": "Performs a text search for games (or any project type). Games must be published and not deindexed.",
+        "tags": ["Search"],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchGamesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/users": {
+      "get": {
+        "operationId": "searchUsers",
+        "summary": "Search users",
+        "description": "Performs a text search for users.",
+        "tags": ["Search"],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchUsersResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "operationId": "loginWithPassword",
+        "summary": "Login with password",
+        "description": "Attempts to log a user into itch.io with their username (or email) and password. The response may indicate that TOTP or recaptcha is needed.",
+        "tags": ["Auth"],
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["username", "password"],
+                "properties": {
+                  "source": {
+                    "type": "string",
+                    "description": "Source surface (e.g. desktop)",
+                    "example": "desktop"
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Username or email address"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Account password"
+                  },
+                  "recaptcha_response": {
+                    "type": "string",
+                    "description": "Recaptcha response token if required"
+                  },
+                  "force_recaptcha": {
+                    "type": "boolean",
+                    "description": "Force recaptcha challenge"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginWithPasswordResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/login/with-totp-token": {
+      "post": {
+        "operationId": "totpVerify",
+        "summary": "Verify TOTP token",
+        "description": "Verifies a TOTP (two-factor authentication) code after the initial login step.",
+        "tags": ["Auth"],
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["token", "code"],
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "Token from the initial login response"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "TOTP code from authenticator app"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TOTPVerifyResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/wharf/status": {
+      "get": {
+        "operationId": "wharfStatus",
+        "summary": "Wharf status",
+        "description": "Requests the status of the wharf build infrastructure.",
+        "tags": ["Wharf"],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WharfStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wharf/channels": {
+      "get": {
+        "operationId": "listChannels",
+        "summary": "List wharf channels",
+        "description": "Returns a list of channels for a game.",
+        "tags": ["Wharf"],
+        "parameters": [
+          {
+            "name": "target",
+            "in": "query",
+            "required": true,
+            "description": "Target in the format user/game",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListChannelsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/wharf/channels/{channelName}": {
+      "get": {
+        "operationId": "getChannel",
+        "summary": "Get wharf channel",
+        "description": "Returns information about a given channel for a given game.",
+        "tags": ["Wharf"],
+        "parameters": [
+          {
+            "name": "channelName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target",
+            "in": "query",
+            "required": true,
+            "description": "Target in the format user/game",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetChannelResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/wharf/builds": {
+      "post": {
+        "operationId": "createBuild",
+        "summary": "Create wharf build",
+        "description": "Creates a new build for a given user/game:channel, with an optional user version.",
+        "tags": ["Wharf"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["target", "channel"],
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "Target in the format user/game"
+                  },
+                  "channel": {
+                    "type": "string",
+                    "description": "Channel name (e.g. windows-64)"
+                  },
+                  "user_version": {
+                    "type": "string",
+                    "description": "Optional developer-specified version string"
+                  },
+                  "hidden": {
+                    "type": "boolean",
+                    "description": "If true, the build is hidden"
+                  },
+                  "source": {
+                    "type": "string",
+                    "description": "Source that initiated the push (e.g. cli, butlerd, app)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBuildResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/wharf/builds/{buildId}": {
+      "get": {
+        "operationId": "getWharfBuild",
+        "summary": "Get wharf build",
+        "description": "Retrieves info about a single build by ID via the owner-side wharf endpoint.",
+        "tags": ["Wharf"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWharfBuildResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/wharf/builds/{buildId}/files": {
+      "get": {
+        "operationId": "listBuildFiles",
+        "summary": "List build files",
+        "description": "Returns a list of files associated to a build.",
+        "tags": ["Wharf"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListBuildFilesResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createBuildFile",
+        "summary": "Create build file",
+        "description": "Creates a new build file entry for a build.",
+        "tags": ["Wharf"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["type"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["patch", "archive", "signature", "manifest", "unpacked"]
+                  },
+                  "sub_type": {
+                    "type": "string",
+                    "enum": ["default", "gzip", "optimized"]
+                  },
+                  "upload_type": {
+                    "type": "string",
+                    "enum": ["multipart", "resumable", "deferred_resumable"]
+                  },
+                  "filename": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBuildFileResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/wharf/builds/{buildId}/files/{fileId}": {
+      "post": {
+        "operationId": "finalizeBuildFile",
+        "summary": "Finalize build file",
+        "description": "Marks the end of the upload for a build file. Validates that the file size in storage matches the provided size.",
+        "tags": ["Wharf"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["size"],
+                "properties": {
+                  "size": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Expected file size in bytes"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/wharf/builds/{buildId}/events": {
+      "get": {
+        "operationId": "listBuildEvents",
+        "summary": "List build events",
+        "description": "Returns a series of events associated with a given build.",
+        "tags": ["Wharf"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListBuildEventsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createBuildEvent",
+        "summary": "Create build event",
+        "description": "Associates a new build event (e.g. log message) to a build.",
+        "tags": ["Wharf"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["type", "message"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["log"]
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "string",
+                    "description": "JSON-encoded additional event data"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/wharf/builds/{buildId}/failures": {
+      "post": {
+        "operationId": "createBuildFailure",
+        "summary": "Mark build as failed",
+        "description": "Marks a given build as failed with an error message.",
+        "tags": ["Wharf"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["message"],
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "fatal": {
+                    "type": "boolean",
+                    "description": "If true, the build cannot be retried"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/wharf/builds/{buildId}/failures/rediff": {
+      "post": {
+        "operationId": "createRediffBuildFailure",
+        "summary": "Mark build rediff as failed",
+        "description": "Marks a given build as having failed to rediff (optimize).",
+        "tags": ["Wharf"],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["message"],
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "API key or JWT token issued by itch.io"
+      }
+    },
+    "parameters": {
+      "downloadKeyId": {
+        "name": "download_key_id",
+        "in": "query",
+        "description": "Download key ID for accessing paid content",
+        "schema": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "password": {
+        "name": "password",
+        "in": "query",
+        "description": "Password for restricted pages",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "secret": {
+        "name": "secret",
+        "in": "query",
+        "description": "Secret for private pages",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "Unauthorized": {
+        "description": "Authentication is required or credentials are invalid",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "description": "Represents an itch.io account with basic profile info",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Site-wide unique identifier generated by itch.io"
+          },
+          "username": {
+            "type": "string",
+            "description": "The user's username (used for login)"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "The user's display name; may contain spaces and unicode characters"
+          },
+          "developer": {
+            "type": "boolean",
+            "description": "Has the user opted into creating games?"
+          },
+          "pressUser": {
+            "type": "boolean",
+            "description": "Is the user part of itch.io's press program?"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "The address of the user's page on itch.io"
+          },
+          "coverUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "User's avatar URL; may be a GIF"
+          },
+          "stillCoverUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Static version of user's avatar; only set if the main cover URL is a GIF"
+          }
+        }
+      },
+      "Game": {
+        "type": "object",
+        "description": "Represents a page on itch.io; could be a game, tool, comic, etc.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Site-wide unique identifier"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Canonical address of the game's page on itch.io"
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-friendly title (may contain any character)"
+          },
+          "shortText": {
+            "type": "string",
+            "description": "Human-friendly short description"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["default", "flash", "unity", "java", "html"],
+            "description": "Type of the game page"
+          },
+          "classification": {
+            "type": "string",
+            "enum": ["game", "tool", "assets", "game_mod", "physical_game", "soundtrack", "other", "comic", "book"],
+            "description": "Creator-picked classification"
+          },
+          "embed": {
+            "$ref": "#/components/schemas/GameEmbedData"
+          },
+          "coverUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Cover URL (might be a GIF)"
+          },
+          "stillCoverUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Non-gif cover URL; only set if the main cover is a GIF"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date the game was created"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date the game was published; empty if not currently published"
+          },
+          "minPrice": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Price in cents of a dollar"
+          },
+          "canBeBought": {
+            "type": "boolean",
+            "description": "Are payments accepted?"
+          },
+          "hasDemo": {
+            "type": "boolean",
+            "description": "Does this game have a demo available?"
+          },
+          "inPressSystem": {
+            "type": "boolean",
+            "description": "Is this game part of the itch.io press system?"
+          },
+          "platforms": {
+            "$ref": "#/components/schemas/Platforms"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sale": {
+            "$ref": "#/components/schemas/Sale"
+          },
+          "viewsCount": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Owner-only field"
+          },
+          "downloadsCount": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Owner-only field"
+          },
+          "purchasesCount": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Owner-only field"
+          },
+          "published": {
+            "type": "boolean",
+            "description": "Owner-only field"
+          }
+        }
+      },
+      "GameEmbedData": {
+        "type": "object",
+        "description": "Presentation information for embed games",
+        "properties": {
+          "gameId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "width": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Width of the initial viewport in pixels"
+          },
+          "height": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Height of the initial viewport in pixels"
+          },
+          "fullscreen": {
+            "type": "boolean",
+            "description": "Whether a fullscreen button should be shown"
+          }
+        }
+      },
+      "Platforms": {
+        "type": "object",
+        "description": "Describes which OS/architectures a game or upload is compatible with",
+        "properties": {
+          "windows": {
+            "type": "string",
+            "enum": ["all", "386", "amd64"]
+          },
+          "linux": {
+            "type": "string",
+            "enum": ["all", "386", "amd64"]
+          },
+          "osx": {
+            "type": "string",
+            "enum": ["all", "386", "amd64"]
+          }
+        }
+      },
+      "Sale": {
+        "type": "object",
+        "description": "Describes a discount for a game",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "gameId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "rate": {
+            "type": "number",
+            "description": "Discount rate in percent; can be negative (reverse sales)"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Upload": {
+        "type": "object",
+        "description": "A downloadable file; may be wharf-enabled for versioned channel-based distribution",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "storage": {
+            "type": "string",
+            "enum": ["hosted", "build", "external"]
+          },
+          "host": {
+            "type": "string",
+            "description": "Host if external storage"
+          },
+          "filename": {
+            "type": "string",
+            "description": "Original file name (e.g. Overland_x64.zip)"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Human-friendly name set by developer"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Size of upload in bytes"
+          },
+          "channelName": {
+            "type": "string",
+            "description": "Name of the wharf channel for this upload, if wharf-enabled"
+          },
+          "build": {
+            "$ref": "#/components/schemas/Build"
+          },
+          "buildId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["default", "flash", "unity", "java", "html", "soundtrack", "book", "video", "documentation", "mod", "audio_assets", "graphical_assets", "sourcecode", "other"]
+          },
+          "preorder": {
+            "type": "boolean",
+            "description": "Is this upload a pre-order placeholder?"
+          },
+          "demo": {
+            "type": "boolean",
+            "description": "Is this upload a free demo?"
+          },
+          "platforms": {
+            "$ref": "#/components/schemas/Platforms"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Build": {
+        "type": "object",
+        "description": "Contains information about a specific build",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "parentBuildId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Identifier of the build before this one on the same channel, or -1 if initial"
+          },
+          "state": {
+            "type": "string",
+            "enum": ["started", "queued", "processing", "completed", "failed"]
+          },
+          "uploadId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "gameId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "version": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Automatically-incremented version number, starting with 1"
+          },
+          "userVersion": {
+            "type": "string",
+            "description": "Developer-specified version string from --userversion"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuildFile"
+            }
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "upload": {
+            "$ref": "#/components/schemas/Upload"
+          },
+          "game": {
+            "$ref": "#/components/schemas/Game"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "BuildFile": {
+        "type": "object",
+        "description": "Contains information about a build file (archive, signature, patch, etc.)",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "state": {
+            "type": "string",
+            "enum": ["created", "uploading", "uploaded", "failed"]
+          },
+          "type": {
+            "type": "string",
+            "enum": ["patch", "archive", "signature", "manifest", "unpacked"]
+          },
+          "subType": {
+            "type": "string",
+            "enum": ["default", "gzip", "optimized"]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Channel": {
+        "type": "object",
+        "description": "Contains information about a channel and its current status",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the channel (e.g. windows-64-beta, osx-universal)"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "upload": {
+            "$ref": "#/components/schemas/Upload"
+          },
+          "head": {
+            "$ref": "#/components/schemas/Build"
+          },
+          "pending": {
+            "$ref": "#/components/schemas/Build"
+          }
+        }
+      },
+      "Collection": {
+        "type": "object",
+        "description": "A curated set of games",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-friendly title (e.g. Couch coop games)"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "gamesCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "collectionGames": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionGame"
+            }
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "CollectionGame": {
+        "type": "object",
+        "description": "Represents a game's membership in a collection",
+        "properties": {
+          "collectionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "collection": {
+            "$ref": "#/components/schemas/Collection"
+          },
+          "gameId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "game": {
+            "$ref": "#/components/schemas/Game"
+          },
+          "position": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "blurb": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Bundle": {
+        "type": "object",
+        "description": "A collection of games sold together as a single purchase",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "coverUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "gamesCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "bundleGames": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BundleGame"
+            }
+          }
+        }
+      },
+      "BundleGame": {
+        "type": "object",
+        "description": "Represents a game's membership in a bundle",
+        "properties": {
+          "bundleId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "bundle": {
+            "$ref": "#/components/schemas/Bundle"
+          },
+          "gameId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "game": {
+            "$ref": "#/components/schemas/Game"
+          },
+          "position": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minPrice": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Minimum price for this game inside the bundle in cents of a dollar"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "BundleKey": {
+        "type": "object",
+        "description": "Records a profile's ownership of a Bundle via a purchase",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "bundleId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "bundle": {
+            "$ref": "#/components/schemas/Bundle"
+          },
+          "purchaseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ownerId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "DownloadKey": {
+        "type": "object",
+        "description": "Allows downloading uploads for a game; typically generated at purchase time",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "gameId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "game": {
+            "$ref": "#/components/schemas/Game"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ownerId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "APIKey": {
+        "type": "object",
+        "description": "Grants access to the itch.io API within a certain scope",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "key": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sourceVersion": {
+            "type": "string"
+          }
+        }
+      },
+      "FileUploadSpec": {
+        "type": "object",
+        "description": "Contains the info needed to upload one specific build file",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "uploadUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "uploadParams": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "uploadHeaders": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "BuildEvent": {
+        "type": "object",
+        "description": "Describes something that happened while processing a build",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["log"]
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ScannedArchive": {
+        "type": "object",
+        "properties": {
+          "objectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "objectType": {
+            "type": "string",
+            "enum": ["upload", "build"]
+          },
+          "extractedSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "launchTargets": {
+            "type": "object",
+            "description": "JSON metadata about launch targets"
+          },
+          "manifest": {
+            "type": "object",
+            "description": "JSON manifest data"
+          }
+        }
+      },
+      "UpgradePath": {
+        "type": "object",
+        "description": "A series of builds for which sequential patches exist",
+        "properties": {
+          "builds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Build"
+            }
+          }
+        }
+      },
+      "GetProfileResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "ListProfileGamesResponse": {
+        "type": "object",
+        "properties": {
+          "games": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Game"
+            }
+          }
+        }
+      },
+      "ListProfileOwnedKeysResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "perPage": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ownedKeys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DownloadKey"
+            }
+          }
+        }
+      },
+      "ListProfileCollectionsResponse": {
+        "type": "object",
+        "properties": {
+          "collections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Collection"
+            }
+          }
+        }
+      },
+      "ListProfileOwnedBundlesResponse": {
+        "type": "object",
+        "properties": {
+          "bundleKeys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BundleKey"
+            }
+          }
+        }
+      },
+      "ListProfileBuildsResponse": {
+        "type": "object",
+        "properties": {
+          "builds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Build"
+            }
+          },
+          "games": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Game"
+            }
+          },
+          "uploads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Upload"
+            }
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "perPage": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totals": {
+            "type": "object",
+            "properties": {
+              "all": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "live": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "processing": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "failed": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "projectCount": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        }
+      },
+      "GetGameResponse": {
+        "type": "object",
+        "properties": {
+          "game": {
+            "$ref": "#/components/schemas/Game"
+          }
+        }
+      },
+      "ListGameUploadsResponse": {
+        "type": "object",
+        "properties": {
+          "uploads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Upload"
+            }
+          }
+        }
+      },
+      "NewDownloadSessionResponse": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "description": "UUID for the new download session"
+          }
+        }
+      },
+      "GetUploadResponse": {
+        "type": "object",
+        "properties": {
+          "upload": {
+            "$ref": "#/components/schemas/Upload"
+          }
+        }
+      },
+      "ListUploadBuildsResponse": {
+        "type": "object",
+        "properties": {
+          "builds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Build"
+            }
+          }
+        }
+      },
+      "GetBuildResponse": {
+        "type": "object",
+        "properties": {
+          "build": {
+            "$ref": "#/components/schemas/Build"
+          }
+        }
+      },
+      "GetBuildUpgradePathResponse": {
+        "type": "object",
+        "properties": {
+          "upgradePath": {
+            "$ref": "#/components/schemas/UpgradePath"
+          }
+        }
+      },
+      "GetScannedArchiveResponse": {
+        "type": "object",
+        "properties": {
+          "scannedArchive": {
+            "$ref": "#/components/schemas/ScannedArchive"
+          }
+        }
+      },
+      "GetUserResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "GetCollectionResponse": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "$ref": "#/components/schemas/Collection"
+          }
+        }
+      },
+      "GetCollectionGamesResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "perPage": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "collectionGames": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionGame"
+            }
+          }
+        }
+      },
+      "GetBundleGamesResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "perPage": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "bundleGames": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BundleGame"
+            }
+          }
+        }
+      },
+      "ClaimBundleGameResponse": {
+        "type": "object",
+        "properties": {
+          "downloadKey": {
+            "$ref": "#/components/schemas/DownloadKey"
+          }
+        }
+      },
+      "SearchGamesResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "perPage": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "games": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Game"
+            }
+          }
+        }
+      },
+      "SearchUsersResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "perPage": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "LoginWithPasswordResponse": {
+        "type": "object",
+        "properties": {
+          "recaptchaNeeded": {
+            "type": "boolean"
+          },
+          "recaptchaUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "totpNeeded": {
+            "type": "boolean"
+          },
+          "token": {
+            "type": "string",
+            "description": "Short-lived token for TOTP verification"
+          },
+          "key": {
+            "$ref": "#/components/schemas/APIKey"
+          },
+          "cookie": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Session cookie key-value pairs for browser session"
+          }
+        }
+      },
+      "TOTPVerifyResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "$ref": "#/components/schemas/APIKey"
+          },
+          "cookie": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "WharfStatusResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ListChannelsResponse": {
+        "type": "object",
+        "properties": {
+          "channels": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Channel"
+            }
+          }
+        }
+      },
+      "GetChannelResponse": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "$ref": "#/components/schemas/Channel"
+          }
+        }
+      },
+      "CreateBuildResponse": {
+        "type": "object",
+        "properties": {
+          "build": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "uploadId": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "parentBuild": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "GetWharfBuildResponse": {
+        "type": "object",
+        "properties": {
+          "build": {
+            "$ref": "#/components/schemas/Build"
+          }
+        }
+      },
+      "ListBuildFilesResponse": {
+        "type": "object",
+        "properties": {
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuildFile"
+            }
+          }
+        }
+      },
+      "CreateBuildFileResponse": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "$ref": "#/components/schemas/FileUploadSpec"
+          }
+        }
+      },
+      "ListBuildEventsResponse": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuildEvent"
+            }
+          }
+        }
+      }
+    }
+  }
+}
