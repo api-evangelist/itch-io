@@ -1,0 +1,243 @@
+{
+  "item": [
+    {
+      "id": "d48e8a7b-6551-409a-9c2c-2c3fef8e8b4b",
+      "name": "Search",
+      "description": {
+        "content": "Search operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e05474b0-4bcc-4ab3-a434-04da5bb2a50f",
+          "name": "Search games",
+          "request": {
+            "name": "Search games",
+            "description": {
+              "content": "Performs a text search for games (or any project type). Games must be published and not deindexed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "games"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53e1b476-18db-4561-8c66-ff5cee1c3324",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 187,\n  \"perPage\": 7743,\n  \"games\": [\n    {\n      \"id\": 5536,\n      \"url\": \"https://FlUclTRUqEqTznoLRgvBNZrNjGiUcDM.dljzUbj2U+8qj3i70fk0PXhloQvY+CL+cy66Xvo89\",\n      \"title\": \"string\",\n      \"shortText\": \"string\",\n      \"type\": \"java\",\n      \"classification\": \"game\",\n      \"embed\": {\n        \"gameId\": 1603,\n        \"width\": 3615,\n        \"height\": 488,\n        \"fullscreen\": false\n      },\n      \"coverUrl\": \"http://TJVpiZJ.bvvZNrYcVSUDRZFwGau0ATvCZbN-vBX+zkcLtG57UgVBamm+7XRcwQG+\",\n      \"stillCoverUrl\": \"http://JJRukQch.viegxx+nJalL28HwboabKTNIXl0j7X\",\n      \"createdAt\": \"1947-10-08T04:59:57.368Z\",\n      \"publishedAt\": \"1997-05-24T08:51:21.288Z\",\n      \"minPrice\": 2860,\n      \"canBeBought\": true,\n      \"hasDemo\": false,\n      \"inPressSystem\": false,\n      \"platforms\": {\n        \"windows\": \"386\",\n        \"linux\": \"amd64\",\n        \"osx\": \"386\"\n      },\n      \"user\": {\n        \"id\": 8442,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": true,\n        \"pressUser\": false,\n        \"url\": \"https://TIkkstbmh.eblcveGmGyeOSrOiRd3mpkrqnfTSUEWEWzxRU,U9E,Tz.JXVJR9-rjOk4.cotiO\",\n        \"coverUrl\": \"http://m.zrko-91UEnyfFF6GLiXjrnda6l4MCa1SwNAHTLnncL8VXsUGdufvIiZ\",\n        \"stillCoverUrl\": \"http://QvPYwASfOTxSArNKXyVtnSnjQWH.laG.llVjKWvQnf-+\"\n      },\n      \"userId\": 4144,\n      \"sale\": {\n        \"id\": 6985,\n        \"gameId\": 7967,\n        \"rate\": 4186.56338122032,\n        \"startDate\": \"1953-03-22T03:08:54.582Z\",\n        \"endDate\": \"1998-05-13T12:54:05.792Z\"\n      },\n      \"viewsCount\": 8121,\n      \"downloadsCount\": 8864,\n      \"purchasesCount\": 898,\n      \"published\": false\n    },\n    {\n      \"id\": 4569,\n      \"url\": \"http://rreZSiUsuCmVWVaADtlmGOwNdwyjrK.ihMmBf,B,UNawSfj6nU8d,UNYVYePSCuLq3JFothnLdbzNVwu72awzoC1XvGavXnqD+T1R\",\n      \"title\": \"string\",\n      \"shortText\": \"string\",\n      \"type\": \"java\",\n      \"classification\": \"comic\",\n      \"embed\": {\n        \"gameId\": 6868,\n        \"width\": 3739,\n        \"height\": 3603,\n        \"fullscreen\": false\n      },\n      \"coverUrl\": \"http://QnutcyNorBPqHqvmrZXF.vekS0zM0dCg0D733\",\n      \"stillCoverUrl\": \"http://yGmJkeCuMWBzKeXFeQrebq.ieU6cL7Py.aOPIq0L94SD12uxlxDedoghnFZQznjqf7QdvnM7ooZQgqhseQHL,G\",\n      \"createdAt\": \"1988-09-28T12:17:23.692Z\",\n      \"publishedAt\": \"2015-10-18T20:00:03.391Z\",\n      \"minPrice\": 5616,\n      \"canBeBought\": true,\n      \"hasDemo\": true,\n      \"inPressSystem\": false,\n      \"platforms\": {\n        \"windows\": \"386\",\n        \"linux\": \"amd64\",\n        \"osx\": \"386\"\n      },\n      \"user\": {\n        \"id\": 2732,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": false,\n        \"pressUser\": true,\n        \"url\": \"https://jKXcKTOL.ebQjNkNkHdGnb\",\n        \"coverUrl\": \"http://YXofmcyuZOspGPKZlsBKFSlxo.ojpnLTuwGB4+pbikRVxq3LrHLrYKsYsdJC0+avXs-UBCqxiQ0C\",\n        \"stillCoverUrl\": \"https://DiSDxfRMBfDKJcjerQlOZLpBPqilP.nmhfcgyW,PUoL6eOb8nIckevpziooaiNOUtMlnZiGaBMFVry+Z1ewwa2N\"\n      },\n      \"userId\": 9640,\n      \"sale\": {\n        \"id\": 7191,\n        \"gameId\": 4030,\n        \"rate\": 5042.75865847332,\n        \"startDate\": \"2003-09-26T15:41:17.008Z\",\n        \"endDate\": \"1960-10-08T12:01:37.533Z\"\n      },\n      \"viewsCount\": 5476,\n      \"downloadsCount\": 827,\n      \"purchasesCount\": 9437,\n      \"published\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "776145ed-9914-4744-ab00-c955ee99a9cd",
+          "name": "Search users",
+          "request": {
+            "name": "Search users",
+            "description": {
+              "content": "Performs a text search for users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b016c5a8-eeb0-4433-838d-f93d86a04a2d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 8619,\n  \"perPage\": 9116,\n  \"users\": [\n    {\n      \"id\": 40,\n      \"username\": \"string\",\n      \"displayName\": \"string\",\n      \"developer\": true,\n      \"pressUser\": false,\n      \"url\": \"http://yhgEIsYfNkaoLeeSghHSkJP.xguFfLQYlN+ZAvrQ3f6uV4XsAKrCJqcEAyxCKa.1WgPu9ghutQ+RHOCi5\",\n      \"coverUrl\": \"http://nne.uncsX+kNhT0L\",\n      \"stillCoverUrl\": \"https://EizATOEmrWaQaCdEQXGcli.rxfus18mWXyTlueGyMAhiFZPq14G4N6yaQytA3jizqmlPrJZ\"\n    },\n    {\n      \"id\": 1751,\n      \"username\": \"string\",\n      \"displayName\": \"string\",\n      \"developer\": true,\n      \"pressUser\": true,\n      \"url\": \"http://pdZRiPzTGCHeLWpnCxgcKqKXlEVkRBs.lojcFHku-iUO\",\n      \"coverUrl\": \"https://xCEXpfHAsECUaCoM.wiftCqkG-tcvoNaZe62Re.eT-il.jUZg.COMlpcQSqh\",\n      \"stillCoverUrl\": \"https://WHzJvivXNlLsbvoTRs.ottCIz9aUsqYMgZc3QoeaKYb,3HVBy2uu5bAS1bhE6cLTl3dw4ovIoEj7BTPkt9vQC-HmmiLqFXC6vRg0\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.itch.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "39bebffd-4cd4-4863-9236-805c0c28d805",
+    "name": "Itch.io Auth Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.\n\nContact Support:\n Name: Itch.io Support",
+      "type": "text/plain"
+    }
+  }
+}

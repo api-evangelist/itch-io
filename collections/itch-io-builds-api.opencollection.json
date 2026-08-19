@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Itch.io Auth Builds API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Builds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List upload builds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/uploads/:uploadId/builds",
+            "params": [
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "download_key_id",
+                "value": "",
+                "type": "query",
+                "description": "Download key ID for accessing paid content"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for restricted pages"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Secret for private pages"
+              }
+            ]
+          },
+          "docs": "Lists recent builds for a given upload."
+        },
+        {
+          "info": {
+            "name": "Get build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/builds/:buildId",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "download_key_id",
+                "value": "",
+                "type": "query",
+                "description": "Download key ID for accessing paid content"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for restricted pages"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Secret for private pages"
+              }
+            ]
+          },
+          "docs": "Retrieves info about a single build by ID (consumer-side endpoint)."
+        },
+        {
+          "info": {
+            "name": "Get build upgrade path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/builds/:buildId/upgrade-paths/:targetBuildId",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path",
+                "description": "Current build ID"
+              },
+              {
+                "name": "targetBuildId",
+                "value": "",
+                "type": "path",
+                "description": "Target build ID"
+              },
+              {
+                "name": "download_key_id",
+                "value": "",
+                "type": "query",
+                "description": "Download key ID for accessing paid content"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for restricted pages"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Secret for private pages"
+              }
+            ]
+          },
+          "docs": "Returns the complete list of builds to go through to upgrade from one version to another."
+        },
+        {
+          "info": {
+            "name": "Get build scanned archive",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/builds/:buildId/scanned-archive",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "download_key_id",
+                "value": "",
+                "type": "query",
+                "description": "Download key ID for accessing paid content"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for restricted pages"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Secret for private pages"
+              }
+            ]
+          },
+          "docs": "Retrieves scanned archive metadata for a build."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

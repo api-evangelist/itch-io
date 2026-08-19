@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Itch.io Auth Uploads API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Uploads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List game uploads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/games/:gameId/uploads",
+            "params": [
+              {
+                "name": "gameId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "download_key_id",
+                "value": "",
+                "type": "query",
+                "description": "Download key ID for accessing paid content"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for restricted pages"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Secret for private pages"
+              }
+            ]
+          },
+          "docs": "Lists the uploads for a game that are accessible with the current API key and game credentials."
+        },
+        {
+          "info": {
+            "name": "Get upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/uploads/:uploadId",
+            "params": [
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "download_key_id",
+                "value": "",
+                "type": "query",
+                "description": "Download key ID for accessing paid content"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for restricted pages"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Secret for private pages"
+              }
+            ]
+          },
+          "docs": "Retrieves information about a single upload by ID."
+        },
+        {
+          "info": {
+            "name": "List upload builds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/uploads/:uploadId/builds",
+            "params": [
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "download_key_id",
+                "value": "",
+                "type": "query",
+                "description": "Download key ID for accessing paid content"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for restricted pages"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Secret for private pages"
+              }
+            ]
+          },
+          "docs": "Lists recent builds for a given upload."
+        },
+        {
+          "info": {
+            "name": "Get upload scanned archive",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/uploads/:uploadId/scanned-archive",
+            "params": [
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "download_key_id",
+                "value": "",
+                "type": "query",
+                "description": "Download key ID for accessing paid content"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for restricted pages"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Secret for private pages"
+              }
+            ]
+          },
+          "docs": "Retrieves scanned archive metadata for an upload."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

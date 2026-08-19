@@ -1,0 +1,332 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Itch.io Auth Wharf API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Wharf",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wharf status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/wharf/status"
+          },
+          "docs": "Requests the status of the wharf build infrastructure."
+        },
+        {
+          "info": {
+            "name": "List wharf channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/wharf/channels",
+            "params": [
+              {
+                "name": "target",
+                "value": "",
+                "type": "query",
+                "description": "Target in the format user/game"
+              }
+            ]
+          },
+          "docs": "Returns a list of channels for a game."
+        },
+        {
+          "info": {
+            "name": "Get wharf channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/wharf/channels/:channelName",
+            "params": [
+              {
+                "name": "channelName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "target",
+                "value": "",
+                "type": "query",
+                "description": "Target in the format user/game"
+              }
+            ]
+          },
+          "docs": "Returns information about a given channel for a given game."
+        },
+        {
+          "info": {
+            "name": "Create wharf build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.itch.io/wharf/builds",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "target",
+                  "value": ""
+                },
+                {
+                  "name": "channel",
+                  "value": ""
+                },
+                {
+                  "name": "user_version",
+                  "value": ""
+                },
+                {
+                  "name": "hidden",
+                  "value": ""
+                },
+                {
+                  "name": "source",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a new build for a given user/game:channel, with an optional user version."
+        },
+        {
+          "info": {
+            "name": "Get wharf build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/wharf/builds/:buildId",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves info about a single build by ID via the owner-side wharf endpoint."
+        },
+        {
+          "info": {
+            "name": "List build files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/wharf/builds/:buildId/files",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a list of files associated to a build."
+        },
+        {
+          "info": {
+            "name": "Create build file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.itch.io/wharf/builds/:buildId/files",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "type",
+                  "value": ""
+                },
+                {
+                  "name": "sub_type",
+                  "value": ""
+                },
+                {
+                  "name": "upload_type",
+                  "value": ""
+                },
+                {
+                  "name": "filename",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a new build file entry for a build."
+        },
+        {
+          "info": {
+            "name": "Finalize build file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.itch.io/wharf/builds/:buildId/files/:fileId",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "size",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Marks the end of the upload for a build file. Validates that the file size in storage matches the provided size."
+        },
+        {
+          "info": {
+            "name": "List build events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/wharf/builds/:buildId/events",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a series of events associated with a given build."
+        },
+        {
+          "info": {
+            "name": "Create build event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.itch.io/wharf/builds/:buildId/events",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "type",
+                  "value": ""
+                },
+                {
+                  "name": "message",
+                  "value": ""
+                },
+                {
+                  "name": "data",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Associates a new build event (e.g. log message) to a build."
+        },
+        {
+          "info": {
+            "name": "Mark build as failed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.itch.io/wharf/builds/:buildId/failures",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "message",
+                  "value": ""
+                },
+                {
+                  "name": "fatal",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Marks a given build as failed with an error message."
+        },
+        {
+          "info": {
+            "name": "Mark build rediff as failed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.itch.io/wharf/builds/:buildId/failures/rediff",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "message",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Marks a given build as having failed to rediff (optimize)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

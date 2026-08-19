@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Itch.io Auth Collections API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/collections/:collectionId",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single collection by ID."
+        },
+        {
+          "info": {
+            "name": "Get collection games",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/collections/:collectionId/collection-games",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a page of a collection's games."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

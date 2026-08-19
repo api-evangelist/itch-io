@@ -1,0 +1,2322 @@
+{
+  "item": [
+    {
+      "id": "93d29926-bc14-405c-a59d-73d0a409b774",
+      "name": "Wharf",
+      "description": {
+        "content": "Wharf build infrastructure operations (butler/CI integration)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f9b397bb-0f8d-4726-8393-da8d2fa4bc91",
+          "name": "Wharf status",
+          "request": {
+            "name": "Wharf status",
+            "description": {
+              "content": "Requests the status of the wharf build infrastructure.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c34dbd24-5a05-4e63-9a8f-ef3666a91207",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3e6ad42-a22d-4d90-9f57-159696a9755d",
+          "name": "List wharf channels",
+          "request": {
+            "name": "List wharf channels",
+            "description": {
+              "content": "Returns a list of channels for a game.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "target",
+                  "value": "<string>",
+                  "description": "(Required) Target in the format user/game"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "536299d2-33f0-41c1-b0dd-eb5bddc94228",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "target",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channels\": {\n    \"key_0\": {\n      \"name\": \"string\",\n      \"tags\": \"string\",\n      \"upload\": {\n        \"id\": 1264,\n        \"storage\": \"build\",\n        \"host\": \"string\",\n        \"filename\": \"string\",\n        \"displayName\": \"string\",\n        \"size\": 5189,\n        \"channelName\": \"string\",\n        \"build\": {\n          \"id\": 5205,\n          \"parentBuildId\": 3248,\n          \"state\": \"completed\",\n          \"uploadId\": 6688,\n          \"gameId\": 22,\n          \"userId\": 8661,\n          \"version\": 299,\n          \"userVersion\": \"string\",\n          \"files\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"developer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pressUser\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stillCoverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"upload\": {\n            \"value\": \"<Circular reference to #/components/schemas/Upload detected>\"\n          },\n          \"game\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"shortText\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"classification\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stillCoverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"publishedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minPrice\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"canBeBought\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasDemo\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inPressSystem\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"platforms\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"userId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"viewsCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"downloadsCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchasesCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"published\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"createdAt\": \"1956-01-13T02:04:26.801Z\",\n          \"updatedAt\": \"2015-05-23T21:59:55.699Z\"\n        },\n        \"buildId\": 6499,\n        \"type\": \"documentation\",\n        \"preorder\": true,\n        \"demo\": false,\n        \"platforms\": {\n          \"windows\": \"amd64\",\n          \"linux\": \"amd64\",\n          \"osx\": \"386\"\n        },\n        \"createdAt\": \"2013-05-16T12:32:26.855Z\",\n        \"updatedAt\": \"1980-08-01T00:46:37.778Z\"\n      },\n      \"head\": {\n        \"id\": 3430,\n        \"parentBuildId\": 3322,\n        \"state\": \"processing\",\n        \"uploadId\": 4810,\n        \"gameId\": 9494,\n        \"userId\": 5764,\n        \"version\": 183,\n        \"userVersion\": \"string\",\n        \"files\": [\n          {\n            \"id\": 3928,\n            \"size\": 3394,\n            \"state\": \"failed\",\n            \"type\": \"signature\",\n            \"subType\": \"gzip\",\n            \"createdAt\": \"1983-09-08T06:00:38.474Z\",\n            \"updatedAt\": \"1982-07-01T13:38:15.106Z\"\n          },\n          {\n            \"id\": 3362,\n            \"size\": 6980,\n            \"state\": \"uploaded\",\n            \"type\": \"signature\",\n            \"subType\": \"gzip\",\n            \"createdAt\": \"1970-04-24T18:11:05.400Z\",\n            \"updatedAt\": \"1992-03-21T18:36:58.510Z\"\n          }\n        ],\n        \"user\": {\n          \"id\": 5191,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": true,\n          \"pressUser\": true,\n          \"url\": \"https://XHFmiDMFvGNWKyPWYBbeMZRHixl.qigpY0.1Z939bN6BYOvyQOfnKkVxrYq.FqsvA+AgeIKJNlPG7gxdM0qZ7ekkhJ7H.xR0x\",\n          \"coverUrl\": \"http://hXogZCzuQUToVFiSFpbcetVvQp.xibqj272lI3IggfP8G1VXWN\",\n          \"stillCoverUrl\": \"http://gkpZuTdVkJsSDzAAgQhNlxkKMnMrHwE.ynhcRXaobplPwJSrmzcR-e8XBt9qGgb,xynWJH,JxNo+lGsl1bGxSOdDLX3-z\"\n        },\n        \"upload\": {\n          \"id\": 9435,\n          \"storage\": \"hosted\",\n          \"host\": \"string\",\n          \"filename\": \"string\",\n          \"displayName\": \"string\",\n          \"size\": 7291,\n          \"channelName\": \"string\",\n          \"build\": {\n            \"value\": \"<Circular reference to #/components/schemas/Build detected>\"\n          },\n          \"buildId\": 2951,\n          \"type\": \"video\",\n          \"preorder\": true,\n          \"demo\": false,\n          \"platforms\": {\n            \"windows\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linux\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"osx\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"createdAt\": \"1972-12-23T21:51:52.959Z\",\n          \"updatedAt\": \"1953-12-03T10:04:57.119Z\"\n        },\n        \"game\": {\n          \"id\": 4493,\n          \"url\": \"http://sqvghfHmqeoJPZTNUcuDABHIw.pxqeTeZKRS6hOm-Hs\",\n          \"title\": \"string\",\n          \"shortText\": \"string\",\n          \"type\": \"flash\",\n          \"classification\": \"other\",\n          \"embed\": {\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fullscreen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"coverUrl\": \"https://LYWIDpxGTicpJZWqBorQfwKqTSVQbPC.omhMf7FQtXWVovaVSKZni7xry8DyUuPqq16Q9j8\",\n          \"stillCoverUrl\": \"http://gh.uzuokjoAqTL\",\n          \"createdAt\": \"1954-05-10T13:52:08.769Z\",\n          \"publishedAt\": \"1984-12-09T10:43:09.489Z\",\n          \"minPrice\": 2562,\n          \"canBeBought\": false,\n          \"hasDemo\": true,\n          \"inPressSystem\": true,\n          \"platforms\": {\n            \"windows\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linux\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"osx\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"developer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pressUser\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stillCoverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"userId\": 6725,\n          \"sale\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"viewsCount\": 8335,\n          \"downloadsCount\": 9365,\n          \"purchasesCount\": 5429,\n          \"published\": true\n        },\n        \"createdAt\": \"1988-01-29T11:24:40.533Z\",\n        \"updatedAt\": \"1995-04-14T02:42:11.565Z\"\n      },\n      \"pending\": {\n        \"id\": 6068,\n        \"parentBuildId\": 2668,\n        \"state\": \"started\",\n        \"uploadId\": 8102,\n        \"gameId\": 3769,\n        \"userId\": 298,\n        \"version\": 8182,\n        \"userVersion\": \"string\",\n        \"files\": [\n          {\n            \"id\": 7489,\n            \"size\": 6577,\n            \"state\": \"uploaded\",\n            \"type\": \"patch\",\n            \"subType\": \"optimized\",\n            \"createdAt\": \"1988-10-16T06:52:30.114Z\",\n            \"updatedAt\": \"2012-09-13T19:16:24.086Z\"\n          },\n          {\n            \"id\": 6932,\n            \"size\": 1784,\n            \"state\": \"uploading\",\n            \"type\": \"manifest\",\n            \"subType\": \"default\",\n            \"createdAt\": \"1977-02-25T20:07:01.757Z\",\n            \"updatedAt\": \"1962-11-18T05:46:10.778Z\"\n          }\n        ],\n        \"user\": {\n          \"id\": 3180,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": true,\n          \"pressUser\": false,\n          \"url\": \"https://ShhnOxeKxtmMzGDVWHquDCrXYu.pnqqO3NVz0S-8U,Un2DAzyuqHsOl29U++RU4FizEQs+dSBO1yieFfqWm\",\n          \"coverUrl\": \"http://ArAFMtphVqx.tueStuQ4c5\",\n          \"stillCoverUrl\": \"https://jgyOPCbhTt.oeHOvT1MiJ\"\n        },\n        \"upload\": {\n          \"id\": 8821,\n          \"storage\": \"external\",\n          \"host\": \"string\",\n          \"filename\": \"string\",\n          \"displayName\": \"string\",\n          \"size\": 6091,\n          \"channelName\": \"string\",\n          \"build\": {\n            \"value\": \"<Circular reference to #/components/schemas/Build detected>\"\n          },\n          \"buildId\": 9188,\n          \"type\": \"default\",\n          \"preorder\": true,\n          \"demo\": false,\n          \"platforms\": {\n            \"windows\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linux\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"osx\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"createdAt\": \"1990-09-24T21:53:46.369Z\",\n          \"updatedAt\": \"1969-05-19T03:18:00.554Z\"\n        },\n        \"game\": {\n          \"id\": 5187,\n          \"url\": \"http://JnYbyTE.mooHvdbMpvVDn2,tcwdPYQAT9tL4i2oeuVFCvYHdajF3DM+bc\",\n          \"title\": \"string\",\n          \"shortText\": \"string\",\n          \"type\": \"default\",\n          \"classification\": \"other\",\n          \"embed\": {\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fullscreen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"coverUrl\": \"https://spEfmNzJLcXbKHcpZRsqDXcMIsFHPL.tiidyZhGp-PDGWyMzBgLX105Vw55zF2GS2e,tiUSEpz-+zYdaVqSIi3SNnKHgGGF+I-1zalNWq+\",\n          \"stillCoverUrl\": \"https://ZkfGoYKpSLEpvMXa.homRNTBM-8UG0lTiyBuFLeBASI35VXmcI-z\",\n          \"createdAt\": \"1983-09-24T23:43:46.895Z\",\n          \"publishedAt\": \"2024-10-25T04:04:10.298Z\",\n          \"minPrice\": 8779,\n          \"canBeBought\": false,\n          \"hasDemo\": false,\n          \"inPressSystem\": true,\n          \"platforms\": {\n            \"windows\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linux\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"osx\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"developer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pressUser\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stillCoverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"userId\": 3840,\n          \"sale\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"viewsCount\": 50,\n          \"downloadsCount\": 9107,\n          \"purchasesCount\": 5440,\n          \"published\": false\n        },\n        \"createdAt\": \"1970-08-21T02:17:51.532Z\",\n        \"updatedAt\": \"2019-11-27T04:32:58.437Z\"\n      }\n    },\n    \"key_1\": {\n      \"name\": \"string\",\n      \"tags\": \"string\",\n      \"upload\": {\n        \"id\": 9988,\n        \"storage\": \"hosted\",\n        \"host\": \"string\",\n        \"filename\": \"string\",\n        \"displayName\": \"string\",\n        \"size\": 5850,\n        \"channelName\": \"string\",\n        \"build\": {\n          \"id\": 257,\n          \"parentBuildId\": 4376,\n          \"state\": \"queued\",\n          \"uploadId\": 9701,\n          \"gameId\": 2348,\n          \"userId\": 7112,\n          \"version\": 6488,\n          \"userVersion\": \"string\",\n          \"files\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"developer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pressUser\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stillCoverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"upload\": {\n            \"value\": \"<Circular reference to #/components/schemas/Upload detected>\"\n          },\n          \"game\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"shortText\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"classification\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stillCoverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"publishedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minPrice\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"canBeBought\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hasDemo\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inPressSystem\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"platforms\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"userId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"viewsCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"downloadsCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchasesCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"published\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"createdAt\": \"1982-03-26T23:40:12.740Z\",\n          \"updatedAt\": \"2003-12-23T07:31:03.477Z\"\n        },\n        \"buildId\": 4774,\n        \"type\": \"graphical_assets\",\n        \"preorder\": true,\n        \"demo\": false,\n        \"platforms\": {\n          \"windows\": \"386\",\n          \"linux\": \"all\",\n          \"osx\": \"386\"\n        },\n        \"createdAt\": \"1978-06-04T10:14:39.247Z\",\n        \"updatedAt\": \"1999-08-01T20:03:42.847Z\"\n      },\n      \"head\": {\n        \"id\": 3990,\n        \"parentBuildId\": 5279,\n        \"state\": \"completed\",\n        \"uploadId\": 7588,\n        \"gameId\": 8076,\n        \"userId\": 1912,\n        \"version\": 9986,\n        \"userVersion\": \"string\",\n        \"files\": [\n          {\n            \"id\": 3012,\n            \"size\": 474,\n            \"state\": \"uploading\",\n            \"type\": \"patch\",\n            \"subType\": \"optimized\",\n            \"createdAt\": \"1989-10-30T05:44:06.471Z\",\n            \"updatedAt\": \"1969-05-11T08:53:45.121Z\"\n          },\n          {\n            \"id\": 2210,\n            \"size\": 6756,\n            \"state\": \"uploaded\",\n            \"type\": \"patch\",\n            \"subType\": \"optimized\",\n            \"createdAt\": \"2001-12-02T10:02:38.758Z\",\n            \"updatedAt\": \"2002-10-10T13:26:01.183Z\"\n          }\n        ],\n        \"user\": {\n          \"id\": 3942,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": true,\n          \"pressUser\": false,\n          \"url\": \"https://SbxmWTcfPofnvKwFbRRAHHVmM.budgZ9EPI36HG3qpz1I2MfAOkdzkOXqz6uWtu\",\n          \"coverUrl\": \"https://xtZGURWYlBtTNzEAzIRbIcufqF.ysdyS1mzeQKnZxDF5iA7ZFTEVBNrDY62R-ShyDEhlhejntJv+L\",\n          \"stillCoverUrl\": \"http://ijpupuMcopkesuvdoGfXkmgbD.zdruwjYX7sLgKLrCO0Ly-leD2ADrQWyrhDIlRu2o4UCwLO\"\n        },\n        \"upload\": {\n          \"id\": 9840,\n          \"storage\": \"external\",\n          \"host\": \"string\",\n          \"filename\": \"string\",\n          \"displayName\": \"string\",\n          \"size\": 8448,\n          \"channelName\": \"string\",\n          \"build\": {\n            \"value\": \"<Circular reference to #/components/schemas/Build detected>\"\n          },\n          \"buildId\": 2646,\n          \"type\": \"graphical_assets\",\n          \"preorder\": true,\n          \"demo\": false,\n          \"platforms\": {\n            \"windows\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linux\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"osx\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"createdAt\": \"1971-01-10T19:37:22.319Z\",\n          \"updatedAt\": \"2009-05-20T03:12:26.534Z\"\n        },\n        \"game\": {\n          \"id\": 2778,\n          \"url\": \"https://wiWZuyQqnYhgKjB.qwgiLNo-rsYDe0,a+FI+Fu7\",\n          \"title\": \"string\",\n          \"shortText\": \"string\",\n          \"type\": \"java\",\n          \"classification\": \"game_mod\",\n          \"embed\": {\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fullscreen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"coverUrl\": \"https://EZDTBtDqaGFUXCWFOkKxjEyKKmAnzLmVA.ooynQZ-,npeXeG\",\n          \"stillCoverUrl\": \"https://KxHrYAwJQfgCVECZVkyzXe.npzTfSloeQ\",\n          \"createdAt\": \"1974-11-16T16:31:29.258Z\",\n          \"publishedAt\": \"1978-10-24T15:23:00.466Z\",\n          \"minPrice\": 6997,\n          \"canBeBought\": false,\n          \"hasDemo\": true,\n          \"inPressSystem\": true,\n          \"platforms\": {\n            \"windows\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linux\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"osx\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"developer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pressUser\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stillCoverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"userId\": 4811,\n          \"sale\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"viewsCount\": 4642,\n          \"downloadsCount\": 7731,\n          \"purchasesCount\": 2879,\n          \"published\": false\n        },\n        \"createdAt\": \"1964-03-01T03:40:41.544Z\",\n        \"updatedAt\": \"2020-04-19T01:43:48.642Z\"\n      },\n      \"pending\": {\n        \"id\": 5906,\n        \"parentBuildId\": 8161,\n        \"state\": \"completed\",\n        \"uploadId\": 996,\n        \"gameId\": 8970,\n        \"userId\": 5666,\n        \"version\": 5831,\n        \"userVersion\": \"string\",\n        \"files\": [\n          {\n            \"id\": 8333,\n            \"size\": 2678,\n            \"state\": \"uploaded\",\n            \"type\": \"manifest\",\n            \"subType\": \"optimized\",\n            \"createdAt\": \"1969-05-21T08:48:55.812Z\",\n            \"updatedAt\": \"1970-05-08T16:30:32.292Z\"\n          },\n          {\n            \"id\": 2632,\n            \"size\": 4439,\n            \"state\": \"failed\",\n            \"type\": \"unpacked\",\n            \"subType\": \"gzip\",\n            \"createdAt\": \"1950-12-13T16:59:00.105Z\",\n            \"updatedAt\": \"2000-10-21T14:59:20.772Z\"\n          }\n        ],\n        \"user\": {\n          \"id\": 1064,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": false,\n          \"pressUser\": false,\n          \"url\": \"https://slmaRGZNaVPGsDEwuCKRQXbiThqwCPtb.rvJvqVk6FK4j+lMLcg3rYCjzwR\",\n          \"coverUrl\": \"https://qEyPdmOxFQKdDtri.fpumQlYnt+PaJzv2NzmRVq4UrS8+EeDZVwS2GJ11ClBp\",\n          \"stillCoverUrl\": \"http://jhmdPYsyCS.bijvHc,F710t-9en9kNnean50IcXaw1PfFNbBbY8+WTOOGg4ATu\"\n        },\n        \"upload\": {\n          \"id\": 3797,\n          \"storage\": \"hosted\",\n          \"host\": \"string\",\n          \"filename\": \"string\",\n          \"displayName\": \"string\",\n          \"size\": 1330,\n          \"channelName\": \"string\",\n          \"build\": {\n            \"value\": \"<Circular reference to #/components/schemas/Build detected>\"\n          },\n          \"buildId\": 3795,\n          \"type\": \"default\",\n          \"preorder\": false,\n          \"demo\": false,\n          \"platforms\": {\n            \"windows\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linux\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"osx\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"createdAt\": \"1970-06-22T06:37:35.991Z\",\n          \"updatedAt\": \"2005-09-12T19:37:02.853Z\"\n        },\n        \"game\": {\n          \"id\": 8891,\n          \"url\": \"http://qrkJATEdVDVhTYQxHzJRAoIZqI.xemquyITPnn0Po5RLkdiemNJEF.w0BVRpZa3ylHW\",\n          \"title\": \"string\",\n          \"shortText\": \"string\",\n          \"type\": \"flash\",\n          \"classification\": \"comic\",\n          \"embed\": {\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fullscreen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"coverUrl\": \"http://zeNRpZnBbGKJoeiRGOFj.slMhrr43m1tZLOoLpUzZuMbEKjiSX.rsdwQt7wcXDs9tx\",\n          \"stillCoverUrl\": \"http://mGloAzQqxlRthcafHSFbnAuUKJHmmXT.wdhq6tHJZFW,zSA2dgFJLqxSTibiCmB727jUSTyWZM\",\n          \"createdAt\": \"2005-03-22T13:51:52.387Z\",\n          \"publishedAt\": \"2005-08-22T19:09:27.554Z\",\n          \"minPrice\": 3008,\n          \"canBeBought\": true,\n          \"hasDemo\": false,\n          \"inPressSystem\": false,\n          \"platforms\": {\n            \"windows\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linux\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"osx\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"developer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pressUser\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stillCoverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"userId\": 5986,\n          \"sale\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"viewsCount\": 904,\n          \"downloadsCount\": 7096,\n          \"purchasesCount\": 9812,\n          \"published\": true\n        },\n        \"createdAt\": \"1996-10-15T03:31:53.650Z\",\n        \"updatedAt\": \"1987-03-22T21:25:21.403Z\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0300897-3224-43bf-a07f-1f0c4d803de9",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "target",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e23e3171-592c-4d14-9184-d07f08576057",
+          "name": "Get wharf channel",
+          "request": {
+            "name": "Get wharf channel",
+            "description": {
+              "content": "Returns information about a given channel for a given game.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "channels",
+                ":channelName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "target",
+                  "value": "<string>",
+                  "description": "(Required) Target in the format user/game"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ca996bf-7cda-4729-9e29-300472aa3b5f",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "channels",
+                    ":channelName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "target",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel\": {\n    \"name\": \"string\",\n    \"tags\": \"string\",\n    \"upload\": {\n      \"id\": 669,\n      \"storage\": \"external\",\n      \"host\": \"string\",\n      \"filename\": \"string\",\n      \"displayName\": \"string\",\n      \"size\": 1506,\n      \"channelName\": \"string\",\n      \"build\": {\n        \"id\": 4008,\n        \"parentBuildId\": 610,\n        \"state\": \"completed\",\n        \"uploadId\": 3888,\n        \"gameId\": 5818,\n        \"userId\": 9211,\n        \"version\": 5177,\n        \"userVersion\": \"string\",\n        \"files\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"user\": {\n          \"id\": 7920,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": false,\n          \"pressUser\": false,\n          \"url\": \"https://ZNGJTr.pcawb\",\n          \"coverUrl\": \"http://OlOmOYToPWUPHr.rdypa\",\n          \"stillCoverUrl\": \"http://rsTawdzcTvoHMqlPvbpxjItuq.ieLq2xVPDuIy+pZUUNAwqjtl9eAdeTlXZCpt9bkhFHuUtL5SUJM1kAunjEq\"\n        },\n        \"upload\": {\n          \"value\": \"<Circular reference to #/components/schemas/Upload detected>\"\n        },\n        \"game\": {\n          \"id\": 5472,\n          \"url\": \"https://BvZacYaLBuUYhVWRmTYhoiH.rblbbH31fad,x4tt-3IsnGZWrD82j8lehN3b7TXTX0LjKucavfKPEG\",\n          \"title\": \"string\",\n          \"shortText\": \"string\",\n          \"type\": \"default\",\n          \"classification\": \"other\",\n          \"embed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"coverUrl\": \"https://kjpgyNxCKftqGscBMaxXXUrEcoyh.zlqW9f84prQt6JYkiBRbPT3lNZq39VIBFy6OyKaou4SHutRzo0eIxX3RP2IF1C5ErbY1kvji\",\n          \"stillCoverUrl\": \"https://fHYrQQcQXHQxhBlHmkVHm.utTQ6PQR+lzMf+qm82NuwS,mbjktdPtxFx0E8fLsXn+MqwLXMWzd-I.Cx4Ix\",\n          \"createdAt\": \"1961-01-01T20:32:52.507Z\",\n          \"publishedAt\": \"2002-11-02T00:58:07.401Z\",\n          \"minPrice\": 4966,\n          \"canBeBought\": true,\n          \"hasDemo\": false,\n          \"inPressSystem\": true,\n          \"platforms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"user\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"userId\": 9795,\n          \"sale\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"viewsCount\": 5317,\n          \"downloadsCount\": 4243,\n          \"purchasesCount\": 1664,\n          \"published\": true\n        },\n        \"createdAt\": \"2018-07-06T04:02:42.592Z\",\n        \"updatedAt\": \"1953-09-29T15:27:50.431Z\"\n      },\n      \"buildId\": 3919,\n      \"type\": \"book\",\n      \"preorder\": false,\n      \"demo\": true,\n      \"platforms\": {\n        \"windows\": \"all\",\n        \"linux\": \"386\",\n        \"osx\": \"amd64\"\n      },\n      \"createdAt\": \"1992-11-21T12:17:22.159Z\",\n      \"updatedAt\": \"1955-04-02T00:12:57.805Z\"\n    },\n    \"head\": {\n      \"id\": 7976,\n      \"parentBuildId\": 3130,\n      \"state\": \"completed\",\n      \"uploadId\": 5320,\n      \"gameId\": 9670,\n      \"userId\": 3990,\n      \"version\": 6862,\n      \"userVersion\": \"string\",\n      \"files\": [\n        {\n          \"id\": 3728,\n          \"size\": 2358,\n          \"state\": \"created\",\n          \"type\": \"archive\",\n          \"subType\": \"default\",\n          \"createdAt\": \"1970-02-19T03:06:22.146Z\",\n          \"updatedAt\": \"1978-01-07T00:19:09.977Z\"\n        },\n        {\n          \"id\": 1426,\n          \"size\": 267,\n          \"state\": \"uploading\",\n          \"type\": \"patch\",\n          \"subType\": \"optimized\",\n          \"createdAt\": \"2006-10-24T08:49:18.004Z\",\n          \"updatedAt\": \"2006-12-03T20:14:05.519Z\"\n        }\n      ],\n      \"user\": {\n        \"id\": 9379,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": false,\n        \"pressUser\": false,\n        \"url\": \"https://cgXoAuDsFBWhEDXEAxcCVuNniq.xlQZEaB0ME.g8ymI.QWKncgCKX+1OFXOOldQ6,oEswWub8\",\n        \"coverUrl\": \"http://qlDAGXmzDazMMAPtuQuCqBdsx.cailvop5JUD5+wK4yuVAdoJoAth85belWep83gyII+83-XnA7gVX96yXqrAJ6E-t5,Q\",\n        \"stillCoverUrl\": \"https://ExfbALLxCUrgorgiJIZlBTfOCLqvQO.ioxs+L-gwtRYeQwL,A9-ShdK9PsRtblzoEen\"\n      },\n      \"upload\": {\n        \"id\": 3998,\n        \"storage\": \"hosted\",\n        \"host\": \"string\",\n        \"filename\": \"string\",\n        \"displayName\": \"string\",\n        \"size\": 7784,\n        \"channelName\": \"string\",\n        \"build\": {\n          \"value\": \"<Circular reference to #/components/schemas/Build detected>\"\n        },\n        \"buildId\": 764,\n        \"type\": \"soundtrack\",\n        \"preorder\": true,\n        \"demo\": false,\n        \"platforms\": {\n          \"windows\": \"all\",\n          \"linux\": \"386\",\n          \"osx\": \"amd64\"\n        },\n        \"createdAt\": \"1959-05-08T04:16:19.460Z\",\n        \"updatedAt\": \"1985-04-15T08:21:51.502Z\"\n      },\n      \"game\": {\n        \"id\": 4931,\n        \"url\": \"http://CeegVjToaaMKIXOTbXaXMRqLHpfEgoTPX.gttJlgjIOFcvD.Fpx.P2OVY-dGpfBXMWOs-\",\n        \"title\": \"string\",\n        \"shortText\": \"string\",\n        \"type\": \"default\",\n        \"classification\": \"physical_game\",\n        \"embed\": {\n          \"gameId\": 1718,\n          \"width\": 4478,\n          \"height\": 660,\n          \"fullscreen\": true\n        },\n        \"coverUrl\": \"http://NXJLUProZvBIQYgzKBrjIKw.flwqhav1dqKCm9jEs,e6Magvxk+KgRraPY3NCBJeErID3-SrTUBTbZdvda9b\",\n        \"stillCoverUrl\": \"https://IzJACMsYesXnu.frbRJ.nA9mVab3OZTevw+tY+gO7eqrY5WuWH.NPEApYeeHAnuaCj\",\n        \"createdAt\": \"2002-05-19T10:55:15.759Z\",\n        \"publishedAt\": \"2024-06-14T10:30:07.811Z\",\n        \"minPrice\": 7621,\n        \"canBeBought\": false,\n        \"hasDemo\": true,\n        \"inPressSystem\": false,\n        \"platforms\": {\n          \"windows\": \"amd64\",\n          \"linux\": \"386\",\n          \"osx\": \"amd64\"\n        },\n        \"user\": {\n          \"id\": 9509,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": false,\n          \"pressUser\": false,\n          \"url\": \"https://YkltiRbLqrhoHqZcxORLfRALHT.yygIHdpR-uz0yWX3a+U-L7rM\",\n          \"coverUrl\": \"http://OeBOIBbRenUcjdhnWQqOHxRpUO.cffeBpjnSvzexUghQv+\",\n          \"stillCoverUrl\": \"https://fgjBhpWNBJYMJPcHCKErHQgoweD.xtnH1Q3fDvclPn-IuyHfr6pl,1xO.M47\"\n        },\n        \"userId\": 5829,\n        \"sale\": {\n          \"id\": 95,\n          \"gameId\": 5589,\n          \"rate\": 2819.453353158894,\n          \"startDate\": \"1977-09-21T09:18:08.070Z\",\n          \"endDate\": \"1989-01-13T10:36:36.328Z\"\n        },\n        \"viewsCount\": 5994,\n        \"downloadsCount\": 6024,\n        \"purchasesCount\": 9928,\n        \"published\": true\n      },\n      \"createdAt\": \"1961-12-11T19:31:05.322Z\",\n      \"updatedAt\": \"1958-04-07T16:59:38.216Z\"\n    },\n    \"pending\": {\n      \"id\": 7300,\n      \"parentBuildId\": 6973,\n      \"state\": \"completed\",\n      \"uploadId\": 9978,\n      \"gameId\": 5610,\n      \"userId\": 1093,\n      \"version\": 4445,\n      \"userVersion\": \"string\",\n      \"files\": [\n        {\n          \"id\": 7362,\n          \"size\": 6984,\n          \"state\": \"failed\",\n          \"type\": \"patch\",\n          \"subType\": \"optimized\",\n          \"createdAt\": \"1957-06-22T04:30:44.120Z\",\n          \"updatedAt\": \"1974-06-02T03:00:33.139Z\"\n        },\n        {\n          \"id\": 1532,\n          \"size\": 1940,\n          \"state\": \"created\",\n          \"type\": \"patch\",\n          \"subType\": \"optimized\",\n          \"createdAt\": \"1958-01-10T15:29:21.497Z\",\n          \"updatedAt\": \"2025-08-27T18:02:24.793Z\"\n        }\n      ],\n      \"user\": {\n        \"id\": 4485,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": false,\n        \"pressUser\": false,\n        \"url\": \"https://JWK.usdfngoFYuhn9lKhniu5q+I,lsKmPmKGLYWje.GFgSVF14qghFuHoYzAfYSmLyM+BXZ1POWh803f\",\n        \"coverUrl\": \"http://rWqHIAYBKULlBKIxv.rlmqhOOli0gq.gPb\",\n        \"stillCoverUrl\": \"https://hfDT.muAe0TYO5R.9rUefxG.pFNe.HvuKNwZIXN7UAutj\"\n      },\n      \"upload\": {\n        \"id\": 5269,\n        \"storage\": \"hosted\",\n        \"host\": \"string\",\n        \"filename\": \"string\",\n        \"displayName\": \"string\",\n        \"size\": 7900,\n        \"channelName\": \"string\",\n        \"build\": {\n          \"value\": \"<Circular reference to #/components/schemas/Build detected>\"\n        },\n        \"buildId\": 7818,\n        \"type\": \"sourcecode\",\n        \"preorder\": true,\n        \"demo\": false,\n        \"platforms\": {\n          \"windows\": \"amd64\",\n          \"linux\": \"all\",\n          \"osx\": \"amd64\"\n        },\n        \"createdAt\": \"1956-02-14T09:03:07.017Z\",\n        \"updatedAt\": \"1961-04-24T10:36:54.396Z\"\n      },\n      \"game\": {\n        \"id\": 8533,\n        \"url\": \"http://tiFTcAAOdjIMBJQLYFxXaHPaHUdoOirlf.ewaqjn8EiHP0OPdLw+qTKgIZWlPFYoWj1uVpuBFLKtWILlzn+CLoXG-.IeR8\",\n        \"title\": \"string\",\n        \"shortText\": \"string\",\n        \"type\": \"default\",\n        \"classification\": \"other\",\n        \"embed\": {\n          \"gameId\": 1474,\n          \"width\": 5249,\n          \"height\": 2705,\n          \"fullscreen\": false\n        },\n        \"coverUrl\": \"http://OLrOQcQYnjkWxaDSBKkGxaXeNOgrirML.nnmHusrxJx-v+f\",\n        \"stillCoverUrl\": \"https://ofzxOvUfhMZDzYQNfFVqyHXvcFCFBuLWv.mzceurnOaqAGWJ\",\n        \"createdAt\": \"2015-05-29T01:35:33.495Z\",\n        \"publishedAt\": \"2024-01-03T20:35:27.989Z\",\n        \"minPrice\": 7470,\n        \"canBeBought\": false,\n        \"hasDemo\": true,\n        \"inPressSystem\": true,\n        \"platforms\": {\n          \"windows\": \"386\",\n          \"linux\": \"386\",\n          \"osx\": \"amd64\"\n        },\n        \"user\": {\n          \"id\": 7155,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": false,\n          \"pressUser\": true,\n          \"url\": \"https://JaelQztASlLZwFWpeuoM.znRuvLazriiMXBpH8YMgET5DqCB8u5KQZJA-Unpb7Mznp1qtJytRT0O34L\",\n          \"coverUrl\": \"http://UQYpOSWvOUaZzVPghxtp.dwbZgi389WmiPSSDzCowVdCBjSDlx2q\",\n          \"stillCoverUrl\": \"http://cpmibTFCAtxYbWEqebjRoJVgwcD.cbnhaS3Khsj5rOk77RAb\"\n        },\n        \"userId\": 3587,\n        \"sale\": {\n          \"id\": 7790,\n          \"gameId\": 2938,\n          \"rate\": 1496.0611531321376,\n          \"startDate\": \"2018-03-26T08:51:57.234Z\",\n          \"endDate\": \"1951-11-05T17:09:58.329Z\"\n        },\n        \"viewsCount\": 5993,\n        \"downloadsCount\": 4402,\n        \"purchasesCount\": 1086,\n        \"published\": false\n      },\n      \"createdAt\": \"2000-10-31T00:00:26.481Z\",\n      \"updatedAt\": \"1957-05-28T15:15:05.075Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af12fd18-123c-49a5-856c-4ff21cf52b98",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "channels",
+                    ":channelName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "target",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2be627d1-ad22-46af-a309-2dfcb6bd3fdb",
+          "name": "Create wharf build",
+          "request": {
+            "name": "Create wharf build",
+            "description": {
+              "content": "Creates a new build for a given user/game:channel, with an optional user version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "builds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "target",
+                  "value": "<string>",
+                  "description": "(Required) Target in the format user/game"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<string>",
+                  "description": "(Required) Channel name (e.g. windows-64)"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_version",
+                  "value": "<string>",
+                  "description": "Optional developer-specified version string"
+                },
+                {
+                  "disabled": false,
+                  "key": "hidden",
+                  "value": "<boolean>",
+                  "description": "If true, the build is hidden"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "Source that initiated the push (e.g. cli, butlerd, app)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e2a6211-eaf8-41ea-85bd-a5facb33511e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Target in the format user/game",
+                        "type": "text/plain"
+                      },
+                      "key": "target",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Channel name (e.g. windows-64)",
+                        "type": "text/plain"
+                      },
+                      "key": "channel",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional developer-specified version string",
+                        "type": "text/plain"
+                      },
+                      "key": "user_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the build is hidden",
+                        "type": "text/plain"
+                      },
+                      "key": "hidden",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source that initiated the push (e.g. cli, butlerd, app)",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"build\": {\n    \"id\": 9957,\n    \"uploadId\": 9076,\n    \"parentBuild\": {\n      \"id\": 6170\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abeb476f-db77-42c0-a782-61324c02ad62",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Target in the format user/game",
+                        "type": "text/plain"
+                      },
+                      "key": "target",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Channel name (e.g. windows-64)",
+                        "type": "text/plain"
+                      },
+                      "key": "channel",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional developer-specified version string",
+                        "type": "text/plain"
+                      },
+                      "key": "user_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the build is hidden",
+                        "type": "text/plain"
+                      },
+                      "key": "hidden",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source that initiated the push (e.g. cli, butlerd, app)",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df44d684-52f1-4edf-a5d0-7449fa3701f4",
+          "name": "Get wharf build",
+          "request": {
+            "name": "Get wharf build",
+            "description": {
+              "content": "Retrieves info about a single build by ID via the owner-side wharf endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "builds",
+                ":buildId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "buildId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb1430b6-7a3d-4809-be0d-900163a90059",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"build\": {\n    \"id\": 7308,\n    \"parentBuildId\": 6430,\n    \"state\": \"processing\",\n    \"uploadId\": 9784,\n    \"gameId\": 5269,\n    \"userId\": 6688,\n    \"version\": 5695,\n    \"userVersion\": \"string\",\n    \"files\": [\n      {\n        \"id\": 6214,\n        \"size\": 2319,\n        \"state\": \"uploaded\",\n        \"type\": \"signature\",\n        \"subType\": \"optimized\",\n        \"createdAt\": \"2001-06-18T23:04:23.715Z\",\n        \"updatedAt\": \"1974-05-23T02:40:04.024Z\"\n      },\n      {\n        \"id\": 4264,\n        \"size\": 8494,\n        \"state\": \"created\",\n        \"type\": \"signature\",\n        \"subType\": \"optimized\",\n        \"createdAt\": \"1984-04-29T07:16:34.743Z\",\n        \"updatedAt\": \"2015-07-31T15:35:10.930Z\"\n      }\n    ],\n    \"user\": {\n      \"id\": 6547,\n      \"username\": \"string\",\n      \"displayName\": \"string\",\n      \"developer\": false,\n      \"pressUser\": false,\n      \"url\": \"https://AiRHadsYVw.cuSeoZvnEaa29uDwrjrxZh1A-hHYdcL1d2\",\n      \"coverUrl\": \"https://HOhKDVhIzDdOLVinCiA.ahwmkGmldSNNUahPCoaw8OZHsXnBQEo-Df7xKCmbjv11g7d,WO-FF1scAM,rPpqUFHRuIyB\",\n      \"stillCoverUrl\": \"http://SiVUuCNWFXJyIFMLIcZZpwcmZKZH.wwpzrW,5kdb\"\n    },\n    \"upload\": {\n      \"id\": 6164,\n      \"storage\": \"hosted\",\n      \"host\": \"string\",\n      \"filename\": \"string\",\n      \"displayName\": \"string\",\n      \"size\": 5388,\n      \"channelName\": \"string\",\n      \"build\": {\n        \"value\": \"<Circular reference to #/components/schemas/Build detected>\"\n      },\n      \"buildId\": 779,\n      \"type\": \"soundtrack\",\n      \"preorder\": false,\n      \"demo\": true,\n      \"platforms\": {\n        \"windows\": \"all\",\n        \"linux\": \"amd64\",\n        \"osx\": \"amd64\"\n      },\n      \"createdAt\": \"2002-05-15T19:17:32.970Z\",\n      \"updatedAt\": \"1956-11-08T16:59:56.015Z\"\n    },\n    \"game\": {\n      \"id\": 8855,\n      \"url\": \"https://MvFxbbAgxc.kzAM6DwAJGjtG3ovN.5.KsL1oMAj0uiLHbV\",\n      \"title\": \"string\",\n      \"shortText\": \"string\",\n      \"type\": \"flash\",\n      \"classification\": \"game\",\n      \"embed\": {\n        \"gameId\": 6971,\n        \"width\": 800,\n        \"height\": 9041,\n        \"fullscreen\": false\n      },\n      \"coverUrl\": \"https://pqWfMFSSQlIKjbfGjtpGUktLvKWGn.dpwWywX2SzW3ALhBZ9fD51+eoV27tfdsg+b37L7lAGDRoG4nO8a.Zovro5\",\n      \"stillCoverUrl\": \"https://LmNTqwHSOVEyAoa.ztW6sXGAuLVcp2vENkA00BN5GgJQTY3fPHRtlVNsSL3FaxfTzZKRsrQZCGtRtT6vi,,laS8P-lVJm26BzEe\",\n      \"createdAt\": \"2012-06-20T00:24:07.376Z\",\n      \"publishedAt\": \"1947-09-13T07:08:38.609Z\",\n      \"minPrice\": 8084,\n      \"canBeBought\": true,\n      \"hasDemo\": true,\n      \"inPressSystem\": false,\n      \"platforms\": {\n        \"windows\": \"amd64\",\n        \"linux\": \"all\",\n        \"osx\": \"all\"\n      },\n      \"user\": {\n        \"id\": 7102,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": false,\n        \"pressUser\": true,\n        \"url\": \"https://qfARDLyyD.oueucjdIbiIV.\",\n        \"coverUrl\": \"https://HAHYDQhYtQf.kngzuoxd+.TeaZngl5L--DzZG3WpFDZBH+t5iQTMpxjxUc\",\n        \"stillCoverUrl\": \"https://iCx.kflUFXtU1xJTfq2kdfF,qfkLnZJ+s\"\n      },\n      \"userId\": 6,\n      \"sale\": {\n        \"id\": 5010,\n        \"gameId\": 5157,\n        \"rate\": 1722.8326843018237,\n        \"startDate\": \"1995-11-19T11:22:03.438Z\",\n        \"endDate\": \"1963-01-22T14:14:12.489Z\"\n      },\n      \"viewsCount\": 2977,\n      \"downloadsCount\": 658,\n      \"purchasesCount\": 8036,\n      \"published\": false\n    },\n    \"createdAt\": \"2017-08-03T16:11:18.034Z\",\n    \"updatedAt\": \"2007-12-23T13:29:46.955Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "539a3d06-8730-4f54-ac2e-b64074e79bb6",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c25f7fba-2908-465f-b3be-74b2a6a509dd",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45dd30a6-5326-45b0-b683-a6231727e690",
+          "name": "List build files",
+          "request": {
+            "name": "List build files",
+            "description": {
+              "content": "Returns a list of files associated to a build.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "builds",
+                ":buildId",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "buildId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5812478f-0f85-4b77-8a74-b6ef50981a1d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"files\": [\n    {\n      \"id\": 5944,\n      \"size\": 2630,\n      \"state\": \"failed\",\n      \"type\": \"signature\",\n      \"subType\": \"default\",\n      \"createdAt\": \"1972-08-18T20:42:54.240Z\",\n      \"updatedAt\": \"1983-04-10T12:37:01.662Z\"\n    },\n    {\n      \"id\": 9449,\n      \"size\": 428,\n      \"state\": \"uploading\",\n      \"type\": \"signature\",\n      \"subType\": \"gzip\",\n      \"createdAt\": \"1997-12-21T10:05:07.684Z\",\n      \"updatedAt\": \"1988-09-20T01:03:17.806Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72eb8a00-4d40-49e6-9caa-8465c4f1a6d6",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26d0f163-dd01-4c21-a2fa-06dcb17c5d59",
+          "name": "Create build file",
+          "request": {
+            "name": "Create build file",
+            "description": {
+              "content": "Creates a new build file entry for a build.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "builds",
+                ":buildId",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "buildId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "upload_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filename",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "de1ded7c-6430-4e04-9008-8e0c3e4dfa13",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sub_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "upload_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"file\": {\n    \"id\": 7282,\n    \"uploadUrl\": \"http://fLpu.xdemHGZo7OTbwy-bTBcJA1fIu5SrGLteNJ6CRERUB5\",\n    \"uploadParams\": {\n      \"key_0\": \"string\"\n    },\n    \"uploadHeaders\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32e35316-4569-45ea-8f24-901346480433",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sub_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "upload_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "962c90ad-d9e6-4147-8701-457c70940bb6",
+          "name": "Finalize build file",
+          "request": {
+            "name": "Finalize build file",
+            "description": {
+              "content": "Marks the end of the upload for a build file. Validates that the file size in storage matches the provided size.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "builds",
+                ":buildId",
+                "files",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "buildId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "fileId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<long>",
+                  "description": "(Required) Expected file size in bytes"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8521594d-f68a-402e-a842-465e1b5e86f8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Expected file size in bytes",
+                        "type": "text/plain"
+                      },
+                      "key": "size",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "915ccc82-f7dd-4c90-8783-f0ea3235701d",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Expected file size in bytes",
+                        "type": "text/plain"
+                      },
+                      "key": "size",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6baf3d7-f77a-46d1-8ca1-08eacbca7cde",
+          "name": "List build events",
+          "request": {
+            "name": "List build events",
+            "description": {
+              "content": "Returns a series of events associated with a given build.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "builds",
+                ":buildId",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "buildId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1bee5bc-3f55-4d07-b8a6-ce8975d6db6a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"events\": [\n    {\n      \"type\": \"log\",\n      \"message\": \"string\",\n      \"data\": {\n        \"key_0\": 1156\n      }\n    },\n    {\n      \"type\": \"log\",\n      \"message\": \"string\",\n      \"data\": {\n        \"key_0\": false,\n        \"key_1\": 8624.044848983458\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6edab00e-904f-4d7e-b3e1-52dd093c3cd4",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83b39b4d-499a-4977-90f5-e14d0ff785c0",
+          "name": "Create build event",
+          "request": {
+            "name": "Create build event",
+            "description": {
+              "content": "Associates a new build event (e.g. log message) to a build.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "builds",
+                ":buildId",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "buildId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "message",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "data",
+                  "value": "<string>",
+                  "description": "JSON-encoded additional event data"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4e0c3a0a-6489-40ea-ac13-633163f34538",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "JSON-encoded additional event data",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94bade8b-1722-4580-8d45-59a98bbbbe2f",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "JSON-encoded additional event data",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85f8c970-9cc8-4a52-b1f5-6084666beca7",
+          "name": "Mark build as failed",
+          "request": {
+            "name": "Mark build as failed",
+            "description": {
+              "content": "Marks a given build as failed with an error message.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "builds",
+                ":buildId",
+                "failures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "buildId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "message",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "fatal",
+                  "value": "<boolean>",
+                  "description": "If true, the build cannot be retried"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f093ecd0-5c49-4a41-9347-764c4ef2ca27",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "failures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the build cannot be retried",
+                        "type": "text/plain"
+                      },
+                      "key": "fatal",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1ad94cd-ab94-400b-94c6-31f6a605f2ab",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "failures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If true, the build cannot be retried",
+                        "type": "text/plain"
+                      },
+                      "key": "fatal",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21664996-1f6a-414d-823d-130c0cee0547",
+          "name": "Mark build rediff as failed",
+          "request": {
+            "name": "Mark build rediff as failed",
+            "description": {
+              "content": "Marks a given build as having failed to rediff (optimize).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wharf",
+                "builds",
+                ":buildId",
+                "failures",
+                "rediff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "buildId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "message",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe659ab7-c6da-48f1-8f02-c71738af0be8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "failures",
+                    "rediff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8dd5017-320c-46e3-80b3-7220443e2caa",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wharf",
+                    "builds",
+                    ":buildId",
+                    "failures",
+                    "rediff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.itch.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "886b8756-92cd-4bc8-9b04-bff8b3d246e9",
+    "name": "Itch.io Auth Wharf API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.\n\nContact Support:\n Name: Itch.io Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Itch.io Auth Profile API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/profile"
+          },
+          "docs": "Returns information about the user the current credentials belong to."
+        },
+        {
+          "info": {
+            "name": "List profile games",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/profile/games"
+          },
+          "docs": "Lists the games the authenticated user develops (i.e. can edit)."
+        },
+        {
+          "info": {
+            "name": "List owned download keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/profile/owned-keys",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "Lists the download keys the authenticated account owns."
+        },
+        {
+          "info": {
+            "name": "List profile collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/profile/collections"
+          },
+          "docs": "Lists the collections associated to the authenticated profile."
+        },
+        {
+          "info": {
+            "name": "List owned bundles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/profile/owned-bundles"
+          },
+          "docs": "Lists the bundles the current user owns. Each BundleKey has its Bundle field populated. Deduped across multiple purchases of the same bundle; sale bundles are currently excluded; capped at 100."
+        },
+        {
+          "info": {
+            "name": "List profile builds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/profile/builds",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by build state. One of: live, processing, failed. Empty for all."
+              },
+              {
+                "name": "include_totals",
+                "value": "",
+                "type": "query",
+                "description": "If set to 1, include aggregate totals in the response."
+              },
+              {
+                "name": "started_build_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated build IDs in the started state to surface in the listing."
+              }
+            ]
+          },
+          "docs": "Lists builds across all games the current user develops. The response is normalized: each build carries scalar GameID/UploadID/UserID, and the referenced games/uploads/users are returned once each."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

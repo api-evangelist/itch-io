@@ -1,0 +1,870 @@
+{
+  "item": [
+    {
+      "id": "2b34cd3f-b8e1-410b-bec9-8d73dbaed637",
+      "name": "Profile",
+      "description": {
+        "content": "Operations related to the authenticated user's profile",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4d061b3c-fea6-4a58-8385-683458277839",
+          "name": "Get current user profile",
+          "request": {
+            "name": "Get current user profile",
+            "description": {
+              "content": "Returns information about the user the current credentials belong to.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d0e6305-5025-4e6d-a7ce-a40384fbeddc",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": 8305,\n    \"username\": \"string\",\n    \"displayName\": \"string\",\n    \"developer\": true,\n    \"pressUser\": false,\n    \"url\": \"https://QzIzAdmSaBxRbXGfoXhXOHDl.utkgIqgCXamAEhDNGMIrAay7E6FPFyS\",\n    \"coverUrl\": \"https://D.fzxbFHQaXyDeY48tHxOPgRAfeIdhnHvSL,\",\n    \"stillCoverUrl\": \"http://iIZgDputgLnDkOKvNOWdFRRaqVRURNu.ickjJ+UNm6i9O6skB5UhPayFalTkEUn57,cRSD+8UGMaQm-EfyvvfN81pYwVHZb\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a43270f-9e6a-4e23-be4b-d66aa251f7f8",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22419842-abc8-4f99-aee2-7cbed9ae09ce",
+          "name": "List profile games",
+          "request": {
+            "name": "List profile games",
+            "description": {
+              "content": "Lists the games the authenticated user develops (i.e. can edit).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "games"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3acc307-b40a-4efc-9e72-a4c21d01df48",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"games\": [\n    {\n      \"id\": 7157,\n      \"url\": \"https://RkGnOMK.tirgASa,SLGzUuZ16VnIPWT0\",\n      \"title\": \"string\",\n      \"shortText\": \"string\",\n      \"type\": \"unity\",\n      \"classification\": \"assets\",\n      \"embed\": {\n        \"gameId\": 1289,\n        \"width\": 7030,\n        \"height\": 8402,\n        \"fullscreen\": true\n      },\n      \"coverUrl\": \"https://QKautribOF.jdzpjQ6Uxh,rKLiXzRtjFSLtr0,7ox,DBsRWcDg.gQeT.,muoUNeLRJ8Os0BriMolcm5I1I,Nb,+7NCd,\",\n      \"stillCoverUrl\": \"http://GQTbgtwgIqqJQJyDQEEZCnDEPgk.awx2VPqI+1tonxQfhHnmlhvs-QczanUDKfGWQKhE40zM35XhTgeHsMat0iAuMQtz6Rx\",\n      \"createdAt\": \"1987-02-06T21:58:45.626Z\",\n      \"publishedAt\": \"1987-02-11T00:21:16.032Z\",\n      \"minPrice\": 4637,\n      \"canBeBought\": true,\n      \"hasDemo\": true,\n      \"inPressSystem\": true,\n      \"platforms\": {\n        \"windows\": \"amd64\",\n        \"linux\": \"amd64\",\n        \"osx\": \"amd64\"\n      },\n      \"user\": {\n        \"id\": 8694,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": true,\n        \"pressUser\": false,\n        \"url\": \"https://UBoETcfeGvxHPZPqsEpUduLXJDkT.wrneYNrqzG+jLnOlqbdOQNTxV0Pdruc\",\n        \"coverUrl\": \"http://wRhTzxuzZXVutAC.gwdjjCNAB4i7BjyFvtWVAAAXcIpZAZ870nKhZEZfumUl64vo6fuawxKpaA2\",\n        \"stillCoverUrl\": \"https://cbCGKAymBrjyHsBfTGyYNjcKPakLjiI.gmBFqTqbwyh+fPnrYOMRkSSrVIy6Po4GCE01trq5\"\n      },\n      \"userId\": 6599,\n      \"sale\": {\n        \"id\": 9149,\n        \"gameId\": 6230,\n        \"rate\": 1701.2686822486055,\n        \"startDate\": \"1999-12-01T19:57:25.981Z\",\n        \"endDate\": \"1985-03-06T16:33:50.817Z\"\n      },\n      \"viewsCount\": 1725,\n      \"downloadsCount\": 6454,\n      \"purchasesCount\": 1397,\n      \"published\": false\n    },\n    {\n      \"id\": 5998,\n      \"url\": \"https://OFLPcBzRUzpTWfwFrCoMdSyFvY.fspspjI8ao2AtLkhRYY+xtiSZGWc0mxYOBm+R9FexsmklgTgTD2ndl8\",\n      \"title\": \"string\",\n      \"shortText\": \"string\",\n      \"type\": \"unity\",\n      \"classification\": \"physical_game\",\n      \"embed\": {\n        \"gameId\": 2921,\n        \"width\": 9646,\n        \"height\": 6500,\n        \"fullscreen\": true\n      },\n      \"coverUrl\": \"https://fzcKRfu.fblmLwBry399ekPd9TQa\",\n      \"stillCoverUrl\": \"https://LzcKK.uzwzI5MuTSTZaGq++d6jH9-bBND+qpekP6pdEaFeA2MF0YYc\",\n      \"createdAt\": \"2017-02-11T03:20:21.514Z\",\n      \"publishedAt\": \"1992-03-16T18:25:18.757Z\",\n      \"minPrice\": 798,\n      \"canBeBought\": true,\n      \"hasDemo\": false,\n      \"inPressSystem\": false,\n      \"platforms\": {\n        \"windows\": \"386\",\n        \"linux\": \"all\",\n        \"osx\": \"386\"\n      },\n      \"user\": {\n        \"id\": 813,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": false,\n        \"pressUser\": false,\n        \"url\": \"http://JiDXLexiuJZTcMUPwZBcNrrSo.bkrxsq2zSb-BYpIapsI827B4FTD8eBgw2x1XSb\",\n        \"coverUrl\": \"https://pOOHScFiVeDesz.pokjjOqjmVacLo.YvLEvgbQ5oJwTz1E7uk,I1nEqVXeUU,zUJEGM9Not9B3H+jUH8h1UmcPP-NVNLTVh3pu\",\n        \"stillCoverUrl\": \"https://zvGX.vqtH1KmDTacGgKuQ.SZfUIu8gMGlFRgbRUn7bSR1h8KrbwxjO\"\n      },\n      \"userId\": 4984,\n      \"sale\": {\n        \"id\": 1524,\n        \"gameId\": 7124,\n        \"rate\": 8719.268994609756,\n        \"startDate\": \"1971-07-04T18:35:41.547Z\",\n        \"endDate\": \"1995-06-07T02:53:12.437Z\"\n      },\n      \"viewsCount\": 8787,\n      \"downloadsCount\": 3131,\n      \"purchasesCount\": 9324,\n      \"published\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e1466fc-d152-4c5c-948d-f9235301c881",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dd4d2bc-c396-41d2-8916-081a33b1e411",
+          "name": "List owned download keys",
+          "request": {
+            "name": "List owned download keys",
+            "description": {
+              "content": "Lists the download keys the authenticated account owns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "owned-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>",
+                  "description": "Page number for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43f92ecc-962f-4e02-8d11-e47b13249068",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "owned-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 4465,\n  \"perPage\": 3198,\n  \"ownedKeys\": [\n    {\n      \"id\": 6627,\n      \"gameId\": 4435,\n      \"game\": {\n        \"id\": 2580,\n        \"url\": \"https://IBSQkizxEjmJNuEpBdDKQdggiCpfWRZr.mwnhh0u8DdYZDX\",\n        \"title\": \"string\",\n        \"shortText\": \"string\",\n        \"type\": \"default\",\n        \"classification\": \"game_mod\",\n        \"embed\": {\n          \"gameId\": 7859,\n          \"width\": 9866,\n          \"height\": 5632,\n          \"fullscreen\": true\n        },\n        \"coverUrl\": \"https://IccDudbRGstfuvorae.syfzKPZo6IpmiZL9CZXPkB3A2giq1qneiP28e\",\n        \"stillCoverUrl\": \"http://sqNNJVMxluTWuAUWKMcBfZXikt.wrtchxmZQfTEgXhaJpVY+0.AAc.4NqkNPM9ECBDH5ImA.2cbiT2dFBHp\",\n        \"createdAt\": \"2003-09-17T04:22:58.947Z\",\n        \"publishedAt\": \"1994-01-05T07:52:44.034Z\",\n        \"minPrice\": 9228,\n        \"canBeBought\": false,\n        \"hasDemo\": true,\n        \"inPressSystem\": false,\n        \"platforms\": {\n          \"windows\": \"amd64\",\n          \"linux\": \"all\",\n          \"osx\": \"all\"\n        },\n        \"user\": {\n          \"id\": 5268,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": false,\n          \"pressUser\": true,\n          \"url\": \"https://K.itmkxXwtjWdWJbE6tkGRRGGkn,IG6j5ObmJ\",\n          \"coverUrl\": \"https://NaHykCSDLPHlnhEHwRkgUPjlaXBkYNPm.betuBL047X\",\n          \"stillCoverUrl\": \"https://IwFFgGSHEqIEUMyKEDBEoQ.cqcaQ,tvIy9liq69PgSXgvbSwTxcWwt\"\n        },\n        \"userId\": 8951,\n        \"sale\": {\n          \"id\": 2675,\n          \"gameId\": 5590,\n          \"rate\": 8831.579460979712,\n          \"startDate\": \"2002-03-19T05:08:53.019Z\",\n          \"endDate\": \"2012-06-03T11:46:22.402Z\"\n        },\n        \"viewsCount\": 9583,\n        \"downloadsCount\": 2737,\n        \"purchasesCount\": 9786,\n        \"published\": false\n      },\n      \"createdAt\": \"2012-02-13T05:30:56.493Z\",\n      \"updatedAt\": \"1991-07-10T12:21:20.915Z\",\n      \"ownerId\": 9736\n    },\n    {\n      \"id\": 5209,\n      \"gameId\": 3574,\n      \"game\": {\n        \"id\": 4883,\n        \"url\": \"http://aFoDgXVVkbqRW.simvJs3n1.NcGm\",\n        \"title\": \"string\",\n        \"shortText\": \"string\",\n        \"type\": \"html\",\n        \"classification\": \"soundtrack\",\n        \"embed\": {\n          \"gameId\": 1312,\n          \"width\": 9001,\n          \"height\": 8680,\n          \"fullscreen\": false\n        },\n        \"coverUrl\": \"http://Lc.xknNxhhVQqTN166ij95iRdjN79EV0d17rbo5f,Yovz0wMh6bF\",\n        \"stillCoverUrl\": \"http://tsPfyQsbBGBZreDDsiVKV.evlkXM59tLF9KG+KN8J9ZQCBqBRE1UiR28wa5fK3tCsN0WjP,s5eb9IPx5i3rjGJEU0VBb8\",\n        \"createdAt\": \"2013-04-27T12:23:00.897Z\",\n        \"publishedAt\": \"2014-12-24T20:32:05.351Z\",\n        \"minPrice\": 2401,\n        \"canBeBought\": false,\n        \"hasDemo\": false,\n        \"inPressSystem\": false,\n        \"platforms\": {\n          \"windows\": \"all\",\n          \"linux\": \"all\",\n          \"osx\": \"amd64\"\n        },\n        \"user\": {\n          \"id\": 6040,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": true,\n          \"pressUser\": false,\n          \"url\": \"http://PAaxhmXZJZcgKLddtVtBbqJhooJKNuv.vbI,aFmVA8\",\n          \"coverUrl\": \"http://Zvt.ykzhT0Q5QMUndsi84CgtZTvBLevKWGff0Zlgh2jOtXwO\",\n          \"stillCoverUrl\": \"http://uCCS.pyaFOOhkWVKis3ts4VZd1TQ5\"\n        },\n        \"userId\": 5815,\n        \"sale\": {\n          \"id\": 8863,\n          \"gameId\": 3557,\n          \"rate\": 6342.043453514606,\n          \"startDate\": \"1996-06-07T00:26:35.872Z\",\n          \"endDate\": \"2011-10-30T04:46:30.993Z\"\n        },\n        \"viewsCount\": 614,\n        \"downloadsCount\": 8116,\n        \"purchasesCount\": 668,\n        \"published\": true\n      },\n      \"createdAt\": \"1963-01-05T03:33:39.230Z\",\n      \"updatedAt\": \"1996-03-14T21:59:57.902Z\",\n      \"ownerId\": 6252\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab393b55-2c33-48b2-84cb-65da5d2251cd",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "owned-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bed8f26a-8365-44b9-aa54-34cc9f07103f",
+          "name": "List profile collections",
+          "request": {
+            "name": "List profile collections",
+            "description": {
+              "content": "Lists the collections associated to the authenticated profile.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ab7c0ce-7372-49ac-bb79-b546511b8dc4",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collections\": [\n    {\n      \"id\": 8,\n      \"title\": \"string\",\n      \"createdAt\": \"1996-11-07T04:07:56.405Z\",\n      \"updatedAt\": \"1956-04-11T03:47:36.873Z\",\n      \"gamesCount\": 7609,\n      \"collectionGames\": [\n        {\n          \"collectionId\": 5594,\n          \"collection\": {\n            \"value\": \"<Circular reference to #/components/schemas/Collection detected>\"\n          },\n          \"gameId\": 4738,\n          \"game\": {\n            \"id\": 9596,\n            \"url\": \"https://vBMVtLsfWPshDjfFWSskzBZCocXKAoOP.hcdlZKNVg+KalTsmG1ook9D1XL6t8\",\n            \"title\": \"string\",\n            \"shortText\": \"string\",\n            \"type\": \"java\",\n            \"classification\": \"soundtrack\",\n            \"embed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": \"http://AFAgxrTrDTkbWEVDjIxFckbRjT.cjwghLoW7Ud0sZWveLdKGsFOxw28z,RkoKgzrvRM+zI\",\n            \"stillCoverUrl\": \"https://WlgybxvqCpZEmEweZhXLLVFlwpitC.dxmvfNellgj3YMyrn1t3MpXTnMxYQCa4FlVmvYd\",\n            \"createdAt\": \"1984-02-07T08:35:25.970Z\",\n            \"publishedAt\": \"2014-03-13T09:11:25.616Z\",\n            \"minPrice\": 1028,\n            \"canBeBought\": false,\n            \"hasDemo\": false,\n            \"inPressSystem\": false,\n            \"platforms\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"userId\": 1682,\n            \"sale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"viewsCount\": 2813,\n            \"downloadsCount\": 3971,\n            \"purchasesCount\": 4723,\n            \"published\": true\n          },\n          \"position\": 1880,\n          \"createdAt\": \"2022-04-30T03:10:06.088Z\",\n          \"updatedAt\": \"1982-11-17T20:36:41.721Z\",\n          \"blurb\": \"string\",\n          \"userId\": 4074\n        },\n        {\n          \"collectionId\": 7775,\n          \"collection\": {\n            \"value\": \"<Circular reference to #/components/schemas/Collection detected>\"\n          },\n          \"gameId\": 6364,\n          \"game\": {\n            \"id\": 9593,\n            \"url\": \"http://TZgszYvmdwAVeiJhzJ.hyhvN+RkLPnrjJtV,lHfa43E,l-CYut7s8ZwRApu\",\n            \"title\": \"string\",\n            \"shortText\": \"string\",\n            \"type\": \"flash\",\n            \"classification\": \"book\",\n            \"embed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": \"http://ZkQncRUkPraXjqRqDjbsKtgwDUrSkXim.jvvyKv3R34w2b+wnyx2QAzryh2RsaDmzNsGG7ZRFmK9j6eV8\",\n            \"stillCoverUrl\": \"https://XDdZAoKKGexSwyH.vvCqgPub0ugt.\",\n            \"createdAt\": \"1983-05-26T23:35:45.780Z\",\n            \"publishedAt\": \"1976-11-16T16:54:00.527Z\",\n            \"minPrice\": 4142,\n            \"canBeBought\": false,\n            \"hasDemo\": false,\n            \"inPressSystem\": true,\n            \"platforms\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"userId\": 136,\n            \"sale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"viewsCount\": 1909,\n            \"downloadsCount\": 4718,\n            \"purchasesCount\": 3551,\n            \"published\": true\n          },\n          \"position\": 6686,\n          \"createdAt\": \"1987-04-15T17:43:43.561Z\",\n          \"updatedAt\": \"1962-10-21T16:29:16.398Z\",\n          \"blurb\": \"string\",\n          \"userId\": 6013\n        }\n      ],\n      \"userId\": 3174,\n      \"user\": {\n        \"id\": 9083,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": false,\n        \"pressUser\": true,\n        \"url\": \"https://poSxAyNcJtKAJhFqCOHvJY.dehZ,wjx\",\n        \"coverUrl\": \"https://xIHonQbIJDhjQHdVhFvHYwNWc.gwhqYuHyX9-fZ9QXXTswDkzAQVnO+ZoY,9Bs4ysKLpR0VK0Q+tAol3eWLLVQAgPHjhhnGeuTO4BxfGIN2UV.m\",\n        \"stillCoverUrl\": \"http://zTjlEMZMrwEtSSQALweimzhFQm.knoY0rUqb3mvNu9+Lt9xfhr3ERfuj-znYiVagjtvv.fZ56eZj1isPGuyw9FUWWdg2UEHkmnkny\"\n      }\n    },\n    {\n      \"id\": 7525,\n      \"title\": \"string\",\n      \"createdAt\": \"1987-11-11T11:04:19.280Z\",\n      \"updatedAt\": \"2007-07-01T17:47:41.992Z\",\n      \"gamesCount\": 7525,\n      \"collectionGames\": [\n        {\n          \"collectionId\": 7827,\n          \"collection\": {\n            \"value\": \"<Circular reference to #/components/schemas/Collection detected>\"\n          },\n          \"gameId\": 9443,\n          \"game\": {\n            \"id\": 3732,\n            \"url\": \"http://DrMYGTIIJTYpdGYaLBmAzvUeVzNJtAy.bhtGj4tefx+8ZDS+YkAdrHrkyW4h,.y6ge4JxEBS\",\n            \"title\": \"string\",\n            \"shortText\": \"string\",\n            \"type\": \"default\",\n            \"classification\": \"soundtrack\",\n            \"embed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": \"https://hXJFLGaoULGgmkkMscIMljr.zhcTJqzRf3i3GYqtaWCAQxhrltgU2VWCvR.77BH2\",\n            \"stillCoverUrl\": \"https://rYPTVaQXVTzg.yobOVKWMvrIVEiwt6OWmmoHOie0zMRgQLwt.-WG9cW\",\n            \"createdAt\": \"2013-01-02T08:24:49.961Z\",\n            \"publishedAt\": \"2002-10-28T17:41:25.384Z\",\n            \"minPrice\": 7746,\n            \"canBeBought\": false,\n            \"hasDemo\": false,\n            \"inPressSystem\": true,\n            \"platforms\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"userId\": 7959,\n            \"sale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"viewsCount\": 5422,\n            \"downloadsCount\": 5166,\n            \"purchasesCount\": 9317,\n            \"published\": true\n          },\n          \"position\": 2301,\n          \"createdAt\": \"1948-03-14T01:56:41.098Z\",\n          \"updatedAt\": \"1977-02-11T12:30:24.247Z\",\n          \"blurb\": \"string\",\n          \"userId\": 721\n        },\n        {\n          \"collectionId\": 9938,\n          \"collection\": {\n            \"value\": \"<Circular reference to #/components/schemas/Collection detected>\"\n          },\n          \"gameId\": 5746,\n          \"game\": {\n            \"id\": 6102,\n            \"url\": \"https://bEoZTAGYgWbTIoS.mucU7u7qmOAX\",\n            \"title\": \"string\",\n            \"shortText\": \"string\",\n            \"type\": \"default\",\n            \"classification\": \"game_mod\",\n            \"embed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": \"https://DYUMvIugqrpFHW.cycX.O6jHgZdrFfacVCvePOFoEVfFPy9hUaJStR4x-\",\n            \"stillCoverUrl\": \"http://fcsXc.mkWW-,iD4nEXALlEbQegHKbysXTcFcAQiOlpp3jmhx915RTKAw+0sigttaPNSyJSJtpi66\",\n            \"createdAt\": \"1989-06-09T21:21:14.925Z\",\n            \"publishedAt\": \"1946-12-26T07:41:15.523Z\",\n            \"minPrice\": 4176,\n            \"canBeBought\": true,\n            \"hasDemo\": false,\n            \"inPressSystem\": true,\n            \"platforms\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"userId\": 1476,\n            \"sale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"viewsCount\": 5701,\n            \"downloadsCount\": 5482,\n            \"purchasesCount\": 2438,\n            \"published\": false\n          },\n          \"position\": 2034,\n          \"createdAt\": \"1971-05-10T19:22:38.988Z\",\n          \"updatedAt\": \"1951-11-10T07:24:43.220Z\",\n          \"blurb\": \"string\",\n          \"userId\": 1472\n        }\n      ],\n      \"userId\": 9777,\n      \"user\": {\n        \"id\": 9068,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": false,\n        \"pressUser\": true,\n        \"url\": \"http://QPBxTulkofkQPpGzwAIyIxmkqAVkJnfzV.zndtztfGOn\",\n        \"coverUrl\": \"http://i.dibuCi9GcCDcn-KpqJJzu8hZnh\",\n        \"stillCoverUrl\": \"http://CjJmoSymgTsewhKPBYNJsnkyQYz.fufhcj7pTbbdypunrjUYG,PZHde-Qv.,+DZPvpMjqNgb\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cab68a9c-3aaf-46eb-9060-ef3a6adf602f",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e0763ff-2a17-4da4-aab6-38c486466ea9",
+          "name": "List owned bundles",
+          "request": {
+            "name": "List owned bundles",
+            "description": {
+              "content": "Lists the bundles the current user owns. Each BundleKey has its Bundle field populated. Deduped across multiple purchases of the same bundle; sale bundles are currently excluded; capped at 100.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "owned-bundles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "970d5254-96a9-4a11-b071-59733c5b991c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "owned-bundles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bundleKeys\": [\n    {\n      \"id\": 3398,\n      \"bundleId\": 9652,\n      \"bundle\": {\n        \"id\": 8938,\n        \"title\": \"string\",\n        \"url\": \"https://AGAPUIcooIhgtCIEmJoB.gigb-GSyMoPsPcNJGicLlhB6AhEQGZ,NTBkViSdEVncQa7q,A\",\n        \"coverUrl\": \"https://GLbFYFKOgoJgapPAuvTaZLzbwvksrv.hircfvPas.rv0JUSgC1O9-lG,dwgIuAUEVlAR\",\n        \"gamesCount\": 3363,\n        \"createdAt\": \"1967-01-14T12:50:16.190Z\",\n        \"updatedAt\": \"1980-09-20T13:10:43.067Z\",\n        \"bundleGames\": [\n          {\n            \"bundleId\": 8519,\n            \"bundle\": {\n              \"value\": \"<Circular reference to #/components/schemas/Bundle detected>\"\n            },\n            \"gameId\": 3561,\n            \"game\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": 225,\n            \"minPrice\": 3079,\n            \"createdAt\": \"1951-04-04T03:57:23.309Z\",\n            \"updatedAt\": \"1993-07-11T01:06:01.457Z\"\n          },\n          {\n            \"bundleId\": 1855,\n            \"bundle\": {\n              \"value\": \"<Circular reference to #/components/schemas/Bundle detected>\"\n            },\n            \"gameId\": 4705,\n            \"game\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": 6729,\n            \"minPrice\": 8935,\n            \"createdAt\": \"1991-02-24T20:33:28.535Z\",\n            \"updatedAt\": \"1959-02-11T10:31:25.356Z\"\n          }\n        ]\n      },\n      \"purchaseId\": 3937,\n      \"createdAt\": \"1990-01-05T02:27:32.721Z\",\n      \"ownerId\": 870\n    },\n    {\n      \"id\": 1666,\n      \"bundleId\": 2561,\n      \"bundle\": {\n        \"id\": 1862,\n        \"title\": \"string\",\n        \"url\": \"https://GkSlDLOt.nxuJGzLCGV2KVc3k4ttp4sVXjkPr0gH3KCujjJX\",\n        \"coverUrl\": \"https://pdgpbugXUJrDajvnpvBKOaSA.nguxE1xraxhkVGDvFev6EKzusn9.5yfs\",\n        \"gamesCount\": 4377,\n        \"createdAt\": \"2015-05-12T17:18:24.567Z\",\n        \"updatedAt\": \"1968-02-29T16:06:55.692Z\",\n        \"bundleGames\": [\n          {\n            \"bundleId\": 4754,\n            \"bundle\": {\n              \"value\": \"<Circular reference to #/components/schemas/Bundle detected>\"\n            },\n            \"gameId\": 3335,\n            \"game\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": 6219,\n            \"minPrice\": 5085,\n            \"createdAt\": \"1956-07-26T18:28:03.912Z\",\n            \"updatedAt\": \"2013-07-27T09:25:52.094Z\"\n          },\n          {\n            \"bundleId\": 3063,\n            \"bundle\": {\n              \"value\": \"<Circular reference to #/components/schemas/Bundle detected>\"\n            },\n            \"gameId\": 5286,\n            \"game\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": 8992,\n            \"minPrice\": 8326,\n            \"createdAt\": \"1953-09-02T12:38:34.665Z\",\n            \"updatedAt\": \"2020-12-08T02:09:22.084Z\"\n          }\n        ]\n      },\n      \"purchaseId\": 9122,\n      \"createdAt\": \"1987-02-08T18:06:47.655Z\",\n      \"ownerId\": 6752\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24defb8a-2d86-446d-9fe3-da17707a4adc",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "owned-bundles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04cfd260-de08-45ab-979b-a0ba2050b7f9",
+          "name": "List profile builds",
+          "request": {
+            "name": "List profile builds",
+            "description": {
+              "content": "Lists builds across all games the current user develops. The response is normalized: each build carries scalar GameID/UploadID/UserID, and the referenced games/uploads/users are returned once each.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "builds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by build state. One of: live, processing, failed. Empty for all."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_totals",
+                  "value": "<string>",
+                  "description": "If set to 1, include aggregate totals in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "started_build_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated build IDs in the started state to surface in the listing."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "edd98212-42a1-4d9d-a907-63709039d1ff",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "builds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_totals",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "started_build_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"builds\": [\n    {\n      \"id\": 9256,\n      \"parentBuildId\": 6778,\n      \"state\": \"processing\",\n      \"uploadId\": 825,\n      \"gameId\": 3951,\n      \"userId\": 7803,\n      \"version\": 9302,\n      \"userVersion\": \"string\",\n      \"files\": [\n        {\n          \"id\": 6569,\n          \"size\": 5421,\n          \"state\": \"created\",\n          \"type\": \"archive\",\n          \"subType\": \"optimized\",\n          \"createdAt\": \"1971-11-30T05:38:06.521Z\",\n          \"updatedAt\": \"1973-06-17T02:51:22.221Z\"\n        },\n        {\n          \"id\": 9882,\n          \"size\": 1401,\n          \"state\": \"uploading\",\n          \"type\": \"patch\",\n          \"subType\": \"gzip\",\n          \"createdAt\": \"2018-05-04T10:40:54.831Z\",\n          \"updatedAt\": \"1961-04-09T13:16:42.997Z\"\n        }\n      ],\n      \"user\": {\n        \"id\": 8042,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": false,\n        \"pressUser\": false,\n        \"url\": \"https://BFyojFNOynPhKhTGlHhiv.flyQKniOBD9\",\n        \"coverUrl\": \"http://gZVyljDzlWUKvBOESLGs.hjelGZzu7BDZ9-LTmxSRjuBJ2L4YIh1rNNDI5ART2\",\n        \"stillCoverUrl\": \"http://XjXysDfUcPCNGwojqPXdnUE.ffvlafXvI7Dsxx4oikCisZVVaGrDFk6XvHDiKPa6\"\n      },\n      \"upload\": {\n        \"id\": 2224,\n        \"storage\": \"hosted\",\n        \"host\": \"string\",\n        \"filename\": \"string\",\n        \"displayName\": \"string\",\n        \"size\": 4533,\n        \"channelName\": \"string\",\n        \"build\": {\n          \"value\": \"<Circular reference to #/components/schemas/Build detected>\"\n        },\n        \"buildId\": 9697,\n        \"type\": \"graphical_assets\",\n        \"preorder\": false,\n        \"demo\": true,\n        \"platforms\": {\n          \"windows\": \"amd64\",\n          \"linux\": \"386\",\n          \"osx\": \"386\"\n        },\n        \"createdAt\": \"1963-04-19T23:17:45.001Z\",\n        \"updatedAt\": \"2021-12-23T16:22:31.133Z\"\n      },\n      \"game\": {\n        \"id\": 2720,\n        \"url\": \"http://P.hquad.TVo39ueOOpF5-d9AA5Q9h,vfrA1GqQt8y-5WKleCokmsRgf3c\",\n        \"title\": \"string\",\n        \"shortText\": \"string\",\n        \"type\": \"unity\",\n        \"classification\": \"tool\",\n        \"embed\": {\n          \"gameId\": 3105,\n          \"width\": 8983,\n          \"height\": 9726,\n          \"fullscreen\": false\n        },\n        \"coverUrl\": \"https://RwQghuiaUdHhebfokyCk.xwOzsmI-aCxk7-FUECbjzADtvnJrbY.Kb6C\",\n        \"stillCoverUrl\": \"https://D.uyzbwAq9e2wbMD.Yf+VTVnlQZh9fmEFxQqE\",\n        \"createdAt\": \"1963-04-04T14:40:55.195Z\",\n        \"publishedAt\": \"2017-02-16T20:59:15.600Z\",\n        \"minPrice\": 9783,\n        \"canBeBought\": true,\n        \"hasDemo\": true,\n        \"inPressSystem\": false,\n        \"platforms\": {\n          \"windows\": \"all\",\n          \"linux\": \"386\",\n          \"osx\": \"all\"\n        },\n        \"user\": {\n          \"id\": 910,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": false,\n          \"pressUser\": true,\n          \"url\": \"https://Yv.dbsGuhNuIMejNYKVOkdV4E\",\n          \"coverUrl\": \"http://szaEJUzucZWFlsngqpgrqbVhAssVdwarj.gfbwT3a4jNvBSV5OUttJkMZlPb6FJQ3Q8\",\n          \"stillCoverUrl\": \"http://hpvlMVRTSNVqHNLWTHpAFATFbJERLa.omlQXCUlgSnlqeFoFJK3VGfq,26jdq8SMAjJqSi6IrZrxY6-RzIcrppO\"\n        },\n        \"userId\": 4499,\n        \"sale\": {\n          \"id\": 2529,\n          \"gameId\": 6431,\n          \"rate\": 2384.8638866630845,\n          \"startDate\": \"2006-10-26T15:50:53.661Z\",\n          \"endDate\": \"1993-01-21T10:44:05.328Z\"\n        },\n        \"viewsCount\": 3322,\n        \"downloadsCount\": 8016,\n        \"purchasesCount\": 7683,\n        \"published\": true\n      },\n      \"createdAt\": \"1993-07-21T12:40:02.922Z\",\n      \"updatedAt\": \"1957-03-21T05:19:52.435Z\"\n    },\n    {\n      \"id\": 9659,\n      \"parentBuildId\": 8344,\n      \"state\": \"failed\",\n      \"uploadId\": 6376,\n      \"gameId\": 8524,\n      \"userId\": 4639,\n      \"version\": 6818,\n      \"userVersion\": \"string\",\n      \"files\": [\n        {\n          \"id\": 4845,\n          \"size\": 8632,\n          \"state\": \"uploaded\",\n          \"type\": \"unpacked\",\n          \"subType\": \"default\",\n          \"createdAt\": \"2004-04-21T00:18:13.520Z\",\n          \"updatedAt\": \"1990-11-17T20:55:21.548Z\"\n        },\n        {\n          \"id\": 7970,\n          \"size\": 6375,\n          \"state\": \"uploading\",\n          \"type\": \"signature\",\n          \"subType\": \"default\",\n          \"createdAt\": \"1957-05-10T15:10:19.392Z\",\n          \"updatedAt\": \"1993-09-23T17:44:42.016Z\"\n        }\n      ],\n      \"user\": {\n        \"id\": 4661,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": false,\n        \"pressUser\": true,\n        \"url\": \"https://A.bhylJvDdSaWbx.cfzOH7als\",\n        \"coverUrl\": \"http://RxBqatXYZY.wpacuYcpNat3IPfMOYNs9lhYFU6wigX2YuI8UlgVFw,2qu1\",\n        \"stillCoverUrl\": \"https://tynGZLjKWqFCQhxA.ercfL3LcjbWlIwBLtfPWkRwu6sGd9Xm,GySs9ncp9SzNny2LqUO1aPIKkLsmf\"\n      },\n      \"upload\": {\n        \"id\": 7258,\n        \"storage\": \"external\",\n        \"host\": \"string\",\n        \"filename\": \"string\",\n        \"displayName\": \"string\",\n        \"size\": 3771,\n        \"channelName\": \"string\",\n        \"build\": {\n          \"value\": \"<Circular reference to #/components/schemas/Build detected>\"\n        },\n        \"buildId\": 7078,\n        \"type\": \"other\",\n        \"preorder\": false,\n        \"demo\": true,\n        \"platforms\": {\n          \"windows\": \"386\",\n          \"linux\": \"amd64\",\n          \"osx\": \"all\"\n        },\n        \"createdAt\": \"1994-05-15T17:13:04.996Z\",\n        \"updatedAt\": \"1961-11-11T03:43:17.487Z\"\n      },\n      \"game\": {\n        \"id\": 4835,\n        \"url\": \"https://O.ukwteRYoPug3A5C2amgt0lN5UhqcD2JinBKUBSleBwzzEAxR91wwHSXYQSxaJ7DFefFB\",\n        \"title\": \"string\",\n        \"shortText\": \"string\",\n        \"type\": \"default\",\n        \"classification\": \"soundtrack\",\n        \"embed\": {\n          \"gameId\": 9052,\n          \"width\": 852,\n          \"height\": 7805,\n          \"fullscreen\": true\n        },\n        \"coverUrl\": \"https://jbNkMXjWXwgZgpKfhUEnMg.tfvAL8Kjkd-yNl\",\n        \"stillCoverUrl\": \"https://hzuxxXvCDrxMlku.ticPYcm2nC3AbT-4\",\n        \"createdAt\": \"1962-04-27T15:07:15.997Z\",\n        \"publishedAt\": \"1996-03-16T09:07:48.228Z\",\n        \"minPrice\": 7328,\n        \"canBeBought\": false,\n        \"hasDemo\": false,\n        \"inPressSystem\": true,\n        \"platforms\": {\n          \"windows\": \"amd64\",\n          \"linux\": \"amd64\",\n          \"osx\": \"all\"\n        },\n        \"user\": {\n          \"id\": 4833,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": false,\n          \"pressUser\": false,\n          \"url\": \"https://bR.hiuySmd9cB7RXwKl1fm4uZNw+JWSjzDCVbtqEQMPvMrhx80sc5hIaJiIV0TpussPj8a,6l\",\n          \"coverUrl\": \"http://DTkHFsDjpLHSJbFbOfmhePksPYYa.biStSVwh-.b6hPNmVtvHdq4MJBcfZ,uUImpMhJD-Ao-ion+rw\",\n          \"stillCoverUrl\": \"http://qiTuTnNHKGTtjLVKERtnyCXQO.splenTA61zUiaWm8Ot+eBGmB6lOfv9LTph5,B\"\n        },\n        \"userId\": 9871,\n        \"sale\": {\n          \"id\": 3056,\n          \"gameId\": 8390,\n          \"rate\": 2917.685539886854,\n          \"startDate\": \"1960-01-14T07:23:35.298Z\",\n          \"endDate\": \"2007-10-10T04:04:30.762Z\"\n        },\n        \"viewsCount\": 1769,\n        \"downloadsCount\": 3314,\n        \"purchasesCount\": 1900,\n        \"published\": false\n      },\n      \"createdAt\": \"1969-02-28T10:11:22.516Z\",\n      \"updatedAt\": \"1990-03-28T11:19:01.790Z\"\n    }\n  ],\n  \"games\": [\n    {\n      \"id\": 8522,\n      \"url\": \"http://aMcNjiVdQsINmkdAFJXxhCniLLsMXKi.vdstOZwY3140QBNcihqy8xvA2X+PPMo57NYVwxM3X08kcJmsJ9EY\",\n      \"title\": \"string\",\n      \"shortText\": \"string\",\n      \"type\": \"default\",\n      \"classification\": \"assets\",\n      \"embed\": {\n        \"gameId\": 1775,\n        \"width\": 2395,\n        \"height\": 7857,\n        \"fullscreen\": false\n      },\n      \"coverUrl\": \"http://fXKylZFVKPoqpjOuiJZH.afnXuTI8Gj,\",\n      \"stillCoverUrl\": \"https://DBq.tkpkP2YZb2Ccj,4OvNmtXd688EakCOT+3BcdAv93pa7ammyskMFet\",\n      \"createdAt\": \"1954-09-16T19:10:39.782Z\",\n      \"publishedAt\": \"1992-05-14T13:15:00.554Z\",\n      \"minPrice\": 2557,\n      \"canBeBought\": false,\n      \"hasDemo\": false,\n      \"inPressSystem\": true,\n      \"platforms\": {\n        \"windows\": \"amd64\",\n        \"linux\": \"386\",\n        \"osx\": \"amd64\"\n      },\n      \"user\": {\n        \"id\": 2472,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": false,\n        \"pressUser\": false,\n        \"url\": \"http://cBvHmwQZJcmBT.gdlQWNEVJrlMtfz9SyF.eNnhkcML3kbcmYwZ4-H734KUG3yn83nO2oFoMwnvHSMyg\",\n        \"coverUrl\": \"http://lGtolvIjzfwrriXfZGZ.uitAZStvURcM8TlxzfWU.PhVEmm-513p11MQRxu.zrjMl,HEDcp-HWDyma\",\n        \"stillCoverUrl\": \"https://ssBLfZmZuSAioRDFsVIymI.nhfdfxkTSVPdTZ-xbFksT01\"\n      },\n      \"userId\": 3586,\n      \"sale\": {\n        \"id\": 2866,\n        \"gameId\": 1041,\n        \"rate\": 3190.553909180345,\n        \"startDate\": \"1991-07-31T13:08:21.373Z\",\n        \"endDate\": \"1971-05-06T05:43:12.620Z\"\n      },\n      \"viewsCount\": 7182,\n      \"downloadsCount\": 6090,\n      \"purchasesCount\": 2398,\n      \"published\": true\n    },\n    {\n      \"id\": 6652,\n      \"url\": \"http://DCINGKOFwHAcdzLALLceVrKwDJvfEjLM.harkSazbCeAsEicLqfChrUkLbFOxOaf.abQ6icRBDF\",\n      \"title\": \"string\",\n      \"shortText\": \"string\",\n      \"type\": \"html\",\n      \"classification\": \"book\",\n      \"embed\": {\n        \"gameId\": 2557,\n        \"width\": 565,\n        \"height\": 6912,\n        \"fullscreen\": true\n      },\n      \"coverUrl\": \"https://jYMdS.xsB+4ip\",\n      \"stillCoverUrl\": \"http://hyPUvUDkWmx.fgxzIg9WMRE\",\n      \"createdAt\": \"1988-08-01T04:04:20.976Z\",\n      \"publishedAt\": \"1958-06-22T03:02:45.718Z\",\n      \"minPrice\": 9605,\n      \"canBeBought\": false,\n      \"hasDemo\": false,\n      \"inPressSystem\": true,\n      \"platforms\": {\n        \"windows\": \"all\",\n        \"linux\": \"all\",\n        \"osx\": \"amd64\"\n      },\n      \"user\": {\n        \"id\": 2919,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": true,\n        \"pressUser\": true,\n        \"url\": \"http://h.dwTJGtvwX,ICdE2upH+,4XSFJsocjOywt78878b+tB8QmfLyyYGXRRoNfx91xwpvlzdlzEueJc0WpROADcRre6\",\n        \"coverUrl\": \"https://SWZdsWQhL.nxdfgtbwnNIvVumkgQYCSL+AJ-GEBnWE9Er9BsTA-I5nIGncLfdcZFCWbJPvPP0wvf,++QDNxOoRdPLVQwma0\",\n        \"stillCoverUrl\": \"https://PYDsvTQLDcdtwQAblpJif.ygwsQeEwDcdGRUvYiv7IA\"\n      },\n      \"userId\": 2881,\n      \"sale\": {\n        \"id\": 6004,\n        \"gameId\": 8491,\n        \"rate\": 1818.2504601953408,\n        \"startDate\": \"2005-09-29T12:03:22.237Z\",\n        \"endDate\": \"1984-09-14T15:59:45.037Z\"\n      },\n      \"viewsCount\": 3306,\n      \"downloadsCount\": 5229,\n      \"purchasesCount\": 2855,\n      \"published\": false\n    }\n  ],\n  \"uploads\": [\n    {\n      \"id\": 9752,\n      \"storage\": \"hosted\",\n      \"host\": \"string\",\n      \"filename\": \"string\",\n      \"displayName\": \"string\",\n      \"size\": 9337,\n      \"channelName\": \"string\",\n      \"build\": {\n        \"id\": 4104,\n        \"parentBuildId\": 7767,\n        \"state\": \"processing\",\n        \"uploadId\": 1153,\n        \"gameId\": 6023,\n        \"userId\": 9253,\n        \"version\": 3798,\n        \"userVersion\": \"string\",\n        \"files\": [\n          {\n            \"id\": 944,\n            \"size\": 3359,\n            \"state\": \"uploaded\",\n            \"type\": \"patch\",\n            \"subType\": \"default\",\n            \"createdAt\": \"2013-11-25T17:02:10.402Z\",\n            \"updatedAt\": \"2014-01-26T00:38:22.562Z\"\n          },\n          {\n            \"id\": 5698,\n            \"size\": 4459,\n            \"state\": \"uploaded\",\n            \"type\": \"unpacked\",\n            \"subType\": \"gzip\",\n            \"createdAt\": \"2010-09-02T17:01:37.108Z\",\n            \"updatedAt\": \"1963-07-23T05:39:56.030Z\"\n          }\n        ],\n        \"user\": {\n          \"id\": 9363,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": false,\n          \"pressUser\": false,\n          \"url\": \"http://ekIY.mdzhg+IAWZ0qITuZNj4yLokJGelsfMBzNBP.,SPFt-spP.6vye\",\n          \"coverUrl\": \"https://kSktxOzvbPlysCtaEj.ydjtn6ngVVgWDLiLt06Dt2ZdWkRpDZeWMLvisRkaJ3OJdyTtJeXylNJhF,SDpxRtao\",\n          \"stillCoverUrl\": \"http://aJiWeXELpbaBdUwHCbirHfFk.eqosAZUp\"\n        },\n        \"upload\": {\n          \"value\": \"<Circular reference to #/components/schemas/Upload detected>\"\n        },\n        \"game\": {\n          \"id\": 3652,\n          \"url\": \"https://AufnbSr.vfhbBlBeUdpZaO5fs,.,\",\n          \"title\": \"string\",\n          \"shortText\": \"string\",\n          \"type\": \"default\",\n          \"classification\": \"game\",\n          \"embed\": {\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fullscreen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"coverUrl\": \"http://TkWJxeyyRUHfEogOgL.zyWbZIenlOMAyV\",\n          \"stillCoverUrl\": \"https://JqjSypDUuoQRgiIwkSBtKFHFlNWVbgKC.bcSWVLYWKYL.mWt4DmDxMWTzOXKiyoDXNdlCDj6kYTZjLcixle-1uXW+hP1OdWBql\",\n          \"createdAt\": \"1994-04-09T03:53:37.106Z\",\n          \"publishedAt\": \"1995-08-18T06:05:46.839Z\",\n          \"minPrice\": 4609,\n          \"canBeBought\": false,\n          \"hasDemo\": true,\n          \"inPressSystem\": true,\n          \"platforms\": {\n            \"windows\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linux\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"osx\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"developer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pressUser\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stillCoverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"userId\": 61,\n          \"sale\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"viewsCount\": 5420,\n          \"downloadsCount\": 572,\n          \"purchasesCount\": 6327,\n          \"published\": false\n        },\n        \"createdAt\": \"1984-12-22T10:46:30.590Z\",\n        \"updatedAt\": \"1954-10-19T01:42:01.601Z\"\n      },\n      \"buildId\": 7507,\n      \"type\": \"documentation\",\n      \"preorder\": true,\n      \"demo\": true,\n      \"platforms\": {\n        \"windows\": \"all\",\n        \"linux\": \"amd64\",\n        \"osx\": \"386\"\n      },\n      \"createdAt\": \"1951-05-05T18:29:41.475Z\",\n      \"updatedAt\": \"2014-06-23T04:30:29.872Z\"\n    },\n    {\n      \"id\": 2766,\n      \"storage\": \"hosted\",\n      \"host\": \"string\",\n      \"filename\": \"string\",\n      \"displayName\": \"string\",\n      \"size\": 8466,\n      \"channelName\": \"string\",\n      \"build\": {\n        \"id\": 8056,\n        \"parentBuildId\": 1732,\n        \"state\": \"processing\",\n        \"uploadId\": 1220,\n        \"gameId\": 1510,\n        \"userId\": 3495,\n        \"version\": 8704,\n        \"userVersion\": \"string\",\n        \"files\": [\n          {\n            \"id\": 3637,\n            \"size\": 4251,\n            \"state\": \"created\",\n            \"type\": \"manifest\",\n            \"subType\": \"optimized\",\n            \"createdAt\": \"1947-11-22T16:53:19.493Z\",\n            \"updatedAt\": \"1992-09-24T11:23:47.355Z\"\n          },\n          {\n            \"id\": 1406,\n            \"size\": 8254,\n            \"state\": \"uploading\",\n            \"type\": \"unpacked\",\n            \"subType\": \"gzip\",\n            \"createdAt\": \"1962-08-10T13:33:04.381Z\",\n            \"updatedAt\": \"1987-08-09T07:58:37.766Z\"\n          }\n        ],\n        \"user\": {\n          \"id\": 2232,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": true,\n          \"pressUser\": false,\n          \"url\": \"http://vYqInuFDJwF.jbfZE0j2E\",\n          \"coverUrl\": \"http://N.zgwDf9oUgMJtoni1Cf\",\n          \"stillCoverUrl\": \"http://kZbGESGJjTxgTSrkDoM.xeutyW6xfHf.TwTBTgCBwS,2w-78eJ+RZ19pugSCxtYdkdi4kb1kqrZxsobcVb\"\n        },\n        \"upload\": {\n          \"value\": \"<Circular reference to #/components/schemas/Upload detected>\"\n        },\n        \"game\": {\n          \"id\": 1662,\n          \"url\": \"http://ybQiUfjuD.mvdxFDUIuJQ9H,mY9-PmNvFvq-aB9B+5ihFF5hLGUvUn8D\",\n          \"title\": \"string\",\n          \"shortText\": \"string\",\n          \"type\": \"unity\",\n          \"classification\": \"game\",\n          \"embed\": {\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fullscreen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"coverUrl\": \"https://KRFCHzkADJlLORaRkCnoZwT.jofav9IJQ7EwLpz+hOkDYR\",\n          \"stillCoverUrl\": \"https://Ox.zpyTD5YD.UGBv\",\n          \"createdAt\": \"2001-04-29T20:45:09.041Z\",\n          \"publishedAt\": \"1979-04-22T12:49:48.466Z\",\n          \"minPrice\": 7557,\n          \"canBeBought\": true,\n          \"hasDemo\": false,\n          \"inPressSystem\": true,\n          \"platforms\": {\n            \"windows\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linux\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"osx\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"developer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pressUser\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"stillCoverUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"userId\": 7155,\n          \"sale\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"gameId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endDate\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"viewsCount\": 8596,\n          \"downloadsCount\": 5008,\n          \"purchasesCount\": 4791,\n          \"published\": false\n        },\n        \"createdAt\": \"1952-02-19T13:00:50.448Z\",\n        \"updatedAt\": \"1997-10-17T21:21:22.617Z\"\n      },\n      \"buildId\": 5818,\n      \"type\": \"graphical_assets\",\n      \"preorder\": true,\n      \"demo\": true,\n      \"platforms\": {\n        \"windows\": \"all\",\n        \"linux\": \"all\",\n        \"osx\": \"amd64\"\n      },\n      \"createdAt\": \"2006-05-05T22:11:06.772Z\",\n      \"updatedAt\": \"1964-04-23T08:50:20.498Z\"\n    }\n  ],\n  \"users\": [\n    {\n      \"id\": 5708,\n      \"username\": \"string\",\n      \"displayName\": \"string\",\n      \"developer\": true,\n      \"pressUser\": false,\n      \"url\": \"http://iaeTqTVcCdmlCWPzBpVLSgfVvnIQNQggf.hvqoIbolrFSkTY3TSYOqsLAIPrdlxnuq27L2it.D7weT-lDjXajM-NaLr3DV-tpkoU+wJb\",\n      \"coverUrl\": \"https://ZoKzgWxhYUvhS.nvmbLE1eZTsLldyU,bgGPyUjhd.Zt3jYFS\",\n      \"stillCoverUrl\": \"http://poukjrrAxKzalKYoXWtgUEfFhqfF.jxtXSTTukVLn8LmwlHOuhUQgUu10exiLgV,CVBWmXmkDl1CPGvVifRlAxIU4Ox8PlSpL\"\n    },\n    {\n      \"id\": 7155,\n      \"username\": \"string\",\n      \"displayName\": \"string\",\n      \"developer\": false,\n      \"pressUser\": false,\n      \"url\": \"http://hPmrixVHXbqzQQDWVkdRsdxik.uzxsSWndZ,wHFzLend2YjxjUjM2hsxj-zlhWW2c.g+PqVMBkx\",\n      \"coverUrl\": \"http://cAurYQiLULnzF.xxosEcjsHeeO8XYyd.DPQVIGYTsbeFCYVdP4Z8Z\",\n      \"stillCoverUrl\": \"https://GoUX.wpspl9AFFC+hMW+hXQz0m4wDxeu8ulP2lXpp6do,XIgWI9DAPWGE1NNB-hT\"\n    }\n  ],\n  \"page\": 8387,\n  \"perPage\": 2806,\n  \"totals\": {\n    \"all\": 2528,\n    \"live\": 884,\n    \"processing\": 4972,\n    \"failed\": 5526,\n    \"projectCount\": 9487\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "057c555b-a34b-4651-8f3f-482e3a562aea",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "builds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_totals",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "started_build_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.itch.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a388ce1-fb07-4d52-9559-e9598e42b5fe",
+    "name": "Itch.io Auth Profile API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.\n\nContact Support:\n Name: Itch.io Support",
+      "type": "text/plain"
+    }
+  }
+}

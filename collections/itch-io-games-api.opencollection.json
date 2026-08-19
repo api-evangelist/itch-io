@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Itch.io Auth Games API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Games",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get game",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/games/:gameId",
+            "params": [
+              {
+                "name": "gameId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "download_key_id",
+                "value": "",
+                "type": "query",
+                "description": "Download key ID for accessing paid content"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for restricted pages"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Secret for private pages"
+              }
+            ]
+          },
+          "docs": "Retrieves a single game by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

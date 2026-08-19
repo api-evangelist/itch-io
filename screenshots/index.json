@@ -1,0 +1,11 @@
+[
+  {
+    "repo": "itch-io",
+    "captured_at": "2026-08-17T123919",
+    "source_url": "https://itch.io",
+    "source_type": "Website",
+    "file": "itch-io-2026-08-17T123919.png",
+    "bytes": 606004,
+    "capture": "playwright-local"
+  }
+]

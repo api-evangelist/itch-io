@@ -1,0 +1,524 @@
+{
+  "item": [
+    {
+      "id": "c2e3eff7-b0dc-4ae3-b5e2-180f4965dc2a",
+      "name": "Bundles",
+      "description": {
+        "content": "Operations related to game bundles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c784c2f4-527e-4016-b6a2-4daad95def46",
+          "name": "Get bundle games",
+          "request": {
+            "name": "Get bundle games",
+            "description": {
+              "content": "Retrieves a page of a bundle's games. The current user must own the bundle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bundles",
+                ":bundleId",
+                "bundle-games"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "bundleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f55f615-5f7f-4f42-b1f7-e1c1d5445fb0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bundles",
+                    ":bundleId",
+                    "bundle-games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "bundleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 7207,\n  \"perPage\": 6758,\n  \"bundleGames\": [\n    {\n      \"bundleId\": 6156,\n      \"bundle\": {\n        \"id\": 1380,\n        \"title\": \"string\",\n        \"url\": \"https://Aspf.obojP0qgas3EFupOZPudiur8J7kCfEhObAER-6X51pnzLfcQ2sy4aehELy2p464.BiMQekgUGkHohvF8u\",\n        \"coverUrl\": \"http://jgWusShOHnJfmskDmCQHIMYDtRFcVeFzt.arcD6wgwm.nz-z2abZZ\",\n        \"gamesCount\": 9326,\n        \"createdAt\": \"2018-02-24T13:18:54.657Z\",\n        \"updatedAt\": \"1952-07-07T13:22:47.771Z\",\n        \"bundleGames\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BundleGame detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BundleGame detected>\"\n          }\n        ]\n      },\n      \"gameId\": 6530,\n      \"game\": {\n        \"id\": 7491,\n        \"url\": \"https://wGTAVTGgkFYqO.epuW7aQBkmnlvQ51,r1XTNNzIILVM628M8EQp1zckRnpHQ\",\n        \"title\": \"string\",\n        \"shortText\": \"string\",\n        \"type\": \"unity\",\n        \"classification\": \"book\",\n        \"embed\": {\n          \"gameId\": 9342,\n          \"width\": 8306,\n          \"height\": 1552,\n          \"fullscreen\": true\n        },\n        \"coverUrl\": \"https://UQqptsynxtvDmIqFhbAJjVOYlWZKPc.lriT.14Mil3OV0uOQnG.GN5-x-Tkb.+nJmC6JPBB6bInTELn9vSexplrkCt\",\n        \"stillCoverUrl\": \"https://RFoBjY.xmoIwKfaY7FXp4qDqYL+guYnL-A.tRx\",\n        \"createdAt\": \"2002-06-23T18:54:34.785Z\",\n        \"publishedAt\": \"2011-08-20T11:31:52.733Z\",\n        \"minPrice\": 4409,\n        \"canBeBought\": false,\n        \"hasDemo\": false,\n        \"inPressSystem\": true,\n        \"platforms\": {\n          \"windows\": \"all\",\n          \"linux\": \"all\",\n          \"osx\": \"all\"\n        },\n        \"user\": {\n          \"id\": 8703,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": true,\n          \"pressUser\": true,\n          \"url\": \"https://kQzEbLFTCOE.ilUa3GF7jRTC0xTrENt37SdhQiftTSCpKH21MWf5LH4AIPLC.TEDNQhFgxAaFgE1inuV\",\n          \"coverUrl\": \"https://IHiiPxvSVsECzr.ggp+RvGNmtTMMDCqvfeNE-eS1UO5W.Non-0lgLGFy2F\",\n          \"stillCoverUrl\": \"https://zfPQdbrrrqJYpjuhytYpsThWXSLsnjPMe.tnL7C\"\n        },\n        \"userId\": 7097,\n        \"sale\": {\n          \"id\": 2742,\n          \"gameId\": 8470,\n          \"rate\": 7462.960810610085,\n          \"startDate\": \"1960-05-16T22:37:07.305Z\",\n          \"endDate\": \"1970-08-11T03:19:38.241Z\"\n        },\n        \"viewsCount\": 8462,\n        \"downloadsCount\": 4223,\n        \"purchasesCount\": 7360,\n        \"published\": true\n      },\n      \"position\": 7188,\n      \"minPrice\": 4479,\n      \"createdAt\": \"1956-02-19T20:18:12.959Z\",\n      \"updatedAt\": \"2018-04-01T08:50:43.134Z\"\n    },\n    {\n      \"bundleId\": 5468,\n      \"bundle\": {\n        \"id\": 328,\n        \"title\": \"string\",\n        \"url\": \"https://CblVmMQlRcMRmfvZgwpxWWRDAPvAHPo.zzKtMLiuIPPy-Z,APqxsB.epa6TliQpS4f1w7cDH-Np.D\",\n        \"coverUrl\": \"http://sgPsoCRN.measDl9RlM49Lt2t07Y9xamkpRQ+cg\",\n        \"gamesCount\": 8533,\n        \"createdAt\": \"2001-11-18T23:38:04.210Z\",\n        \"updatedAt\": \"2002-01-02T08:19:40.361Z\",\n        \"bundleGames\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BundleGame detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BundleGame detected>\"\n          }\n        ]\n      },\n      \"gameId\": 5909,\n      \"game\": {\n        \"id\": 9119,\n        \"url\": \"https://odfpHZQpxmMCVoCQyrjAIwMmZXsjkX.krB5NO8cUhsP+CpMDEnQCLPDed2Mhkp7Qi3zQ-b4q2\",\n        \"title\": \"string\",\n        \"shortText\": \"string\",\n        \"type\": \"java\",\n        \"classification\": \"other\",\n        \"embed\": {\n          \"gameId\": 5619,\n          \"width\": 6186,\n          \"height\": 6841,\n          \"fullscreen\": true\n        },\n        \"coverUrl\": \"http://cWphflaHXRXAsiUPwsPUm.kplrr,gre-NiHruev1sZZSeHnbpFFhVfLnlXHzzO,oH4vj9\",\n        \"stillCoverUrl\": \"https://TNRTysGmvoRWqsXbtypHkL.lejYvFRFNyr\",\n        \"createdAt\": \"1976-04-18T09:42:28.019Z\",\n        \"publishedAt\": \"1976-12-31T06:48:10.078Z\",\n        \"minPrice\": 240,\n        \"canBeBought\": false,\n        \"hasDemo\": true,\n        \"inPressSystem\": true,\n        \"platforms\": {\n          \"windows\": \"386\",\n          \"linux\": \"amd64\",\n          \"osx\": \"all\"\n        },\n        \"user\": {\n          \"id\": 5427,\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"developer\": false,\n          \"pressUser\": true,\n          \"url\": \"https://XTbHZ.sjleVl3vkdlOd67B\",\n          \"coverUrl\": \"https://ALsobfHHUNfLVf.ovMh5AFC3+66\",\n          \"stillCoverUrl\": \"http://PLRMQQmDcyYDxGTsyebWuDu.hvWy01ALIGvzYHn3nyjWWAXWd0-pDGJopXxY\"\n        },\n        \"userId\": 875,\n        \"sale\": {\n          \"id\": 9138,\n          \"gameId\": 1853,\n          \"rate\": 1648.1911741944955,\n          \"startDate\": \"2001-03-13T15:54:35.953Z\",\n          \"endDate\": \"1976-02-15T05:54:44.643Z\"\n        },\n        \"viewsCount\": 8198,\n        \"downloadsCount\": 9523,\n        \"purchasesCount\": 4009,\n        \"published\": false\n      },\n      \"position\": 8549,\n      \"minPrice\": 2305,\n      \"createdAt\": \"1958-07-21T12:27:21.022Z\",\n      \"updatedAt\": \"1989-01-08T04:33:05.874Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6026361-60bc-49cc-982b-f82da67db59f",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bundles",
+                    ":bundleId",
+                    "bundle-games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "bundleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef2cd898-a9d5-43cd-9836-019b14272baa",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bundles",
+                    ":bundleId",
+                    "bundle-games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "bundleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a922ce2-bb46-4c6d-a3c2-9abbc40fcc21",
+          "name": "Claim bundle game",
+          "request": {
+            "name": "Claim bundle game",
+            "description": {
+              "content": "Returns a DownloadKey for a game owned via a bundle purchase, materializing one if the bundle defers download key creation. Atomic and idempotent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bundles",
+                ":bundleId",
+                "claim-game"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "bundleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "game_id",
+                  "value": "<long>",
+                  "description": "(Required) ID of the game to claim from the bundle"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "71f2e511-6311-44a7-ba72-9948afa36e51",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bundles",
+                    ":bundleId",
+                    "claim-game"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "bundleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ID of the game to claim from the bundle",
+                        "type": "text/plain"
+                      },
+                      "key": "game_id",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"downloadKey\": {\n    \"id\": 7824,\n    \"gameId\": 7411,\n    \"game\": {\n      \"id\": 3018,\n      \"url\": \"http://B.zdY9q8SVmKtRdKPP.qfO,m.LeO3Kq\",\n      \"title\": \"string\",\n      \"shortText\": \"string\",\n      \"type\": \"flash\",\n      \"classification\": \"other\",\n      \"embed\": {\n        \"gameId\": 8953,\n        \"width\": 408,\n        \"height\": 404,\n        \"fullscreen\": true\n      },\n      \"coverUrl\": \"https://PhVxgUExGrG.kupmS9+-LkX6Tpq7TZQ4Q0OELoKXEvJSK,TwSatQco69zIWP6IobZ,6bnniHGPnJI.\",\n      \"stillCoverUrl\": \"http://zqkfaeWqsBcXzvXXEMBAfZWFzQFCw.vtzjcRVknIcU.fofuKHWfZ6F4\",\n      \"createdAt\": \"1965-03-09T11:19:15.493Z\",\n      \"publishedAt\": \"1956-01-28T03:00:59.970Z\",\n      \"minPrice\": 7205,\n      \"canBeBought\": false,\n      \"hasDemo\": true,\n      \"inPressSystem\": true,\n      \"platforms\": {\n        \"windows\": \"all\",\n        \"linux\": \"all\",\n        \"osx\": \"all\"\n      },\n      \"user\": {\n        \"id\": 7980,\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"developer\": true,\n        \"pressUser\": true,\n        \"url\": \"http://GDzuOg.ksypuEiy1YyhzXQXxKg\",\n        \"coverUrl\": \"https://LgCKBqwnF.epmI1Ew2.f6-+RvXFX\",\n        \"stillCoverUrl\": \"http://fTxblftBVvzXoZWrvzdVB.krggQBK2H1wmifs8TOwPiNJ+yBNEmdmOtQvVXgIp\"\n      },\n      \"userId\": 1530,\n      \"sale\": {\n        \"id\": 6198,\n        \"gameId\": 8808,\n        \"rate\": 8248.809452690595,\n        \"startDate\": \"1951-10-01T23:34:28.101Z\",\n        \"endDate\": \"2012-12-23T01:53:58.967Z\"\n      },\n      \"viewsCount\": 9005,\n      \"downloadsCount\": 8604,\n      \"purchasesCount\": 3323,\n      \"published\": true\n    },\n    \"createdAt\": \"2010-02-18T01:51:51.468Z\",\n    \"updatedAt\": \"1993-05-16T01:41:38.793Z\",\n    \"ownerId\": 1906\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cd80196-0e58-463e-aae3-a779b3c4627a",
+              "name": "Authentication is required or credentials are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bundles",
+                    ":bundleId",
+                    "claim-game"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "bundleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ID of the game to claim from the bundle",
+                        "type": "text/plain"
+                      },
+                      "key": "game_id",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a56e08bc-628e-444d-95b2-559c74fb98cd",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bundles",
+                    ":bundleId",
+                    "claim-game"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "bundleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ID of the game to claim from the bundle",
+                        "type": "text/plain"
+                      },
+                      "key": "game_id",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.itch.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ec28d267-154a-4a39-be5f-7a806df6699b",
+    "name": "Itch.io Auth Bundles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.\n\nContact Support:\n Name: Itch.io Support",
+      "type": "text/plain"
+    }
+  }
+}

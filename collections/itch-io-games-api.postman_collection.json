@@ -1,0 +1,234 @@
+{
+  "item": [
+    {
+      "id": "b0762a48-38f2-41d4-93a9-df2afa56ff5f",
+      "name": "Games",
+      "description": {
+        "content": "Operations related to itch.io game pages",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1267f07-6422-43e4-ad03-47bd2e1866f1",
+          "name": "Get game",
+          "request": {
+            "name": "Get game",
+            "description": {
+              "content": "Retrieves a single game by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "games",
+                ":gameId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "download_key_id",
+                  "value": "<long>",
+                  "description": "Download key ID for accessing paid content"
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "Password for restricted pages"
+                },
+                {
+                  "disabled": false,
+                  "key": "secret",
+                  "value": "<string>",
+                  "description": "Secret for private pages"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "gameId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "daadc571-0ec9-4145-9329-1d5c9c311b1b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "games",
+                    ":gameId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "download_key_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "secret",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "gameId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"game\": {\n    \"id\": 3522,\n    \"url\": \"http://MRbKTGG.retyNEuAu7E+cXde5WNpszFwoTeBOWk+CnpgwlZFJ6X-Clt5fpV+.B9zNKwJGrrVhQFV28uBPRTn\",\n    \"title\": \"string\",\n    \"shortText\": \"string\",\n    \"type\": \"default\",\n    \"classification\": \"tool\",\n    \"embed\": {\n      \"gameId\": 8144,\n      \"width\": 916,\n      \"height\": 3506,\n      \"fullscreen\": false\n    },\n    \"coverUrl\": \"http://JUqsKmLCWAubVzKCqInqXPsQYhDHk.pqryy5\",\n    \"stillCoverUrl\": \"http://VlWWVvgMGdCBsIzkiNUbECpU.cuG06,rOMGzF5y9yHDbh9aqfdmSHHLg,TWf8S35+s3y-cJKEjrwz-w\",\n    \"createdAt\": \"1985-08-11T13:46:02.062Z\",\n    \"publishedAt\": \"1987-11-11T07:17:14.738Z\",\n    \"minPrice\": 3780,\n    \"canBeBought\": true,\n    \"hasDemo\": false,\n    \"inPressSystem\": true,\n    \"platforms\": {\n      \"windows\": \"amd64\",\n      \"linux\": \"386\",\n      \"osx\": \"all\"\n    },\n    \"user\": {\n      \"id\": 1565,\n      \"username\": \"string\",\n      \"displayName\": \"string\",\n      \"developer\": true,\n      \"pressUser\": true,\n      \"url\": \"https://oyqCpiiwmuUVxDCDAeCqHDewCOFxhXbsd.akhgNeQA92TGs67CiXY.tnSOZrEQcNQ4NVF8LB\",\n      \"coverUrl\": \"http://FekjaTKYLR.zonFfH1kaUwpo6nwlZAqd8D0lHICkS0S-FSNLvJw-x\",\n      \"stillCoverUrl\": \"https://AxUnkWHMSiECYfmFEQUpNcrTUqDQlXj.swamyJ7bV,0-SL3au1QT9SLBhdSH3qgdrwtxFkUYjHQtqrm4UH3\"\n    },\n    \"userId\": 9399,\n    \"sale\": {\n      \"id\": 580,\n      \"gameId\": 4803,\n      \"rate\": 9715.381375974823,\n      \"startDate\": \"2005-02-07T21:59:10.643Z\",\n      \"endDate\": \"1976-11-04T17:58:27.934Z\"\n    },\n    \"viewsCount\": 5669,\n    \"downloadsCount\": 8450,\n    \"purchasesCount\": 6471,\n    \"published\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "339dbfac-b1c4-4b3e-b022-45b600434379",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "games",
+                    ":gameId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "download_key_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "secret",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "gameId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.itch.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "98761de4-e3fc-473c-9d44-347a9ec99d0b",
+    "name": "Itch.io Auth Games API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.\n\nContact Support:\n Name: Itch.io Support",
+      "type": "text/plain"
+    }
+  }
+}

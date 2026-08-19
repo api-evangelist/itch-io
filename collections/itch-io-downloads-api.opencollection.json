@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Itch.io Auth Downloads API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Downloads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create download session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.itch.io/games/:gameId/download-sessions",
+            "params": [
+              {
+                "name": "gameId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "download_key_id",
+                "value": "",
+                "type": "query",
+                "description": "Download key ID for accessing paid content"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for restricted pages"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Secret for private pages"
+              }
+            ]
+          },
+          "docs": "Creates a new download session for more accurate download analytics. Multiple file downloads (patch, signature, etc.) for a single game upgrade should share one session."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

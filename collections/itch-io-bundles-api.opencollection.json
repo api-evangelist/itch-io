@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Itch.io Auth Bundles API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bundles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get bundle games",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.itch.io/bundles/:bundleId/bundle-games",
+            "params": [
+              {
+                "name": "bundleId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a page of a bundle's games. The current user must own the bundle."
+        },
+        {
+          "info": {
+            "name": "Claim bundle game",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.itch.io/bundles/:bundleId/claim-game",
+            "params": [
+              {
+                "name": "bundleId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "game_id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Returns a DownloadKey for a game owned via a bundle purchase, materializing one if the bundle defers download key creation. Atomic and idempotent."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
