@@ -39,6 +39,8 @@ apis:
   humanURL: https://itch.io/docs/api/overview
   baseURL: https://api.itch.io
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -75,6 +77,8 @@ apis:
   humanURL: https://itch.io/docs/api/overview
   baseURL: https://api.itch.io
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -147,6 +151,8 @@ apis:
   humanURL: https://itch.io/docs/api/overview
   baseURL: https://api.itch.io
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
