@@ -8,6 +8,18 @@ description: >-
   community ratings, and game distribution data. The API supports OAuth 2.0
   implicit flow and API key authentication to enable integrations with developer
   tools, game launchers, and third-party services.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
