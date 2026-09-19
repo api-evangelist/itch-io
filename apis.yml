@@ -128,6 +128,8 @@ apis:
   humanURL: https://itch.io/docs/api/overview
   baseURL: https://api.itch.io
   tags:
+  - Profiles
+  tags_raw:
   - Profile
   properties:
   - type: OpenAPI
