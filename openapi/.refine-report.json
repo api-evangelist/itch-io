@@ -1,17 +1,7 @@
 {
   "provider": "itch-io",
   "sources": [
-    "itch-io-auth-api-openapi.yml",
-    "itch-io-builds-api-openapi.yml",
-    "itch-io-bundles-api-openapi.yml",
-    "itch-io-collections-api-openapi.yml",
-    "itch-io-downloads-api-openapi.yml",
-    "itch-io-games-api-openapi.yml",
-    "itch-io-profile-api-openapi.yml",
-    "itch-io-search-api-openapi.yml",
-    "itch-io-uploads-api-openapi.yml",
-    "itch-io-users-api-openapi.yml",
-    "itch-io-wharf-api-openapi.yml"
+    "_original/openapi.json"
   ],
   "outputs": [
     "itch-io-auth-api-openapi.yml",
@@ -29,6 +19,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "openapi.json: declared missing tag: Downloads",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "itch-io-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itch-io-builds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itch-io-bundles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itch-io-collections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itch-io-downloads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itch-io-games-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itch-io-profile-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itch-io-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itch-io-uploads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itch-io-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itch-io-wharf-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

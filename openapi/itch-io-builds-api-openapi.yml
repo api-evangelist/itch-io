@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Itch.io Auth Builds API
+  title: Itch.io Builds API
   description: The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.
   version: 1.0.0
   contact:
@@ -132,157 +132,33 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    BuildFile:
+    Platforms:
       type: object
-      description: Contains information about a build file (archive, signature, patch, etc.)
+      description: Describes which OS/architectures a game or upload is compatible with
       properties:
-        id:
-          type: integer
-          format: int64
-        size:
-          type: integer
-          format: int64
-        state:
+        windows:
           type: string
           enum:
-          - created
-          - uploading
-          - uploaded
-          - failed
-        type:
+          - all
+          - '386'
+          - amd64
+        linux:
           type: string
           enum:
-          - patch
-          - archive
-          - signature
-          - manifest
-          - unpacked
-        subType:
+          - all
+          - '386'
+          - amd64
+        osx:
           type: string
           enum:
-          - default
-          - gzip
-          - optimized
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    GetScannedArchiveResponse:
+          - all
+          - '386'
+          - amd64
+    GetBuildResponse:
       type: object
       properties:
-        scannedArchive:
-          $ref: '#/components/schemas/ScannedArchive'
-    Build:
-      type: object
-      description: Contains information about a specific build
-      properties:
-        id:
-          type: integer
-          format: int64
-        parentBuildId:
-          type: integer
-          format: int64
-          description: Identifier of the build before this one on the same channel, or -1 if initial
-        state:
-          type: string
-          enum:
-          - started
-          - queued
-          - processing
-          - completed
-          - failed
-        uploadId:
-          type: integer
-          format: int64
-        gameId:
-          type: integer
-          format: int64
-        userId:
-          type: integer
-          format: int64
-        version:
-          type: integer
-          format: int64
-          description: Automatically-incremented version number, starting with 1
-        userVersion:
-          type: string
-          description: Developer-specified version string from --userversion
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/BuildFile'
-        user:
-          $ref: '#/components/schemas/User'
-        upload:
-          $ref: '#/components/schemas/Upload'
-        game:
-          $ref: '#/components/schemas/Game'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    ScannedArchive:
-      type: object
-      properties:
-        objectId:
-          type: integer
-          format: int64
-        objectType:
-          type: string
-          enum:
-          - upload
-          - build
-        extractedSize:
-          type: integer
-          format: int64
-        launchTargets:
-          type: object
-          description: JSON metadata about launch targets
-        manifest:
-          type: object
-          description: JSON manifest data
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
-    ListUploadBuildsResponse:
-      type: object
-      properties:
-        builds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Build'
-    GetBuildUpgradePathResponse:
-      type: object
-      properties:
-        upgradePath:
-          $ref: '#/components/schemas/UpgradePath'
-    Sale:
-      type: object
-      description: Describes a discount for a game
-      properties:
-        id:
-          type: integer
-          format: int64
-        gameId:
-          type: integer
-          format: int64
-        rate:
-          type: number
-          description: Discount rate in percent; can be negative (reverse sales)
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
+        build:
+          $ref: '#/components/schemas/Build'
     Upload:
       type: object
       description: A downloadable file; may be wharf-enabled for versioned channel-based distribution
@@ -348,6 +224,84 @@ components:
         updatedAt:
           type: string
           format: date-time
+    Sale:
+      type: object
+      description: Describes a discount for a game
+      properties:
+        id:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        rate:
+          type: number
+          description: Discount rate in percent; can be negative (reverse sales)
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+    User:
+      type: object
+      description: Represents an itch.io account with basic profile info
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Site-wide unique identifier generated by itch.io
+        username:
+          type: string
+          description: The user's username (used for login)
+        displayName:
+          type: string
+          description: The user's display name; may contain spaces and unicode characters
+        developer:
+          type: boolean
+          description: Has the user opted into creating games?
+        pressUser:
+          type: boolean
+          description: Is the user part of itch.io's press program?
+        url:
+          type: string
+          format: uri
+          description: The address of the user's page on itch.io
+        coverUrl:
+          type: string
+          format: uri
+          description: User's avatar URL; may be a GIF
+        stillCoverUrl:
+          type: string
+          format: uri
+          description: Static version of user's avatar; only set if the main cover URL is a GIF
+    ScannedArchive:
+      type: object
+      properties:
+        objectId:
+          type: integer
+          format: int64
+        objectType:
+          type: string
+          enum:
+          - upload
+          - build
+        extractedSize:
+          type: integer
+          format: int64
+        launchTargets:
+          type: object
+          description: JSON metadata about launch targets
+        manifest:
+          type: object
+          description: JSON manifest data
     GameEmbedData:
       type: object
       description: Presentation information for embed games
@@ -366,6 +320,119 @@ components:
         fullscreen:
           type: boolean
           description: Whether a fullscreen button should be shown
+    BuildFile:
+      type: object
+      description: Contains information about a build file (archive, signature, patch, etc.)
+      properties:
+        id:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        state:
+          type: string
+          enum:
+          - created
+          - uploading
+          - uploaded
+          - failed
+        type:
+          type: string
+          enum:
+          - patch
+          - archive
+          - signature
+          - manifest
+          - unpacked
+        subType:
+          type: string
+          enum:
+          - default
+          - gzip
+          - optimized
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    UpgradePath:
+      type: object
+      description: A series of builds for which sequential patches exist
+      properties:
+        builds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Build'
+    GetScannedArchiveResponse:
+      type: object
+      properties:
+        scannedArchive:
+          $ref: '#/components/schemas/ScannedArchive'
+    ListUploadBuildsResponse:
+      type: object
+      properties:
+        builds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Build'
+    Build:
+      type: object
+      description: Contains information about a specific build
+      properties:
+        id:
+          type: integer
+          format: int64
+        parentBuildId:
+          type: integer
+          format: int64
+          description: Identifier of the build before this one on the same channel, or -1 if initial
+        state:
+          type: string
+          enum:
+          - started
+          - queued
+          - processing
+          - completed
+          - failed
+        uploadId:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+          description: Automatically-incremented version number, starting with 1
+        userVersion:
+          type: string
+          description: Developer-specified version string from --userversion
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/BuildFile'
+        user:
+          $ref: '#/components/schemas/User'
+        upload:
+          $ref: '#/components/schemas/Upload'
+        game:
+          $ref: '#/components/schemas/Game'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    GetBuildUpgradePathResponse:
+      type: object
+      properties:
+        upgradePath:
+          $ref: '#/components/schemas/UpgradePath'
     Game:
       type: object
       description: Represents a page on itch.io; could be a game, tool, comic, etc.
@@ -461,86 +528,7 @@ components:
         published:
           type: boolean
           description: Owner-only field
-    Platforms:
-      type: object
-      description: Describes which OS/architectures a game or upload is compatible with
-      properties:
-        windows:
-          type: string
-          enum:
-          - all
-          - '386'
-          - amd64
-        linux:
-          type: string
-          enum:
-          - all
-          - '386'
-          - amd64
-        osx:
-          type: string
-          enum:
-          - all
-          - '386'
-          - amd64
-    User:
-      type: object
-      description: Represents an itch.io account with basic profile info
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Site-wide unique identifier generated by itch.io
-        username:
-          type: string
-          description: The user's username (used for login)
-        displayName:
-          type: string
-          description: The user's display name; may contain spaces and unicode characters
-        developer:
-          type: boolean
-          description: Has the user opted into creating games?
-        pressUser:
-          type: boolean
-          description: Is the user part of itch.io's press program?
-        url:
-          type: string
-          format: uri
-          description: The address of the user's page on itch.io
-        coverUrl:
-          type: string
-          format: uri
-          description: User's avatar URL; may be a GIF
-        stillCoverUrl:
-          type: string
-          format: uri
-          description: Static version of user's avatar; only set if the main cover URL is a GIF
-    UpgradePath:
-      type: object
-      description: A series of builds for which sequential patches exist
-      properties:
-        builds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Build'
-    GetBuildResponse:
-      type: object
-      properties:
-        build:
-          $ref: '#/components/schemas/Build'
   parameters:
-    password:
-      name: password
-      in: query
-      description: Password for restricted pages
-      schema:
-        type: string
-    secret:
-      name: secret
-      in: query
-      description: Secret for private pages
-      schema:
-        type: string
     downloadKeyId:
       name: download_key_id
       in: query
@@ -548,6 +536,18 @@ components:
       schema:
         type: integer
         format: int64
+    secret:
+      name: secret
+      in: query
+      description: Secret for private pages
+      schema:
+        type: string
+    password:
+      name: password
+      in: query
+      description: Password for restricted pages
+      schema:
+        type: string
   responses:
     NotFound:
       description: Resource not found

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Itch.io Auth API
   description: The itch.io server-side API provides authenticated access to user profiles, uploaded games, download key validation, purchase lookup, and build version retrieval. Authentication is via API key or short-lived JWT tokens using the Authorization Bearer header. Responses are JSON with snake_case naming and RFC 3339 dates.
@@ -116,13 +116,6 @@ components:
           additionalProperties:
             type: string
           description: Session cookie key-value pairs for browser session
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
     APIKey:
       type: object
       description: Grants access to the itch.io API within a certain scope
@@ -143,6 +136,13 @@ components:
           format: date-time
         sourceVersion:
           type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
     TOTPVerifyResponse:
       type: object
       properties:
