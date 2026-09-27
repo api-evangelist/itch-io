@@ -88,11 +88,27 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ClaimBundleGameResponse:
+    DownloadKey:
       type: object
+      description: Allows downloading uploads for a game; typically generated at purchase time
       properties:
-        downloadKey:
-          $ref: '#/components/schemas/DownloadKey'
+        id:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        game:
+          $ref: '#/components/schemas/Game'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        ownerId:
+          type: integer
+          format: int64
     Platforms:
       type: object
       description: Describes which OS/architectures a game or upload is compatible with
@@ -115,139 +131,6 @@ components:
           - all
           - '386'
           - amd64
-    GameEmbedData:
-      type: object
-      description: Presentation information for embed games
-      properties:
-        gameId:
-          type: integer
-          format: int64
-        width:
-          type: integer
-          format: int64
-          description: Width of the initial viewport in pixels
-        height:
-          type: integer
-          format: int64
-          description: Height of the initial viewport in pixels
-        fullscreen:
-          type: boolean
-          description: Whether a fullscreen button should be shown
-    DownloadKey:
-      type: object
-      description: Allows downloading uploads for a game; typically generated at purchase time
-      properties:
-        id:
-          type: integer
-          format: int64
-        gameId:
-          type: integer
-          format: int64
-        game:
-          $ref: '#/components/schemas/Game'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        ownerId:
-          type: integer
-          format: int64
-    BundleGame:
-      type: object
-      description: Represents a game's membership in a bundle
-      properties:
-        bundleId:
-          type: integer
-          format: int64
-        bundle:
-          $ref: '#/components/schemas/Bundle'
-        gameId:
-          type: integer
-          format: int64
-        game:
-          $ref: '#/components/schemas/Game'
-        position:
-          type: integer
-          format: int64
-        minPrice:
-          type: integer
-          format: int64
-          description: Minimum price for this game inside the bundle in cents of a dollar
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    GetBundleGamesResponse:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int64
-        perPage:
-          type: integer
-          format: int64
-        bundleGames:
-          type: array
-          items:
-            $ref: '#/components/schemas/BundleGame'
-    Bundle:
-      type: object
-      description: A collection of games sold together as a single purchase
-      properties:
-        id:
-          type: integer
-          format: int64
-        title:
-          type: string
-        url:
-          type: string
-          format: uri
-        coverUrl:
-          type: string
-          format: uri
-        gamesCount:
-          type: integer
-          format: int64
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        bundleGames:
-          type: array
-          items:
-            $ref: '#/components/schemas/BundleGame'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
-    Sale:
-      type: object
-      description: Describes a discount for a game
-      properties:
-        id:
-          type: integer
-          format: int64
-        gameId:
-          type: integer
-          format: int64
-        rate:
-          type: number
-          description: Discount rate in percent; can be negative (reverse sales)
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
     User:
       type: object
       description: Represents an itch.io account with basic profile info
@@ -280,6 +163,24 @@ components:
           type: string
           format: uri
           description: Static version of user's avatar; only set if the main cover URL is a GIF
+    GameEmbedData:
+      type: object
+      description: Presentation information for embed games
+      properties:
+        gameId:
+          type: integer
+          format: int64
+        width:
+          type: integer
+          format: int64
+          description: Width of the initial viewport in pixels
+        height:
+          type: integer
+          format: int64
+          description: Height of the initial viewport in pixels
+        fullscreen:
+          type: boolean
+          description: Whether a fullscreen button should be shown
     Game:
       type: object
       description: Represents a page on itch.io; could be a game, tool, comic, etc.
@@ -375,15 +276,114 @@ components:
         published:
           type: boolean
           description: Owner-only field
+    Bundle:
+      type: object
+      description: A collection of games sold together as a single purchase
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+        coverUrl:
+          type: string
+          format: uri
+        gamesCount:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        bundleGames:
+          type: array
+          items:
+            $ref: '#/components/schemas/BundleGame'
+    BundleGame:
+      type: object
+      description: Represents a game's membership in a bundle
+      properties:
+        bundleId:
+          type: integer
+          format: int64
+        bundle:
+          $ref: '#/components/schemas/Bundle'
+        gameId:
+          type: integer
+          format: int64
+        game:
+          $ref: '#/components/schemas/Game'
+        position:
+          type: integer
+          format: int64
+        minPrice:
+          type: integer
+          format: int64
+          description: Minimum price for this game inside the bundle in cents of a dollar
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Sale:
+      type: object
+      description: Describes a discount for a game
+      properties:
+        id:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        rate:
+          type: number
+          description: Discount rate in percent; can be negative (reverse sales)
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+    ClaimBundleGameResponse:
+      type: object
+      properties:
+        downloadKey:
+          $ref: '#/components/schemas/DownloadKey'
+    GetBundleGamesResponse:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        bundleGames:
+          type: array
+          items:
+            $ref: '#/components/schemas/BundleGame'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
   responses:
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication is required or credentials are invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication is required or credentials are invalid
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
