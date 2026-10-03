@@ -96,6 +96,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
     LoginWithPasswordResponse:
       type: object
       properties:
@@ -124,13 +131,6 @@ components:
         cookie:
           type: object
           additionalProperties:
-            type: string
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
             type: string
     APIKey:
       type: object

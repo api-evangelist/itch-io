@@ -71,46 +71,41 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    GetCollectionResponse:
+    Collection:
       type: object
+      description: A curated set of games
       properties:
-        collection:
-          $ref: '#/components/schemas/Collection'
-    Platforms:
-      type: object
-      description: Describes which OS/architectures a game or upload is compatible with
-      properties:
-        windows:
-          type: string
-          enum:
-          - all
-          - '386'
-          - amd64
-        linux:
-          type: string
-          enum:
-          - all
-          - '386'
-          - amd64
-        osx:
-          type: string
-          enum:
-          - all
-          - '386'
-          - amd64
-    GetCollectionGamesResponse:
-      type: object
-      properties:
-        page:
+        id:
           type: integer
           format: int64
-        perPage:
+        title:
+          type: string
+          description: Human-friendly title (e.g. Couch coop games)
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        gamesCount:
           type: integer
           format: int64
         collectionGames:
           type: array
           items:
             $ref: '#/components/schemas/CollectionGame'
+        userId:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/User'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
     User:
       type: object
       description: Represents an itch.io account with basic profile info
@@ -189,6 +184,65 @@ components:
         userId:
           type: integer
           format: int64
+    GetCollectionGamesResponse:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int64
+        perPage:
+          type: integer
+          format: int64
+        collectionGames:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionGame'
+    GetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          $ref: '#/components/schemas/Collection'
+    Sale:
+      type: object
+      description: Describes a discount for a game
+      properties:
+        id:
+          type: integer
+          format: int64
+        gameId:
+          type: integer
+          format: int64
+        rate:
+          type: number
+          description: Discount rate in percent; can be negative (reverse sales)
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+    Platforms:
+      type: object
+      description: Describes which OS/architectures a game or upload is compatible with
+      properties:
+        windows:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+        linux:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
+        osx:
+          type: string
+          enum:
+          - all
+          - '386'
+          - amd64
     Game:
       type: object
       description: Represents a page on itch.io; could be a game, tool, comic, etc.
@@ -284,60 +338,6 @@ components:
         published:
           type: boolean
           description: Owner-only field
-    Sale:
-      type: object
-      description: Describes a discount for a game
-      properties:
-        id:
-          type: integer
-          format: int64
-        gameId:
-          type: integer
-          format: int64
-        rate:
-          type: number
-          description: Discount rate in percent; can be negative (reverse sales)
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-    Collection:
-      type: object
-      description: A curated set of games
-      properties:
-        id:
-          type: integer
-          format: int64
-        title:
-          type: string
-          description: Human-friendly title (e.g. Couch coop games)
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        gamesCount:
-          type: integer
-          format: int64
-        collectionGames:
-          type: array
-          items:
-            $ref: '#/components/schemas/CollectionGame'
-        userId:
-          type: integer
-          format: int64
-        user:
-          $ref: '#/components/schemas/User'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
   responses:
     NotFound:
       description: Resource not found

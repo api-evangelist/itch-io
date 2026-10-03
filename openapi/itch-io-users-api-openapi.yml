@@ -43,6 +43,18 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+    GetUserResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
     User:
       type: object
       description: Represents an itch.io account with basic profile info
@@ -75,18 +87,6 @@ components:
           type: string
           format: uri
           description: Static version of user's avatar; only set if the main cover URL is a GIF
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
-    GetUserResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
   responses:
     NotFound:
       description: Resource not found
