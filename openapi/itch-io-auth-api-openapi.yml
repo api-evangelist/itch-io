@@ -96,12 +96,14 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ErrorResponse:
+    TOTPVerifyResponse:
       type: object
       properties:
-        errors:
-          type: array
-          items:
+        key:
+          $ref: '#/components/schemas/APIKey'
+        cookie:
+          type: object
+          additionalProperties:
             type: string
     LoginWithPasswordResponse:
       type: object
@@ -123,15 +125,6 @@ components:
           additionalProperties:
             type: string
           description: Session cookie key-value pairs for browser session
-    TOTPVerifyResponse:
-      type: object
-      properties:
-        key:
-          $ref: '#/components/schemas/APIKey'
-        cookie:
-          type: object
-          additionalProperties:
-            type: string
     APIKey:
       type: object
       description: Grants access to the itch.io API within a certain scope
@@ -152,6 +145,13 @@ components:
           format: date-time
         sourceVersion:
           type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
   responses:
     Unauthorized:
       description: Authentication is required or credentials are invalid
