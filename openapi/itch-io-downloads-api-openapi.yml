@@ -44,20 +44,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  schemas:
-    NewDownloadSessionResponse:
-      type: object
-      properties:
-        uuid:
-          type: string
-          description: UUID for the new download session
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
   parameters:
     secret:
       name: secret
@@ -78,6 +64,20 @@ components:
       schema:
         type: integer
         format: int64
+  schemas:
+    NewDownloadSessionResponse:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: UUID for the new download session
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
   responses:
     Unauthorized:
       description: Authentication is required or credentials are invalid

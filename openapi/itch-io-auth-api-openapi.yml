@@ -96,15 +96,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    TOTPVerifyResponse:
-      type: object
-      properties:
-        key:
-          $ref: '#/components/schemas/APIKey'
-        cookie:
-          type: object
-          additionalProperties:
-            type: string
     LoginWithPasswordResponse:
       type: object
       properties:
@@ -145,6 +136,15 @@ components:
           format: date-time
         sourceVersion:
           type: string
+    TOTPVerifyResponse:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/APIKey'
+        cookie:
+          type: object
+          additionalProperties:
+            type: string
     ErrorResponse:
       type: object
       properties:
